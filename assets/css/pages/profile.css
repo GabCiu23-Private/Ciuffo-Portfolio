@@ -1,0 +1,364 @@
+.about-columns {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.about-card {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.profile-resume,
+.profile-resume-top,
+.profile-resume-intro,
+.profile-resume-facts,
+.profile-skills,
+.profile-resume-body,
+.experience-list,
+.experience-item,
+.experience-heading,
+.experience-copy,
+.profile-side,
+.profile-side-group {
+  display: grid;
+}
+
+.profile-resume {
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+.profile-resume-top {
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.42fr);
+  gap: var(--space-6);
+  align-items: end;
+}
+
+.profile-resume-intro {
+  gap: var(--space-3);
+  max-width: 58rem;
+}
+
+.profile-resume-intro h2 {
+  max-width: 17ch;
+  font-size: clamp(2.15rem, 4vw, 4.25rem);
+  line-height: 0.96;
+  letter-spacing: -0.075em;
+}
+
+.profile-resume-intro p:not(.eyebrow) {
+  max-width: 42rem;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.profile-resume-facts {
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.profile-resume-facts ul {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-resume-facts li {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.profile-resume-facts strong,
+.profile-skills strong {
+  font-size: 1.08rem;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.profile-resume-facts span,
+.profile-skills span {
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+.profile-skills {
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-skills ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-skills li {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+}
+
+.profile-resume-body {
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.26fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.experience-list {
+  gap: 0;
+}
+
+.experience-item,
+.experience-note,
+.profile-side-group {
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--line);
+}
+
+.experience-item {
+  grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 0.68fr);
+  gap: var(--space-6);
+}
+
+.experience-heading {
+  gap: 0.55rem;
+  align-content: start;
+}
+
+.experience-heading h3 {
+  max-width: 19rem;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+}
+
+.experience-item p,
+.experience-note p,
+.profile-side li,
+.profile-side a {
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+.experience-copy {
+  gap: var(--space-3);
+}
+
+.experience-copy p {
+  max-width: 44rem;
+}
+
+.experience-item .experience-inline-note {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 44rem;
+}
+
+.experience-note {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.35fr) minmax(0, 0.65fr);
+  gap: var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-side {
+  gap: var(--space-4);
+}
+
+.profile-side-group {
+  gap: var(--space-3);
+}
+
+.profile-side ul {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-side a {
+  display: inline-flex;
+  border-bottom: 1px solid transparent;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.profile-side a:hover,
+.profile-side a:focus-visible {
+  color: var(--text);
+  border-color: currentColor;
+}
+
+body[data-page="profile"] .page-hero-grid {
+  grid-template-columns: 1.7fr 0.9fr;
+  align-items: end;
+}
+
+body[data-page="profile"] .page-hero-grid > div {
+  display: grid;
+  gap: var(--space-3);
+}
+
+body[data-page="profile"] .page-hero h1 {
+  max-width: 12ch;
+  font-size: clamp(3rem, 7vw, 6.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.07em;
+}
+
+body[data-page="profile"] .page-intro {
+  max-width: 32rem;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+@media (max-width: 1024px) {
+  .profile-skills ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .profile-resume-top {
+    align-items: start;
+  }
+
+  .offset-row a {
+    padding-left: 0;
+  }
+
+  .page-hero .contact-layout {
+    min-height: auto;
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  .shift-soft {
+    margin-left: 0;
+  }
+
+  .selected-work-link {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    align-items: start;
+    min-height: auto;
+  }
+
+  .selected-work-preview {
+    position: static;
+    grid-column: 2;
+    margin-top: 1rem;
+    width: min(100%, 15.5rem);
+    opacity: 1;
+    transform: none;
+  }
+
+  .selected-work-title-block {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    row-gap: 0.3rem;
+  }
+
+  .selected-work-note {
+    grid-column: 2;
+    align-self: start;
+    max-width: 34rem;
+    white-space: normal;
+    padding-top: 0;
+    padding-left: 2.4rem;
+  }
+
+  .selected-work-section .offset-row .selected-work-link {
+    padding-left: 0;
+  }
+
+  .selected-work-head {
+    max-width: 34rem;
+    padding-left: 0;
+  }
+
+  .profile-resume {
+    gap: var(--space-5);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-copy h1 span:nth-child(2),
+  .hero-copy h1 span:nth-child(4),
+  .contact-layout h1 span {
+    margin-left: 0;
+  }
+
+  .page-hero .contact-layout {
+    min-height: auto;
+    gap: var(--space-4);
+  }
+
+  .page-hero .hero-copy h1,
+  .page-hero .contact-layout h1 {
+    font-size: clamp(2.6rem, 13vw, 4.3rem);
+    line-height: 1.04;
+    max-width: 10ch;
+  }
+
+  body[data-page="work"] .page-hero .hero-copy h1 {
+    max-width: 11ch;
+  }
+
+  .page-hero .lead,
+  .page-hero .project-side p {
+    font-size: 1rem;
+    max-width: 30rem;
+  }
+
+  .work-row a,
+  .archive-row a {
+    grid-template-columns: 56px 1fr;
+  }
+
+  .selected-work-link {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .selected-work-title-block {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+  }
+
+  .selected-work-title-block .work-index,
+  .selected-work-title-block h3,
+  .selected-work-note {
+    grid-column: auto;
+  }
+
+  .selected-work-title-block h3,
+  .selected-work-note {
+    max-width: none;
+  }
+
+  .selected-work-head h2 {
+    max-width: none;
+  }
+
+  .selected-work-preview {
+    position: static;
+    width: 100%;
+    border-radius: 0.85rem;
+  }
+
+  .profile-skills ul {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-resume-facts,
+  .profile-skills,
+  .experience-item,
+  .profile-side-group {
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+  }
+}

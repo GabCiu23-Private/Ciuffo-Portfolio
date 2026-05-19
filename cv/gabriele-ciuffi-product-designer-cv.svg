@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="595" height="842" viewBox="0 0 595 842">
+  <defs>
+    <style>
+      .bg{fill:#f5f3ef}
+      .paper{fill:#fbfaf7}
+      .ink{fill:#111}
+      .muted{fill:#615d56}
+      .soft{fill:#85745a}
+      .rule{stroke:#d9d4cb;stroke-width:1}
+      .hair{stroke:#111;stroke-width:.6;opacity:.04}
+      .sans{font-family:Manrope,Inter,Arial,sans-serif}
+      .label{font-size:6px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;fill:#615d56}
+      .micro{font-size:6.7px;font-weight:500;fill:#615d56}
+      .body{font-size:7.55px;font-weight:500;fill:#615d56}
+      .bodyDark{font-size:7.6px;font-weight:600;fill:#111}
+      .h1{font-size:25.5px;font-weight:800;letter-spacing:-.035em;fill:#111}
+      .h2{font-size:10.8px;font-weight:800;letter-spacing:-.02em;fill:#111}
+      .role{font-size:7.4px;font-weight:700;fill:#615d56}
+      .date{font-size:6.2px;font-weight:800;letter-spacing:.13em;fill:#615d56}
+      .chip{fill:#fbfaf7;stroke:#d9d4cb;stroke-width:1}
+    </style>
+  </defs>
+
+  <rect class="bg" width="595" height="842"/>
+  <g class="hair">
+    <line x1="34" y1="0" x2="34" y2="842"/>
+    <line x1="78" y1="0" x2="78" y2="842"/>
+    <line x1="122" y1="0" x2="122" y2="842"/>
+    <line x1="166" y1="0" x2="166" y2="842"/>
+    <line x1="210" y1="0" x2="210" y2="842"/>
+    <line x1="254" y1="0" x2="254" y2="842"/>
+    <line x1="298" y1="0" x2="298" y2="842"/>
+    <line x1="342" y1="0" x2="342" y2="842"/>
+    <line x1="386" y1="0" x2="386" y2="842"/>
+    <line x1="430" y1="0" x2="430" y2="842"/>
+    <line x1="474" y1="0" x2="474" y2="842"/>
+    <line x1="518" y1="0" x2="518" y2="842"/>
+    <line x1="562" y1="0" x2="562" y2="842"/>
+  </g>
+
+  <g class="sans">
+    <line class="rule" x1="190" y1="34" x2="190" y2="808"/>
+    <rect class="soft" x="526" y="34" width="35" height="1.7"/>
+    <circle class="soft" cx="561" cy="34.8" r="3.4"/>
+
+    <text class="ink" x="34" y="62" font-size="21" font-weight="800" letter-spacing="-0.04em">
+      <tspan x="34" dy="0">Gabriele</tspan>
+      <tspan x="34" dy="22">Ciuffi</tspan>
+    </text>
+    <text class="muted" x="34" y="105" font-size="8.5" font-weight="600">
+      <tspan x="34" dy="0">Product Designer</tspan>
+      <tspan x="34" dy="11.5">UX/UI e Front-End</tspan>
+    </text>
+    <line class="rule" x1="34" y1="132" x2="174" y2="132"/>
+
+    <text class="label" x="34" y="158">Contatti</text>
+    <text class="micro" x="34" y="176">
+      <tspan x="34" dy="0">gabrieleciuffi00@gmail.com</tspan>
+      <tspan x="34" dy="11.5">linkedin.com/in/gabrieleciuffi</tspan>
+      <tspan x="34" dy="11.5">ciuffostudio.com</tspan>
+    </text>
+
+    <text class="label" x="34" y="238">Sede</text>
+    <text class="micro" x="34" y="256">Firenze, Italy</text>
+
+    <text class="label" x="34" y="304">Lingue</text>
+    <text class="micro" x="34" y="322">
+      <tspan x="34" dy="0">English B2</tspan>
+      <tspan x="34" dy="11.5">French A1</tspan>
+    </text>
+
+    <text class="label" x="34" y="372">Tools</text>
+    <text class="micro" x="34" y="390">
+      <tspan x="34" dy="0">Figma</tspan>
+      <tspan x="34" dy="11.5">Adobe Creative Suite</tspan>
+      <tspan x="34" dy="11.5">WordPress</tspan>
+      <tspan x="34" dy="11.5">Webflow</tspan>
+      <tspan x="34" dy="11.5">HTML / CSS / JavaScript</tspan>
+    </text>
+
+    <line class="rule" x1="34" y1="486" x2="174" y2="486"/>
+    <text class="label" x="34" y="514">Formazione</text>
+    <text class="micro" x="34" y="534">
+      <tspan x="34" dy="0">LABA Firenze</tspan>
+      <tspan x="34" dy="11.5">Graphic Design &amp;</tspan>
+      <tspan x="34" dy="11.5">Multimedia</tspan>
+    </text>
+
+    <text class="label" x="34" y="628">Profilo</text>
+    <text class="bodyDark" x="34" y="650">
+      <tspan x="34" dy="0">UX, UI e sistemi digitali.</tspan>
+      <tspan x="34" dy="11.8">Struttura prima della</tspan>
+      <tspan x="34" dy="11.8">decorazione, esecuzione</tspan>
+      <tspan x="34" dy="11.8">tecnica come parte del</tspan>
+      <tspan x="34" dy="11.8">progetto.</tspan>
+    </text>
+
+    <text class="micro" x="34" y="790" font-weight="600">
+      <tspan x="34">Ciuffo Studio / CV</tspan>
+      <tspan x="34" dy="10">Product Design / UX / UI</tspan>
+    </text>
+
+    <text class="label" x="214" y="52">Product Designer / UX / UI / Front-End</text>
+    <text class="h1" x="214" y="88">
+      <tspan x="214" dy="0">Progetto interfacce</tspan>
+      <tspan x="214" dy="27">digitali chiare,</tspan>
+      <tspan x="214" dy="27">strutturate e reali.</tspan>
+    </text>
+    <text class="body" x="214" y="178">
+      <tspan x="214" dy="0">Product Designer con background UX/UI e front-end. Lavoro su siti, landing page</tspan>
+      <tspan x="214" dy="11.4">e sistemi digitali partendo da flussi, architettura informativa e gerarchia dei</tspan>
+      <tspan x="214" dy="11.4">contenuti, fino a UI responsive e implementazione tecnica.</tspan>
+    </text>
+
+    <line class="rule" x1="214" y1="236" x2="561" y2="236"/>
+    <text class="label" x="214" y="262">01 / Esperienza</text>
+
+    <g>
+      <text class="h2" x="300" y="264">Leone Spa</text>
+      <text class="date" x="492" y="264">2025 - PRESENTE</text>
+      <text class="role" x="300" y="281">Digital Product Designer</text>
+      <text class="body" x="300" y="304">
+        <tspan x="300" dy="0">- Progettazione e sviluppo end-to-end del sito aziendale.</tspan>
+        <tspan x="300" dy="10.8">- UX, UI, architettura contenuti e flussi di navigazione.</tspan>
+        <tspan x="300" dy="10.8">- Componenti front-end, pagine responsive e vincoli brand.</tspan>
+        <tspan x="300" dy="10.8">- Collaborazione con marketing e priorita di business.</tspan>
+      </text>
+    </g>
+
+    <rect class="paper" x="214" y="366" width="347" height="112" rx="6" stroke="#d9d4cb"/>
+    <rect class="soft" x="214" y="366" width="3" height="112" rx="1.5"/>
+    <text class="label" x="228" y="390">Progetto principale</text>
+    <text class="h2" x="228" y="414">
+      <tspan x="228" dy="0">Leone Spa /</tspan>
+      <tspan x="228" dy="14">sito web completo</tspan>
+    </text>
+    <text class="body" x="382" y="390">
+      <tspan x="382" dy="0">Redesign e realizzazione di un ecosistema web</tspan>
+      <tspan x="382" dy="10.8">per organizzare contenuti corporate, cataloghi,</tspan>
+      <tspan x="382" dy="10.8">navigazione e interfacce responsive.</tspan>
+    </text>
+    <line class="rule" x1="382" y1="430" x2="543" y2="430"/>
+    <text class="body" x="382" y="450">
+      <tspan x="382" dy="0">IA e percorsi utente</tspan>
+      <tspan x="382" dy="10.4">Sistema UI e template</tspan>
+      <tspan x="382" dy="10.4">Front-end responsive</tspan>
+    </text>
+    <rect x="228" y="442" width="120" height="22" rx="4" fill="#f5f3ef" stroke="#d9d4cb"/>
+    <rect x="236" y="449" width="52" height="3" rx="2" fill="#111" opacity=".14"/>
+    <rect x="236" y="457" width="32" height="3" rx="2" fill="#85745a" opacity=".35"/>
+    <rect x="274" y="457" width="32" height="3" rx="2" fill="#111" opacity=".1"/>
+    <rect x="312" y="457" width="22" height="3" rx="2" fill="#111" opacity=".1"/>
+
+    <g>
+      <text class="h2" x="300" y="525">Noe Multimedia</text>
+      <text class="date" x="532" y="525">2025</text>
+      <text class="role" x="300" y="542">Digital Designer / Supporto Front-End</text>
+      <text class="body" x="300" y="565">
+        <tspan x="300" dy="0">- Collaborazione di 4 mesi su progetti digitali per Eli Lilly.</tspan>
+        <tspan x="300" dy="10.8">- Landing page, companion app e contenuti per app esistenti.</tspan>
+        <tspan x="300" dy="10.8">- Lavoro in contesto regolato, con materiali non divulgabili.</tspan>
+      </text>
+    </g>
+
+    <line class="rule" x1="300" y1="622" x2="561" y2="622"/>
+    <g>
+      <text class="h2" x="300" y="652">Collaborazioni indipendenti</text>
+      <text class="date" x="497" y="652">2023 - 2024</text>
+      <text class="role" x="300" y="669">Graphic / Web Designer</text>
+      <text class="body" x="300" y="692">
+        <tspan x="300" dy="0">- Siti web, landing page e visual identity per piccoli progetti.</tspan>
+        <tspan x="300" dy="10.8">- Struttura, impianto visivo, pagine responsive e materiali coordinati.</tspan>
+      </text>
+    </g>
+
+    <line class="rule" x1="214" y1="735" x2="561" y2="735"/>
+    <text class="label" x="214" y="760">02 / Competenze</text>
+    <g font-size="6.35" font-weight="700" fill="#111">
+      <rect class="chip" x="300" y="748" width="58" height="15" rx="7"/>
+      <text x="307" y="758">UX Design</text>
+      <rect class="chip" x="364" y="748" width="56" height="15" rx="7"/>
+      <text x="371" y="758">UI Design</text>
+      <rect class="chip" x="426" y="748" width="86" height="15" rx="7"/>
+      <text x="433" y="758">Information Arch.</text>
+      <rect class="chip" x="300" y="770" width="66" height="15" rx="7"/>
+      <text x="307" y="780">User Flow</text>
+      <rect class="chip" x="372" y="770" width="78" height="15" rx="7"/>
+      <text x="379" y="780">Responsive UI</text>
+      <rect class="chip" x="456" y="770" width="84" height="15" rx="7"/>
+      <text x="463" y="780">HTML / CSS / JS</text>
+    </g>
+    <text class="body" x="300" y="810">
+      <tspan x="300" dy="0">Focus: gerarchia, componenti, accessibilita, performance e sistemi web.</tspan>
+    </text>
+  </g>
+</svg>

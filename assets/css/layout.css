@@ -1,0 +1,101 @@
+.site-header,
+main,
+.site-footer,
+.system-mark {
+  position: relative;
+  z-index: 1;
+}
+
+.site-shell {
+  min-height: 100vh;
+}
+
+.container {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin: 0 auto;
+}
+
+.hero-layout,
+.page-hero-grid,
+.project-top,
+.about-band {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.hero-layout,
+.page-hero-grid,
+.project-top {
+  grid-template-columns: 1.25fr 0.75fr;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: var(--space-6);
+  min-height: 62vh;
+  align-items: end;
+}
+
+.section {
+  padding: var(--space-7) 0;
+}
+
+.first-section {
+  padding-top: calc(var(--space-8) + 1rem);
+}
+
+.section-line {
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  max-width: 50rem;
+  margin-bottom: var(--space-6);
+}
+
+.meta-stack {
+  display: grid;
+  gap: 0.4rem;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.contact-block {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.cta-panel {
+  max-width: 56rem;
+}
+
+@media (max-width: 720px) {
+  .container {
+    width: min(calc(100% - 1.25rem), var(--max-width));
+  }
+
+  .section {
+    padding: var(--space-6) 0;
+  }
+
+  .first-section {
+    padding-top: calc(var(--space-7) + 1rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-layout,
+  .page-hero-grid,
+  .project-top,
+  .about-band,
+  .about-columns,
+  .process-list,
+  .contact-layout,
+  .profile-resume-top,
+  .profile-resume-body,
+  .experience-item,
+  .experience-note {
+    grid-template-columns: 1fr;
+  }
+}

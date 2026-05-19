@@ -1,0 +1,85 @@
+body {
+  font-family: "Manrope", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  background-image:
+    linear-gradient(to right, var(--page-grid-tint), var(--page-grid-tint)),
+    linear-gradient(to right, var(--page-grid-tint), var(--page-grid-tint)),
+    repeating-linear-gradient(
+      to right,
+      var(--page-grid-tint) 0,
+      var(--page-grid-tint) 1px,
+      transparent 1px,
+      transparent var(--page-grid-step)
+    );
+  background-position:
+    var(--page-grid-offset) top,
+    calc(var(--page-grid-offset) + var(--page-grid-width)) top,
+    var(--page-grid-offset) top;
+  background-repeat: no-repeat;
+  background-size: 1px 100%, 1px 100%, var(--page-grid-width) 100%;
+  transform: translate3d(var(--bg-grid-shift-x), var(--bg-grid-shift-y), 0);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      22rem 22rem at var(--bg-hover-x) var(--bg-hover-y),
+      rgba(133, 116, 90, 0.09),
+      rgba(133, 116, 90, 0.035) 38%,
+      rgba(133, 116, 90, 0) 74%
+    );
+  opacity: var(--bg-hover-opacity);
+  transition: opacity 220ms ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body::before {
+    transform: none;
+  }
+
+  body::after {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  body::before {
+    opacity: 0.45;
+  }
+
+  body::after {
+    opacity: 0;
+  }
+}
