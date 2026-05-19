@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../../assets/css/base.css" />
     <link rel="stylesheet" href="../../assets/css/layout.css" />
     <link rel="stylesheet" href="../../assets/css/components.css" />
+    <link rel="stylesheet" href="../../assets/css/pages/project-case-study.css" />
     <link rel="stylesheet" href="../../assets/css/pages/project.css" />
   </head>
   <body data-page="project-analytics">
@@ -37,29 +38,31 @@
       </div>
     </header>
 
-    <main>
-      <section class="page-hero section first-section">
-        <div class="container contact-layout">
-          <div class="hero-copy reveal">
-            <p class="eyebrow">Tool Proprietario</p>
+    <main class="case-study-main">
+      <section class="section first-section case-hero">
+        <div class="container case-hero-grid">
+          <div class="case-hero-copy reveal">
+            <p class="eyebrow">Tool Proprietario / Analytics</p>
             <h1>
               <span>Local Landing</span>
               <span>Analytics</span>
             </h1>
-          </div>
-          <div class="contact-block reveal reveal-late project-side">
-            <p class="lead">
-              Sistema locale per misurare visite, CTA, form, conversioni e segnali comportamentali su landing page evento.
+            <p class="case-category">Product design / Tracking eventi / Dashboard / Front-end</p>
+            <p class="case-summary">
+              Un sistema privacy-first per leggere cosa succede davvero su una landing evento: visite, CTA, form,
+              conversioni, scroll e segnali comportamentali.
             </p>
-            <div class="meta-block">
+          </div>
+          <div class="case-meta reveal reveal-late">
+            <div class="case-meta-row">
               <span class="meta-label">Ruolo</span>
               <p>Product design, architettura del tracker, dashboard, front-end</p>
             </div>
-            <div class="meta-block">
+            <div class="case-meta-row">
               <span class="meta-label">Ambito</span>
               <p>Tracking eventi, funnel, heatmap aggregate, consenso, documentazione tecnica</p>
             </div>
-            <div class="meta-block">
+            <div class="case-meta-row">
               <span class="meta-label">Stato</span>
               <p>MVP locale privacy-first, progettato per una futura migrazione a backend</p>
             </div>
@@ -67,62 +70,302 @@
         </div>
       </section>
 
+      <section class="section section-line case-intro-visual-section">
+        <div class="container reveal">
+          <div class="case-hero-visual analytics-hero-visual" aria-label="Visual introduttivo Local Landing Analytics">
+            <div class="analytics-hero-stage">
+              <div class="analytics-poster-panel">
+                <div class="hero-poster-copy">
+                  <span class="meta-label">Local Analytics MVP</span>
+                  <strong>Misurare senza appesantire.</strong>
+                  <p>Un tracker leggero incorporato nella landing e una dashboard locale per trasformare eventi grezzi in decisioni.</p>
+                </div>
+              </div>
+              <div class="analytics-signal-panel" aria-hidden="true">
+                <div class="signal-head">
+                  <span class="meta-label">Segnali</span>
+                  <p>La pagina produce eventi ordinati, la dashboard li aggrega in letture operative.</p>
+                </div>
+                <div class="signal-flow">
+                  <span>Page view</span>
+                  <span>Scroll depth</span>
+                  <span>Click CTA</span>
+                  <span>Form start</span>
+                  <span>Form submit</span>
+                  <span>Thank you</span>
+                </div>
+                <div class="signal-output">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section section-line">
-        <div class="container detail-flow">
-          <section class="detail-block reveal">
+        <div class="container case-text-band reveal">
+          <p class="eyebrow">Intro / Panoramica</p>
+          <div class="case-band-copy">
+            <h2>Un piccolo prodotto interno per rendere misurabili le landing evento.</h2>
+            <p>
+              Il progetto nasce da un bisogno pratico: capire come performano le landing senza introdurre subito
+              piattaforme esterne, cookie invasivi o infrastruttura backend. La soluzione combina un tracker embeddabile,
+              attributi HTML leggibili e una dashboard capace di mostrare funnel, CTA, form e comportamento aggregato.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-line">
+        <div class="container case-split">
+          <div class="section-head reveal">
             <p class="eyebrow">Problema</p>
-            <h2>Le landing evento avevano bisogno di misurazione, ma senza introdurre subito piattaforme esterne o infrastruttura backend.</h2>
-            <p>
-              L'obiettivo era capire cosa succedeva dopo la pubblicazione: quali CTA venivano cliccate,
-              dove le persone arrivavano nello scroll, quando iniziavano il form e quante sessioni arrivavano alla conversione.
-            </p>
-          </section>
+            <h2>Le landing pubblicate raccontavano poco su cosa succedeva dopo il primo click.</h2>
+          </div>
+          <div class="context-grid">
+            <article class="context-card reveal">
+              <span class="meta-label">CTA</span>
+              <p>Era difficile capire quali inviti all'azione venivano visti, cliccati o ignorati durante la visita.</p>
+            </article>
+            <article class="context-card reveal reveal-late">
+              <span class="meta-label">Form</span>
+              <p>Il punto critico non era solo il submit finale, ma il passaggio tra click, avvio del form e abbandono.</p>
+            </article>
+            <article class="context-card reveal">
+              <span class="meta-label">Scroll</span>
+              <p>Serviva leggere fino a dove arrivavano le sessioni per capire se contenuto, ritmo e gerarchia funzionavano.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-          <section class="detail-block shift-soft reveal reveal-late">
-            <p class="eyebrow">Soluzione</p>
-            <h2>Un tracker embeddabile che lavora con attributi HTML e una dashboard che aggrega i dati dallo stesso origin.</h2>
-            <p>
-              La landing carica un file JavaScript condiviso, dichiara una configurazione stabile e marca gli elementi chiave
-              con attributi come data-cta, data-section, data-track-form e data-thank-you. La dashboard legge gli eventi,
-              li aggrega e rende visibili funnel, conversioni, click e scroll depth.
+      <section class="section section-line">
+        <div class="container case-analysis-grid">
+          <div class="section-head reveal">
+            <p class="eyebrow">Approccio</p>
+            <h2>Prima un modello dati stabile, poi la dashboard.</h2>
+            <p class="page-intro">
+              Il tracker usa una configurazione dichiarativa e attributi come data-cta, data-section, data-track-form
+              e data-thank-you. Ogni landing può così produrre eventi coerenti senza riscrivere la logica di raccolta.
             </p>
-          </section>
+          </div>
+          <div class="analysis-panel reveal reveal-late" aria-label="Approccio progettuale Local Landing Analytics">
+            <div class="analysis-column">
+              <span class="meta-label">Raccolta</span>
+              <ul class="analysis-list">
+                <li>Page view e sessioni</li>
+                <li>CTA e destinazioni</li>
+                <li>Form start e submit</li>
+              </ul>
+            </div>
+            <div class="analysis-column">
+              <span class="meta-label">Lettura</span>
+              <ul class="analysis-list">
+                <li>Funnel e conversioni</li>
+                <li>Scroll depth</li>
+                <li>Click e heatmap aggregate</li>
+              </ul>
+            </div>
+            <div class="analysis-column analysis-column-soft">
+              <span class="meta-label">Direzione</span>
+              <p>Costruire un MVP leggero, locale e riusabile, pronto a evolvere verso endpoint e aggregazioni server-side.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <section class="detail-block reveal">
-            <p class="eyebrow">Privacy</p>
-            <h2>La parte comportamentale è volutamente aggregata: niente replay, niente valori dei form, niente testo sensibile.</h2>
+      <section class="section section-line">
+        <div class="container thinking-grid analytics-dashboard-grid">
+          <div class="thinking-copy reveal">
+            <p class="eyebrow">Dashboard</p>
+            <h2 id="analytics-dashboard-title">Una lettura operativa delle performance, pensata per decidere dove intervenire.</h2>
             <p>
-              Il sistema include heatmap click, scroll heatmap, rage click e dead click, ma evita campi sensibili,
-              input, textarea, email, telefono e contenuti liberi. Il consenso può essere richiesto prima del tracking
-              tramite opt-in esplicito.
+              La schermata raccoglie KPI, punti critici, profondità di scroll, click sulle CTA e sessioni reali.
+              L'obiettivo non è produrre report decorativi, ma rendere immediatamente visibile il comportamento della landing.
             </p>
-          </section>
+            <p>
+              In questo modo ogni dato resta collegato a una decisione possibile: spostare una CTA, chiarire un passaggio,
+              ridurre frizione nel form o ripensare la sequenza dei contenuti.
+            </p>
+          </div>
 
-          <section class="detail-block shift-soft reveal reveal-late">
-            <p class="eyebrow">Sistema</p>
+          <div class="analytics-dashboard reveal reveal-late" aria-label="Mockup della dashboard Local Landing Analytics">
+            <div class="dashboard-topbar">
+              <div>
+                <span>Local analytics MVP</span>
+                <strong>Performance landing</strong>
+              </div>
+              <div class="dashboard-actions" aria-hidden="true">
+                <span>45 Leoclub e 6 Leotech Firenze 2026</span>
+                <span>Export JSON</span>
+              </div>
+            </div>
+
+            <div class="dashboard-kpis" aria-label="Metriche principali">
+              <div class="dashboard-card">
+                <span>Sessioni</span>
+                <strong>6</strong>
+              </div>
+              <div class="dashboard-card">
+                <span>Nuovi utenti</span>
+                <strong>0</strong>
+              </div>
+              <div class="dashboard-card">
+                <span>Utenti rientranti</span>
+                <strong>1</strong>
+              </div>
+              <div class="dashboard-card">
+                <span>Conversioni</span>
+                <strong>0</strong>
+              </div>
+              <div class="dashboard-card">
+                <span>CTA engagement</span>
+                <strong>16.7%</strong>
+              </div>
+            </div>
+
+            <div class="dashboard-critical">
+              <article>
+                <span>Prima della CTA</span>
+                <strong>4 · 80%</strong>
+                <p>Sessioni senza click CTA.</p>
+              </article>
+              <article>
+                <span>Dopo il click</span>
+                <strong>0 · 0%</strong>
+                <p>Nessun avvio form dopo CTA.</p>
+              </article>
+              <article>
+                <span>Nel form</span>
+                <strong>1 · 100%</strong>
+                <p>Form iniziati ma non inviati.</p>
+              </article>
+            </div>
+
+            <div class="dashboard-lower">
+              <div class="dashboard-panel">
+                <div class="panel-head">
+                  <strong>Funnel</strong>
+                  <span>sessioni</span>
+                </div>
+                <div class="bar-row">
+                  <span>Visitatori</span>
+                  <i style="--value: 100%"></i>
+                  <b>5 · 100%</b>
+                </div>
+                <div class="bar-row">
+                  <span>Scroll 50</span>
+                  <i style="--value: 20%"></i>
+                  <b>1 · 20%</b>
+                </div>
+                <div class="bar-row">
+                  <span>Click CTA</span>
+                  <i style="--value: 20%"></i>
+                  <b>1 · 20%</b>
+                </div>
+                <div class="bar-row muted">
+                  <span>Form submit</span>
+                  <i style="--value: 0%"></i>
+                  <b>0 · 0%</b>
+                </div>
+              </div>
+
+              <div class="dashboard-panel heatmap-panel">
+                <div class="panel-head">
+                  <strong>Mappa click</strong>
+                  <span>28 click tracciati</span>
+                </div>
+                <div class="heatmap-canvas" aria-hidden="true">
+                  <span class="heat-dot dot-a"></span>
+                  <span class="heat-dot dot-b"></span>
+                  <span class="heat-dot dot-c"></span>
+                  <span class="heat-dot dot-d"></span>
+                  <span class="heat-dot dot-e"></span>
+                  <span class="heat-dot dot-f"></span>
+                </div>
+              </div>
+
+              <div class="dashboard-panel session-panel">
+                <div class="panel-head">
+                  <strong>Sessioni</strong>
+                  <span>ultimi eventi</span>
+                </div>
+                <div class="session-row">
+                  <span>c2bc1870</span>
+                  <b>11m 46s</b>
+                  <i>2 CTA</i>
+                </div>
+                <div class="session-row">
+                  <span>b8abb881</span>
+                  <b>27m 21s</b>
+                  <i>70 eventi</i>
+                </div>
+                <div class="session-row">
+                  <span>c00b93a6</span>
+                  <b>35m 37s</b>
+                  <i>156 eventi</i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-line">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Decisioni Di Progetto</p>
             <h2>Il valore non è solo nella dashboard, ma nel modello riusabile dietro ogni landing.</h2>
-            <p>
-              Page view, sessioni, visitatori, CTA, form start, form submit e thank you view usano una struttura dati coerente.
-              Questo rende il progetto adatto a evolvere verso endpoint, batching, retention e aggregazioni server-side
-              senza riscrivere la logica delle landing.
-            </p>
-          </section>
+          </div>
+          <div class="decision-grid">
+            <article class="decision-card reveal">
+              <span class="meta-label">Attributi</span>
+              <h3>Tracking dichiarativo nel markup.</h3>
+              <p>Gli elementi importanti vengono marcati direttamente in HTML, rendendo il sistema semplice da applicare su landing diverse.</p>
+            </article>
+            <article class="decision-card reveal reveal-late">
+              <span class="meta-label">Funnel</span>
+              <h3>Passaggi misurabili, non solo conversione finale.</h3>
+              <p>CTA, scroll, form start, form submit e thank you view raccontano dove il percorso si interrompe.</p>
+            </article>
+            <article class="decision-card reveal">
+              <span class="meta-label">Privacy</span>
+              <h3>Comportamento aggregato, niente dati sensibili.</h3>
+              <p>Il sistema evita valori dei form, testo libero, email e telefono, concentrandosi su segnali anonimi e aggregati.</p>
+            </article>
+            <article class="decision-card reveal reveal-late">
+              <span class="meta-label">Evoluzione</span>
+              <h3>Un MVP locale pronto a diventare servizio.</h3>
+              <p>La struttura dati è pensata per endpoint, batching, retention e aggregazioni server-side future.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-          <section class="detail-block reveal">
-            <p class="eyebrow">Esito</p>
-            <h2>Un tool interno leggero per leggere le performance reali delle landing e migliorare le decisioni di progetto.</h2>
+      <section class="section section-line">
+        <div class="container case-text-band reveal">
+          <p class="eyebrow">Esito</p>
+          <div class="case-band-copy">
+            <h2>Un tool interno leggero per leggere le performance reali e migliorare le decisioni di progetto.</h2>
             <p>
               Il risultato è un MVP operativo per test locali e demo controllate: abbastanza semplice da incorporare
               nelle pagine, abbastanza strutturato da raccontare funnel, comportamento e opportunità di ottimizzazione.
             </p>
-          </section>
+            <p>
+              La parte più importante è la continuità tra tracker e dashboard: ogni evento raccolto serve a leggere
+              un passaggio concreto della landing, non a generare rumore analitico.
+            </p>
+          </div>
         </div>
       </section>
 
       <section class="section section-line case-nav-section">
         <div class="container case-nav reveal">
           <a class="text-link" href="leone-event.html">Progetto precedente</a>
-          <a class="text-link" href="leone-catalog.html">Progetto successivo</a>
+          <a class="text-link" href="lilly.html">Progetto successivo</a>
         </div>
       </section>
     </main>
