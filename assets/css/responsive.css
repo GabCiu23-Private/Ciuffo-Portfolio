@@ -74,7 +74,7 @@
     padding: 0 18px 24px;
   }
 
-  .hero-bottom > p { max-width: 330px; }
+  .hero-intro { max-width: 380px; }
   .services-ticker { display: none; }
   .marquee > div { padding: 12px 0; }
 
@@ -460,6 +460,10 @@
     border-bottom: 1px solid var(--line);
   }
 
+  .case-meta > div:nth-child(n + 4) {
+    border-top: 0;
+  }
+
   .case-section {
     grid-template-columns: 1fr;
     padding: 82px 18px;
@@ -526,7 +530,7 @@
     padding: 22px 18px;
   }
 
-  .case-footer a {
+  .case-footer a[href="index.html"] {
     display: none;
   }
 
@@ -540,7 +544,7 @@
   }
 
   .work-index-list a {
-    min-height: 210px;
+    min-height: 290px;
     grid-template-columns: 38px 1fr;
     padding: 22px 18px;
   }
@@ -601,6 +605,10 @@
   }
 
   .profile-cv-intro > p:last-child {
+    grid-column: 1;
+  }
+
+  .profile-cv-intro > a {
     grid-column: 1;
   }
 

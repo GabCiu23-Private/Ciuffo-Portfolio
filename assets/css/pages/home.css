@@ -32,6 +32,7 @@
 }
 
 .hero-title {
+  margin: 0;
   padding: clamp(40px, 6vh, 78px) 2vw clamp(30px, 5vh, 60px);
   font-size: clamp(64px, 11.2vw, 180px);
   font-weight: 790;
@@ -122,12 +123,36 @@
   padding: 0 2.2vw 28px;
 }
 
-.hero-bottom > p {
+.hero-intro {
+  max-width: 470px;
+}
+
+.hero-intro > p {
   max-width: 420px;
   margin: 0;
   font-size: clamp(15px, 1.35vw, 22px);
   line-height: 1.35;
   letter-spacing: -.02em;
+}
+
+.hero-intro small {
+  max-width: 420px;
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.hero-intro a {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.hero-intro a + a {
+  margin-left: 18px;
 }
 
 .services-ticker {
@@ -341,6 +366,10 @@
 }
 
 .art-nda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   background: #fa3b85;
 }
 
@@ -688,7 +717,7 @@
 
 .process h2 {
   margin: 60px 0 100px;
-  font-size: clamp(70px, 11vw, 165px);
+  font-size: clamp(62px, 9vw, 138px);
   font-weight: 620;
   letter-spacing: -.07em;
   line-height: .78;
@@ -701,7 +730,7 @@
 
 .process-steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 3vw;
   margin-left: 25%;
 }
@@ -717,6 +746,7 @@
 .process-steps div.is-visible { opacity: 1; transform: translateY(0); }
 .process-steps div:nth-child(2) { transition-delay: .09s; }
 .process-steps div:nth-child(3) { transition-delay: .18s; }
+.process-steps div:nth-child(4) { transition-delay: .27s; }
 
 .process-steps h3 {
   margin: 80px 0 18px;

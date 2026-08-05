@@ -110,6 +110,11 @@
   font-size: clamp(74px, 10vw, 155px);
 }
 
+.case-leone .case-hero h1 {
+  max-width: 1350px;
+  font-size: clamp(68px, 9.5vw, 150px);
+}
+
 .case-hero-bottom {
   display: grid;
   grid-template-columns: 1fr 1fr auto auto;
@@ -895,6 +900,14 @@ body.modal-open {
 
 .case-meta > div:last-child {
   border-right: 0;
+}
+
+.case-meta > div:nth-child(3n) {
+  border-right: 0;
+}
+
+.case-meta > div:nth-child(n + 4) {
+  border-top: 1px solid var(--line);
 }
 
 .case-meta span,

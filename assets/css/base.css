@@ -180,7 +180,7 @@ button {
 
 .case-footer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 24px 2.2vw;
   background: var(--ink);
   color: var(--paper);

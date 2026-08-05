@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# TODO: aggiungere la Sitemap quando sarà confermato il dominio pubblico.

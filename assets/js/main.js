@@ -8,10 +8,10 @@ const PROJECT_FILES = {
 
 const PROJECT_ORDER = [
   { slug: "leone", title: "Leone S.p.A" },
-  { slug: "leone-event", title: "Evento clinico" },
   { slug: "analytics", title: "Local Analytics" },
-  { slug: "lilly", title: "Eli Lilly — NDA" },
   { slug: "life-button", title: "The Life Button" },
+  { slug: "leone-event", title: "Evento clinico" },
+  { slug: "lilly", title: "Eli Lilly — NDA" },
 ];
 
 const LIFE_BUTTON_SCREENSHOT =
@@ -39,6 +39,7 @@ function header(home = false) {
         <a href="${home ? "#services" : "index.html#services"}">Servizi</a>
         <a href="profilo.html"${isProfile ? ' aria-current="page"' : ""}>Profilo</a>
         <a href="${home ? "#contact" : "index.html#contact"}">Contatti</a>
+        <a href="cv/Gabriele_Ciuffi.svg" download>CV</a>
       </nav>
       <button class="menu-button" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="main-navigation">
         <span>Menu</span>
@@ -52,6 +53,7 @@ function footer() {
     <footer class="case-footer">
       <span>© ${year} Gabriele Ciuffi</span>
       <a href="index.html">Torna alla home ↑</a>
+      <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
       <span>Firenze, Italia</span>
     </footer>
   `;
@@ -65,71 +67,96 @@ function homePage() {
 
       <section class="hero" id="top">
         <div class="hero-kicker reveal-line">
-          <span>Digital Product Designer × Front-end Developer</span>
+          <span>Digital Product Designer — Firenze</span>
           <span class="availability"><i></i>Disponibile per progetti selezionati</span>
         </div>
 
-        <div class="hero-title" aria-label="Progetto esperienze digitali che fanno muovere le persone">
-          <div class="title-row title-row-one">
+        <h1 class="hero-title" aria-label="Progetto prodotti digitali chiari, utili e concretamente realizzabili">
+          <span class="title-row title-row-one">
             <span>PROGETTO</span>
-            <span class="title-note">Strategia, estetica<br>e codice.</span>
-          </div>
-          <div class="title-row title-row-two">
+            <span class="title-note">UX, UI, business<br>e fattibilità.</span>
+          </span>
+          <span class="title-row title-row-two">
             <span class="asterisk" aria-hidden="true">✳</span>
             <span>ESPERIENZE</span>
-          </div>
-          <div class="title-row title-row-three">
+          </span>
+          <span class="title-row title-row-three">
             <span>DIGITALI</span>
             <a class="round-link magnetic" href="lavori.html" aria-label="Apri tutti i progetti">
-              <span>Scopri</span><b>↗</b>
+              <span>Lavori</span><b>↗</b>
             </a>
-          </div>
-        </div>
+          </span>
+        </h1>
 
         <div class="hero-bottom">
-          <p>Aiuto aziende ambiziose a trasformare idee complesse in prodotti digitali chiari, desiderabili e pronti a funzionare.</p>
+          <div class="hero-intro">
+            <p>Lavoro tra UX, UI e front-end per progettare siti, piattaforme e strumenti digitali che tengano insieme persone, obiettivi di business e fattibilità.</p>
+            <small>La tecnologia è parte del mio processo, ma il punto di partenza resta sempre il problema da risolvere.</small>
+            <a href="profilo.html">Scopri il mio profilo ↗</a>
+            <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
+          </div>
           <div class="services-ticker" aria-label="Servizi principali">
-            <span>Product & UX/UI design<b>↗</b></span>
-            <span>Siti web ad alta conversione<b>↗</b></span>
-            <span>Front-end development</span>
+            <span>Product & UX<b>↗</b></span>
+            <span>UI & Design system<b>↗</b></span>
+            <span>Design to front-end</span>
           </div>
         </div>
 
         <div class="marquee" aria-hidden="true">
           <div>
             <span>DESIGN CHE RISOLVE</span><i>✳</i>
-            <span>CODICE CHE FUNZIONA</span><i>✳</i>
+            <span>PRODOTTI REALIZZABILI</span><i>✳</i>
             <span>DESIGN CHE RISOLVE</span><i>✳</i>
-            <span>CODICE CHE FUNZIONA</span><i>✳</i>
+            <span>PRODOTTI REALIZZABILI</span><i>✳</i>
           </div>
         </div>
       </section>
 
       <section class="intro-slice" id="work">
-        <p class="eyebrow">Selezione lavori / 2024—26</p>
-        <h2>Dal problema al prodotto.<br>Senza passaggi persi.</h2>
+        <p class="eyebrow">Selezione lavori / Progetti reali</p>
+        <h2>Dal problema al prodotto.<br>Con responsabilità chiare.</h2>
         <a class="project-glimpse" href="lavori/leone.html">
           <div class="glimpse-copy">
             <span>01 / Digital ecosystem</span>
-            <h3>Leone<br>Digital</h3>
-            <p>UX/UI · Front-end · Product ownership</p>
+            <h3>Leone<br>S.p.A</h3>
+            <p>Product Design · UX/UI · Front-end</p>
           </div>
           <div class="interface-card">
-            <img src="assets/images/leone/leone_index.png" alt="Homepage del nuovo ecosistema digitale Leone">
             <div class="interface-top"><span>LEONE</span><span>DIGITAL ECOSYSTEM / 2026</span></div>
+            <div class="interface-word">LEONE<br>DIGITAL</div>
             <div class="interface-pill">APRI IL CASE STUDY ↗</div>
           </div>
         </a>
 
         <div class="project-list">
-          <a class="project-row" href="lavori/evento-leone.html" data-reveal>
+          <a class="project-row" href="lavori/analytics.html" data-reveal>
             <span class="project-index">02</span>
             <div>
+              <h3>Local Analytics</h3>
+              <p>Product Design · Dashboard · Front-end</p>
+            </div>
+            <div class="project-art art-community" aria-hidden="true">
+              <span>DATA</span><span>↗</span>
+            </div>
+            <b>Apri il case ↗</b>
+          </a>
+          <a class="project-row" href="lavori/the-life-button.html" data-reveal>
+            <span class="project-index">03</span>
+            <div>
+              <h3>The Life Button</h3>
+              <p>Campaign website · Front-end · Pharma</p>
+            </div>
+            <div class="project-art art-nda"><i>ELI LILLY ITALIA / AWARENESS</i></div>
+            <b>Apri il case ↗</b>
+          </a>
+          <a class="project-row" href="lavori/evento-leone.html" data-reveal>
+            <span class="project-index">04</span>
+            <div>
               <h3>Evento clinico</h3>
-              <p>Landing page · Product design · Conversion</p>
+              <p>Landing page · Product Design · Conversion</p>
             </div>
             <div class="project-art art-congress">
-              <img src="assets/images/leone/event-landing.png" alt="Anteprima della landing per l’evento Lo stile italiano in implantologia">
+              <img src="assets/images/leone/event-landing.webp" width="730" height="2048" alt="Anteprima della landing per l’evento Lo stile italiano in implantologia">
             </div>
             <b>Apri il case ↗</b>
           </a>
@@ -150,33 +177,33 @@ function homePage() {
           <span>Da sinistra a destra — e ritorno</span>
         </div>
         <div class="services-heading" data-reveal>
-          <p>Non ti serve “solo un sito”.</p>
-          <h2>Ti serve qualcosa che le persone capiscano, usino e ricordino.</h2>
+          <p>Non mi occupo soltanto dell’aspetto visivo.</p>
+          <h2>Trasformo requisiti frammentati in prodotti coerenti e pronti per essere sviluppati.</h2>
         </div>
 
         <div class="service-list">
           <article data-reveal>
             <span>01</span><h3>Product & UX/UI</h3>
-            <p>Trasformo obiettivi di business, bisogni reali e vincoli tecnici in flussi chiari e interfacce che sembrano inevitabili.</p>
+            <p>Definisco architetture, priorità, percorsi e interazioni a partire da persone, contenuti e obiettivi del prodotto.</p>
             <ul>
-              <li>UX audit & strategy</li><li>Information architecture</li>
-              <li>UI design & design system</li><li>Prototyping</li>
+              <li>Analisi dei requisiti</li><li>Information architecture</li>
+              <li>User flow & wireframe</li><li>Prototyping</li>
             </ul>
           </article>
           <article data-reveal>
-            <span>02</span><h3>Web design</h3>
-            <p>Siti corporate e landing page costruiti intorno a una gerarchia solida, una voce riconoscibile e un obiettivo misurabile.</p>
+            <span>02</span><h3>UI & Visual Design</h3>
+            <p>Costruisco interfacce leggibili e sistemi coerenti, curando gerarchia, componenti, accessibilità e comportamento responsive.</p>
             <ul>
-              <li>Creative direction</li><li>Responsive web design</li>
-              <li>Conversion journeys</li><li>Interaction design</li>
+              <li>Interfacce & design system</li><li>Componenti & stati</li>
+              <li>Tipografia & accessibilità</li><li>Microinterazioni</li>
             </ul>
           </article>
           <article data-reveal>
-            <span>03</span><h3>Front-end</h3>
-            <p>Porto il design in produzione con attenzione a motion, accessibilità e performance. Il dettaglio resta intatto.</p>
+            <span>03</span><h3>Design to Front-end</h3>
+            <p>Conosco il codice abbastanza da progettare meglio, verificare la fattibilità e ridurre la distanza tra mockup e prodotto finale.</p>
             <ul>
-              <li>HTML, CSS & JavaScript</li><li>React & component UI</li>
-              <li>GSAP interactions</li><li>Analytics & GTM</li>
+              <li>HTML, CSS & JavaScript</li><li>Prototipi funzionanti</li>
+              <li>Collaborazione con backend</li><li>Handoff tecnico</li>
             </ul>
           </article>
         </div>
@@ -188,11 +215,12 @@ function homePage() {
         </div>
         <div class="process-content">
           <p class="eyebrow">Un processo semplice, non semplicistico</p>
-          <h2 data-reveal>Capisco.<br>Progetto.<br>Costruisco.</h2>
+          <h2 data-reveal>Capisco.<br>Organizzo.<br>Progetto.<br>Porto a terra.</h2>
           <div class="process-steps">
-            <div data-reveal><span>01</span><h3>Prima il perché</h3><p>Allineiamo problema, obiettivo, utenti e misura del successo.</p></div>
-            <div data-reveal><span>02</span><h3>Poi la forma</h3><p>Dò struttura all’esperienza e un’identità precisa all’interfaccia.</p></div>
-            <div data-reveal><span>03</span><h3>Infine la realtà</h3><p>Porto tutto nel browser, testo e rifinisco fino al rilascio.</p></div>
+            <div data-reveal><span>01</span><h3>Capisco</h3><p>Raccolgo obiettivi, contenuti, vincoli e necessità degli utenti.</p></div>
+            <div data-reveal><span>02</span><h3>Organizzo</h3><p>Trasformo informazioni frammentate in strutture, priorità e percorsi comprensibili.</p></div>
+            <div data-reveal><span>03</span><h3>Progetto</h3><p>Definisco UX, interfaccia, componenti e comportamento responsive.</p></div>
+            <div data-reveal><span>04</span><h3>Porto a terra</h3><p>Collaboro con lo sviluppo o realizzo direttamente il front-end quando serve.</p></div>
           </div>
         </div>
       </section>
@@ -203,31 +231,33 @@ function homePage() {
           <div class="portrait-mark" aria-hidden="true"><span>GC</span><i>Firenze<br>2000</i></div>
         </div>
         <div class="about-copy">
-          <h2 data-reveal>Ho iniziato dal <em>graphic design.</em> Poi ho voluto capire cosa succede dopo il bello.</h2>
+          <h2 data-reveal>Ho iniziato dal <em>graphic design.</em> Oggi progetto prodotti che devono avere senso anche quando vengono costruiti.</h2>
           <div class="about-columns">
-            <p>Oggi lavoro tra design e sviluppo, seguendo prodotti digitali dalla struttura iniziale fino alla pubblicazione. Unisco pensiero visivo, logica di prodotto e capacità di costruire davvero ciò che progetto.</p>
-            <p>Nel settore medicale ho lavorato su ecosistemi corporate, piattaforme evento, web app e cataloghi complessi, coordinando contenuti, interfacce e implementazione front-end.</p>
+            <p>Definisco architetture, flussi, gerarchie e interazioni, trasformando requisiti spesso frammentati in prodotti coerenti e pronti per essere sviluppati.</p>
+            <p>Quando serve posso portarli nel front-end, mantenendo continuità tra progettazione e risultato finale. Lavoro vicino alla tecnologia, ma parto sempre dal problema, dalle persone e dagli obiettivi del prodotto.</p>
           </div>
           <a class="text-link" href="profilo.html">Profilo completo <span>↗</span></a>
         </div>
       </section>
 
       <section class="contact" id="contact">
-        <div class="contact-top"><span>04 / Contatti</span><span>Hai qualcosa in mente?</span></div>
+        <div class="contact-top"><span>04 / Contatti</span><span>Firenze · Disponibile per nuove opportunità</span></div>
         <h2>
           <span>PARLIAMONE</span>
           <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer" aria-label="Contatta Gabriele su LinkedIn">↗</a>
         </h2>
         <div class="contact-bottom">
-          <p>Nuovi siti, prodotti da ripensare o idee ancora da mettere a fuoco. Partiamo da una conversazione.</p>
+          <p>Cerchi un designer capace di collegare prodotto, interfaccia e fattibilità? Sono interessato a opportunità come Digital Product Designer, Product Designer e UX/UI Designer.</p>
           <div>
             <a href="#top">Torna su ↑</a>
             <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href="cv/Gabriele_Ciuffi.svg" download>CV ↓</a>
+            <!-- TODO: aggiungere l’email quando sarà disponibile. -->
           </div>
         </div>
         <footer>
           <span>© ${year} Gabriele Ciuffi</span>
-          <span>Design × Code × Product</span>
+          <span>Product × UX/UI × Front-end</span>
           <span>Firenze, Italia</span>
         </footer>
       </section>
@@ -237,40 +267,42 @@ function homePage() {
 
 function profilePage() {
   const skills = [
-    ["UX / Product", "Flussi, architettura informativa, gerarchia e journey"],
-    ["UI Design", "Layout, tipografia, componenti, stati e sistemi visivi"],
-    ["Front-end", "HTML, CSS, JavaScript, React e interfacce responsive"],
-    ["Interaction", "Micro-interazioni, hover, transizioni e motion misurato"],
+    ["Product", "Requisiti, priorità, obiettivi, vincoli e fattibilità"],
+    ["UX", "Architettura informativa, flussi, wireframe e prototipi"],
+    ["UI", "Layout, tipografia, componenti, stati e accessibilità"],
+    ["Front-end", "HTML, CSS, JavaScript e interfacce responsive"],
+    ["Tool", "Figma, Adobe, Git, GitHub, analytics e collaborazione"],
   ];
 
   return `
     <main class="profile-page" id="main-content">
       ${header()}
       <section class="profile-hero">
-        <p>Digital Product Designer × Front-end Developer</p>
+        <p>Digital Product Designer — Firenze</p>
         <h1>CHIAREZZA.<br>STRUTTURA.<br><em>ESECUZIONE.</em></h1>
         <div>
           <span>Firenze, Italia</span>
-          <p>Lavoro tra UX, UI e front-end per mantenere il risultato finale allineato all’intento iniziale.</p>
+          <p>Sono Gabriele Ciuffi, Digital Product Designer con una formazione visiva e un approccio concreto alla progettazione.</p>
         </div>
       </section>
 
       <section class="profile-principles">
-        <article><span>01 / Approccio</span><h2>Partire da flusso e gerarchia.</h2><p>La qualità dell’interfaccia dipende da ciò che il prodotto chiede di capire per prima cosa.</p></article>
-        <article><span>02 / Metodo</span><h2>Usare misura per rendere visibili le decisioni.</h2><p>Riduco i segnali superflui perché tipografia, ritmo e spaziatura possano sostenere il sistema.</p></article>
-        <article><span>03 / Focus</span><h2>Progettare e costruire con la stessa logica.</h2><p>Porto il pensiero di prodotto fino al codice, evitando che precisione e intenzione si perdano.</p></article>
+        <article><span>01 / Percorso</span><h2>Dalla grafica al prodotto digitale.</h2><p>Il percorso tra web design, UX/UI e front-end mi ha portato a progettare sistemi, non soltanto singole schermate.</p></article>
+        <article><span>02 / Approccio</span><h2>Persone, business, contenuti e fattibilità.</h2><p>Organizzo questi vincoli in flussi e gerarchie prima di definire la forma dell’interfaccia.</p></article>
+        <article><span>03 / Tecnologia</span><h2>Uno strumento di progettazione.</h2><p>Conosco il front-end per capire i vincoli, prototipare e collaborare concretamente con chi sviluppa.</p></article>
       </section>
 
       <section class="profile-cv">
         <div class="profile-cv-intro">
           <p>CV / Esperienza</p>
-          <h2>Quattro anni tra struttura, interfaccia e codice.</h2>
-          <p>Lavoro su siti, landing page e prodotti digitali partendo da flussi, architettura e decisioni di contenuto. Costruisco interfacce misurate, leggibili e abbastanza precise da reggere vincoli reali.</p>
+          <h2>Quattro anni tra prodotto, interfaccia e fattibilità.</h2>
+          <p>Lavoro su siti, landing e strumenti digitali partendo da problemi, flussi e decisioni di contenuto. Non progetto partendo dalla tecnologia: la uso per capire vincoli, prototipare rapidamente e far sì che il prodotto abbia senso anche quando viene costruito.</p>
+          <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
         </div>
         <div class="profile-facts">
           <span>04 anni di esperienza</span>
-          <span>End-to-end: struttura → implementazione</span>
-          <span>PMI, agenzie, marketing team e NDA</span>
+          <span>Product, UX, UI e design system</span>
+          <span>Design to front-end e collaborazione tecnica</span>
         </div>
         <div class="profile-skills">
           ${skills.map(([title, text]) => `<div><h3>${title}</h3><p>${text}</p></div>`).join("")}
@@ -280,7 +312,7 @@ function profilePage() {
             <span>Attuale</span>
             <div>
               <h3>Leone S.p.A — Digital Product Designer</h3>
-              <p>Progettazione e sviluppo end-to-end dell’ecosistema aziendale: UX, UI, architettura dei contenuti, flussi di navigazione e componenti front-end, in collaborazione con marketing e proprietà.</p>
+              <p>Architettura informativa, UX, UI, design system, responsive e front-end per l’ecosistema aziendale, in collaborazione con marketing, contenuti, proprietà e backend.</p>
               <a href="lavori/leone.html">Apri il case study ↗</a>
             </div>
           </article>
@@ -288,7 +320,7 @@ function profilePage() {
             <span>Precedente / 4 mesi</span>
             <div>
               <h3>Noé Multimedia — Digital Designer</h3>
-              <p>Collaborazione su progetti digitali per Eli Lilly tramite agenzia: landing page, companion app e contenuti all’interno di un contesto strutturato, regolato e coperto da riservatezza.</p>
+              <p>Collaborazione di quattro mesi su progetti digitali per Eli Lilly: landing, companion app e contenuti in un contesto strutturato, regolato e coperto da riservatezza.</p>
               <a href="lavori/lilly.html">Leggi l’esperienza ↗</a>
             </div>
           </article>
@@ -303,9 +335,11 @@ function profilePage() {
       </section>
 
       <section class="profile-contact">
-        <p>Disponibile per progetti selezionati</p>
-        <h2>POSSIAMO COSTRUIRE<br>QUALCOSA DI PRECISO.</h2>
+        <p>Digital Product Design · Product Design · UX/UI</p>
+        <h2>PARLIAMO DEL<br>PROSSIMO PRODOTTO.</h2>
         <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">Parliamone su LinkedIn ↗</a>
+        <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
+        <!-- TODO: aggiungere l’email quando sarà disponibile. -->
       </section>
       ${footer()}
     </main>
@@ -314,10 +348,10 @@ function profilePage() {
 
 function workPreview(project) {
   if (project.theme === "leone") {
-    return `<img src="assets/images/leone/leone_index.png" alt="">`;
+    return `<span>LEONE<br>DIGITAL</span>`;
   }
   if (project.theme === "event") {
-    return `<img src="assets/images/leone/event-landing.png" alt="">`;
+    return `<img src="assets/images/leone/event-landing.webp" width="730" height="2048" alt="">`;
   }
   if (project.theme === "analytics") {
     return `<span>DATA<br>TO DECISIONS</span>`;
@@ -337,13 +371,18 @@ function workPage() {
       ${header()}
       <section class="work-index-hero">
         <p>Archivio / Selected work</p>
-        <h1>CINQUE PROGETTI.<br>UN SOLO METODO.</h1>
+        <h1>PROBLEMI REALI.<br>RESPONSABILITÀ CHIARE.</h1>
       </section>
       <section class="work-index-list">
-        ${window.CASE_STUDIES.map((project) => `
+        ${PROJECT_ORDER.map(({ slug }) => window.CASE_STUDIES.find((project) => project.slug === slug)).map((project) => `
           <a href="${PROJECT_FILES[project.slug]}" class="work-row work-row-${project.theme}">
             <span>${project.number}</span>
-            <div><h2>${project.title}</h2><p>${project.category}</p></div>
+            <div class="work-row-copy">
+              <h2>${project.title}</h2>
+              <p>${project.year ? `${project.year} · ` : ""}${project.sector} · ${project.role}</p>
+              <p class="work-row-summary">${project.summary}</p>
+              <ul aria-label="Competenze del progetto">${project.tags.map((tag) => `<li>${tag}</li>`).join("")}</ul>
+            </div>
             <div class="work-row-preview" aria-hidden="true">${workPreview(project)}</div>
             <b>Apri il case study ↗</b>
           </a>
@@ -400,8 +439,8 @@ function projectVisual(project) {
       <div class="event-showcase">
         <figure class="showcase-frame showcase-landing">
           <figcaption><span>01 / Pagina finale</span><span>Apri alla massima risoluzione ↗</span></figcaption>
-          <button class="showcase-preview" type="button" data-modal-src="assets/images/leone/event-landing.png" data-modal-alt="Landing page completa per l’evento Lo stile italiano in implantologia" aria-label="Apri la landing page completa nella modale">
-            <img src="assets/images/leone/event-landing.png" alt="Landing page completa per l’evento Lo stile italiano in implantologia">
+          <button class="showcase-preview" type="button" data-modal-src="assets/images/leone/event-landing.webp" data-modal-alt="Landing page completa per l’evento Lo stile italiano in implantologia" aria-label="Apri la landing page completa nella modale">
+          <img src="assets/images/leone/event-landing.webp" width="730" height="2048" alt="Landing page completa per l’evento Lo stile italiano in implantologia">
             <span aria-hidden="true">Apri schermata completa ↗</span>
           </button>
         </figure>
@@ -410,14 +449,14 @@ function projectVisual(project) {
   }
 
   return `
-    <div class="leone-showcase leone-showcase-single">
-      <figure class="showcase-frame showcase-product showcase-primary">
-        <figcaption><span>01 / Interfaccia</span><span>Apri alla massima risoluzione ↗</span></figcaption>
-        <button class="showcase-preview" type="button" data-modal-src="assets/images/leone/leone_index.png" data-modal-alt="Homepage del nuovo ecosistema digitale Leone" aria-label="Apri la homepage Leone nella modale">
-          <img src="assets/images/leone/leone_index.png" alt="Homepage del nuovo ecosistema digitale Leone">
-          <span aria-hidden="true">Apri schermata completa ↗</span>
-        </button>
-      </figure>
+    <div class="leone-browser">
+      <div class="browser-bar"><b>LEONE / DIGITAL ECOSYSTEM</b><span>PRODUCT · CORPORATE · SERVICES</span></div>
+      <div class="browser-copy">
+        <small>ARCHITETTURA · UX/UI · FRONT-END</small>
+        <strong>LEONE<br>DIGITAL</strong>
+        <p>Un sistema progettato per collegare identità corporate, prodotti e servizi digitali.</p>
+      </div>
+      <div class="browser-orbit"><span>CASE STUDY / 2026</span></div>
     </div>
   `;
 }
@@ -427,8 +466,8 @@ function caseMedia(project, sectionIndex) {
     return `
       <figure class="case-media case-media-map" data-case-reveal>
         <figcaption><span>ARCHITETTURA INFORMATIVA / FLOW MAP</span><p>La struttura prima dell’interfaccia.</p></figcaption>
-        <button class="showcase-preview case-media-preview" type="button" data-modal-src="assets/images/leone/flow-map.jpg" data-modal-alt="Mappa completa dei flussi di navigazione e dell’architettura informativa del sito Leone" aria-label="Apri la flow map nella modale">
-          <img src="assets/images/leone/flow-map.jpg" alt="Mappa completa dei flussi di navigazione e dell’architettura informativa del sito Leone">
+        <button class="showcase-preview case-media-preview" type="button" data-modal-src="assets/images/leone/flow-map.webp" data-modal-alt="Mappa completa dei flussi di navigazione e dell’architettura informativa del sito Leone" aria-label="Apri la flow map nella modale">
+          <img src="assets/images/leone/flow-map.webp" width="10703" height="4500" alt="Mappa completa dei flussi di navigazione e dell’architettura informativa del sito Leone">
           <span aria-hidden="true">Apri schermata completa ↗</span>
         </button>
       </figure>
@@ -439,8 +478,8 @@ function caseMedia(project, sectionIndex) {
     return `
       <figure class="case-media case-media-event" data-case-reveal>
         <figcaption><span>02 / WIREFRAME INIZIALE</span><p>La struttura e la gerarchia definite prima dell’interfaccia finale.</p></figcaption>
-        <button class="showcase-preview case-media-preview" type="button" data-modal-src="assets/images/leone/event-wireframe.png" data-modal-alt="Wireframe disegnato a mano per la landing dell’evento clinico" aria-label="Apri il wireframe iniziale nella modale">
-          <img src="assets/images/leone/event-wireframe.png" alt="Wireframe disegnato a mano per la landing dell’evento clinico">
+        <button class="showcase-preview case-media-preview" type="button" data-modal-src="assets/images/leone/event-wireframe.webp" data-modal-alt="Wireframe disegnato a mano per la landing dell’evento clinico" aria-label="Apri il wireframe iniziale nella modale">
+          <img src="assets/images/leone/event-wireframe.webp" width="1882" height="2000" alt="Wireframe disegnato a mano per la landing dell’evento clinico">
           <span aria-hidden="true">Apri schermata completa ↗</span>
         </button>
       </figure>
@@ -519,9 +558,12 @@ function casePage(slug) {
       </section>
 
       <section class="case-meta">
+        <div><span>Cliente</span><p>${project.client}</p></div>
+        <div><span>Settore / Anno</span><p>${project.sector}${project.year ? `<br>${project.year}` : "<!-- TODO: contenuto da completare — anno del progetto. -->"}</p></div>
         <div><span>Ruolo</span><p>${project.role}</p></div>
-        <div><span>Ambito</span><p>${project.scope}</p></div>
-        <div><span>Scala</span><p>${project.scale}</p></div>
+        <div><span>Responsabilità dirette</span><p>${project.responsibilities}</p></div>
+        <div><span>Team</span><p>${project.team}</p></div>
+        <div><span>Collaborazioni</span><p>${project.collaborations}</p></div>
       </section>
 
       <div class="case-sections">${caseSections(project)}</div>
@@ -655,6 +697,7 @@ function initImageModal() {
   const image = modal.querySelector(".image-modal-stage img");
   const stage = modal.querySelector(".image-modal-stage");
   const resetButton = modal.querySelector("[data-modal-zoom-reset]");
+  const focusableSelector = "button, [href], [tabindex]:not([tabindex='-1'])";
   let zoom = 1;
   let lastTrigger = null;
 
@@ -701,6 +744,18 @@ function initImageModal() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && modal.classList.contains("is-open")) {
       closeModal();
+    }
+    if (event.key === "Tab" && modal.classList.contains("is-open")) {
+      const focusable = [...modal.querySelectorAll(focusableSelector)];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 }
