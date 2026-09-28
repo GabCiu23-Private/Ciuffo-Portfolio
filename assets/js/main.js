@@ -69,7 +69,7 @@ function homePage() {
 
       <section class="hero" id="top">
         <div class="hero-kicker reveal-line">
-          <span>Product Designer & Design Engineer — Firenze</span>
+          <span>Product Designer — Systems, Interface & Front-end — Firenze</span>
           <span class="availability"><i></i>Disponibile per progetti selezionati</span>
         </div>
 
@@ -206,7 +206,7 @@ function homePage() {
             <p>Uso HTML, CSS e JavaScript per prototipare, validare la fattibilità e trasformare decisioni di design in interfacce funzionanti.</p>
             <ul>
               <li>HTML, CSS & JavaScript</li><li>Prototipi funzionanti</li>
-              <li>Collaborazione con backend</li><li>Handoff tecnico</li>
+              <li>Implementazione frontend</li><li>Responsive & performance</li>
             </ul>
           </article>
         </div>
@@ -260,7 +260,7 @@ function homePage() {
           <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer" aria-label="Contatta Gabriele su LinkedIn">↗</a>
         </h2>
         <div class="contact-bottom">
-          <p>Cerchi un designer capace di collegare prodotto, interfaccia e implementazione? Sono interessato a opportunità come Product Designer, Design Engineer e UX/UI Designer tecnico.</p>
+          <p>Cerchi un Product Designer capace di collegare prodotto, interfaccia e implementazione? Sono interessato a opportunità tra product design, systems e front-end.</p>
           <div>
             <a href="#top">Torna su ↑</a>
             <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">LinkedIn ↗</a>
@@ -282,7 +282,7 @@ function profilePage() {
   const skills = [
     ["Product & UX", "Product thinking, information architecture, user flow, wireframe, prototyping e analytics."],
     ["UI & systems", "Interfacce responsive, componenti, varianti, stati, design tokens, accessibilità e motion."],
-    ["Design engineering", "HTML, CSS, JavaScript, GSAP / ScrollTrigger, Swiper, performance e implementazione nel browser."],
+    ["Frontend & systems", "HTML, CSS, JavaScript, GSAP / ScrollTrigger, Swiper, performance e implementazione nel browser."],
     ["Data & delivery", "GA4 / GTM, eventi custom, strutture data-driven, Git, collaborazione con backend e iterazione."],
   ];
 
@@ -290,7 +290,7 @@ function profilePage() {
     <main class="profile-page" id="main-content">
       ${header()}
       <section class="profile-hero">
-        <p>Product Designer & Design Engineer — Firenze</p>
+        <p>Product Designer — Systems, Interface & Front-end — Firenze</p>
         <h1>CHIAREZZA.<br>STRUTTURA.<br><em>ESECUZIONE.</em></h1>
         <div>
           <span>Firenze, Italia</span>
@@ -347,7 +347,7 @@ function profilePage() {
       </section>
 
       <section class="profile-contact">
-        <p>Digital Product Design · Product Design · UX/UI</p>
+        <p>Product Design · Systems · Front-end</p>
         <h2>PARLIAMO DEL<br>PROSSIMO PRODOTTO.</h2>
         <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">Parliamone su LinkedIn ↗</a>
         <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
