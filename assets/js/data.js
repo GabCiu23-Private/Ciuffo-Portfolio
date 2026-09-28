@@ -16,6 +16,11 @@ window.CASE_STUDIES = [
     collaborations: "Contenuti, marketing, commerciale e backend",
     scale: "Corporate, catalogo con 8.000+ referenze, servizi e landing",
     tags: ["Product Design", "UX/UI", "Front-end", "Healthcare"],
+    proof: [
+      ["Design decision", "Una tassonomia condivisa separa orientamento, selezione e approfondimento tecnico."],
+      ["System rule", "Template e componenti riutilizzabili collegano corporate, catalogo, servizi e landing."],
+      ["Implementation", "Le regole diventano layout, stati e comportamento responsive direttamente nel front-end."],
+    ],
     accent: "#ff5a36",
     theme: "leone",
     sections: [
@@ -127,6 +132,11 @@ window.CASE_STUDIES = [
     collaborations: "Nessuna collaborazione dichiarata",
     scale: "MVP locale predisposto per una futura migrazione backend",
     tags: ["Product Design", "Dashboard", "Analytics", "Front-end"],
+    proof: [
+      ["Event model", "Page view, scroll depth, CTA, form start, form submit e thank-you view compongono lo stesso funnel."],
+      ["Product surface", "La dashboard rende leggibili KPI, punti critici e profondità di scroll senza decorare il dato."],
+      ["Technical boundary", "L’MVP è locale e predisposto per endpoint, batching, retention e aggregazioni server-side."],
+    ],
     accent: "#dfff00",
     theme: "analytics",
     sections: [

@@ -32,6 +32,15 @@
   border-top: 1px solid var(--line);
 }
 
+.work-group-label {
+  padding: 18px 2.2vw;
+  border-bottom: 1px solid var(--line);
+  background: rgba(51, 51, 51, .045);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
 .work-index-list a {
   min-height: 285px;
   display: grid;

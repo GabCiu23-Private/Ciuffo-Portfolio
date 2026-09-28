@@ -130,6 +130,10 @@
   .process-steps div { min-height: 230px; }
   .process-steps h3 { margin-top: 60px; }
 
+  .portfolio-note { padding: 80px 18px; }
+  .portfolio-note > .section-label span:first-child { margin-left: 0; }
+  .portfolio-note-copy { margin: 70px 0 0; }
+
   .about { grid-template-columns: 1fr; min-height: 0; padding: 80px 18px; }
   .about-sidebar { display: block; }
   .portrait-mark { display: none; }
@@ -453,6 +457,28 @@
     grid-template-columns: 1fr;
   }
 
+  .case-proof {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    padding: 82px 18px;
+  }
+
+  .case-proof-intro h2 {
+    margin-top: 55px;
+  }
+
+  .case-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-proof-grid article {
+    min-height: 190px;
+  }
+
+  .case-proof-grid p {
+    margin-top: 55px;
+  }
+
   .case-meta > div {
     min-height: 160px;
     padding: 22px 18px;
@@ -547,6 +573,11 @@
     min-height: 290px;
     grid-template-columns: 38px 1fr;
     padding: 22px 18px;
+  }
+
+  .work-group-label {
+    padding: 16px 18px;
+    line-height: 1.4;
   }
 
   .work-index-list b,

@@ -927,6 +927,52 @@ body.modal-open {
   letter-spacing: -.02em;
 }
 
+.case-proof {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3vw;
+  padding: 100px 2.2vw;
+  border-bottom: 1px solid var(--line);
+  background: rgba(51, 51, 51, .035);
+}
+
+.case-proof-intro > span,
+.case-proof-grid article > span {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.case-proof-intro h2 {
+  max-width: 460px;
+  margin: 80px 0 0;
+  font-size: clamp(34px, 4.6vw, 70px);
+  font-weight: 620;
+  letter-spacing: -.06em;
+  line-height: .92;
+}
+
+.case-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: end;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.case-proof-grid article {
+  min-height: 230px;
+  padding: 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.case-proof-grid p {
+  margin: 100px 0 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
 .case-section {
   display: grid;
   grid-template-columns: 1fr 3fr;

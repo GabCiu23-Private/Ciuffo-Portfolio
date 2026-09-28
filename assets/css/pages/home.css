@@ -347,6 +347,16 @@
   border-top: 1px solid var(--line);
 }
 
+.project-supporting-label {
+  margin: 34px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: rgba(51, 51, 51, .72);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
 .all-work-link {
   display: flex;
   justify-content: space-between;
@@ -761,6 +771,52 @@
   color: rgba(240,238,231,.66);
   font-size: 14px;
   line-height: 1.55;
+}
+
+.portfolio-note {
+  padding: 120px 2.2vw;
+  border-top: 1px solid var(--line);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.portfolio-note .section-label { color: rgba(240, 238, 231, .72); }
+.portfolio-note > .section-label span:first-child { margin-left: 25%; }
+
+.portfolio-note-copy {
+  max-width: 920px;
+  margin: 100px 0 0 25%;
+}
+
+.portfolio-note-copy .eyebrow { margin-bottom: 30px; color: var(--acid); }
+
+.portfolio-note-copy h2 {
+  margin: 0;
+  font-size: clamp(38px, 5.5vw, 86px);
+  font-weight: 620;
+  letter-spacing: -.06em;
+  line-height: .94;
+}
+
+.portfolio-note-copy > p:not(.eyebrow) {
+  max-width: 590px;
+  margin: 42px 0 0;
+  color: rgba(240, 238, 231, .78);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.portfolio-note-copy .text-link {
+  width: min(100%, 590px);
+  margin-top: 28px;
+  margin-left: 0;
+  color: var(--paper);
+}
+
+.portfolio-note-copy .text-link:hover,
+.portfolio-note-copy .text-link:focus-visible {
+  background: var(--acid);
+  color: var(--ink);
 }
 
 .about {

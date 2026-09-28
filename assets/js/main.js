@@ -14,6 +14,8 @@ const PROJECT_ORDER = [
   { slug: "lilly", title: "Eli Lilly — NDA" },
 ];
 
+const CORE_PROJECTS = ["leone", "analytics"];
+
 const LIFE_BUTTON_SCREENSHOT =
   "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fweb.mc.lilly.com%2FThe_Life_Button.html?w=2000";
 
@@ -36,7 +38,7 @@ function header(home = false) {
       </div>
       <nav class="nav" id="main-navigation" aria-label="Navigazione principale">
         <a href="lavori.html"${isWork ? ' aria-current="page"' : ""}>Lavori</a>
-        <a href="${home ? "#services" : "index.html#services"}">Servizi</a>
+        <a href="${home ? "#services" : "index.html#services"}">Approccio</a>
         <a href="profilo.html"${isProfile ? ' aria-current="page"' : ""}>Profilo</a>
         <a href="${home ? "#contact" : "index.html#contact"}">Contatti</a>
         <a href="cv/Gabriele_Ciuffi.svg" download>CV</a>
@@ -67,18 +69,18 @@ function homePage() {
 
       <section class="hero" id="top">
         <div class="hero-kicker reveal-line">
-          <span>Digital Product Designer — Firenze</span>
+          <span>Product Designer & Design Engineer — Firenze</span>
           <span class="availability"><i></i>Disponibile per progetti selezionati</span>
         </div>
 
-        <h1 class="hero-title" aria-label="Progetto prodotti digitali chiari, utili e concretamente realizzabili">
+        <h1 class="hero-title" aria-label="Progetto sistemi digitali e li porto nel browser">
           <span class="title-row title-row-one">
             <span>PROGETTO</span>
             <span class="title-note">UX, UI, business<br>e fattibilità.</span>
           </span>
           <span class="title-row title-row-two">
             <span class="asterisk" aria-hidden="true">✳</span>
-            <span>ESPERIENZE</span>
+            <span>SISTEMI</span>
           </span>
           <span class="title-row title-row-three">
             <span>DIGITALI</span>
@@ -90,8 +92,8 @@ function homePage() {
 
         <div class="hero-bottom">
           <div class="hero-intro">
-            <p>Lavoro tra UX, UI e front-end per progettare siti, piattaforme e strumenti digitali che tengano insieme persone, obiettivi di business e fattibilità.</p>
-            <small>La tecnologia è parte del mio processo, ma il punto di partenza resta sempre il problema da risolvere.</small>
+            <p>Progetto prodotti e interfacce, poi li porto nel browser. Lavoro tra UX, UI, sistemi e front-end per trasformare problemi reali in esperienze digitali che possono essere usate, mantenute e misurate.</p>
+            <small>Designer-first, tecnicamente forte: dalla struttura al comportamento dell’interfaccia, fino all’implementazione.</small>
             <a href="profilo.html">Scopri il mio profilo ↗</a>
             <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
           </div>
@@ -113,13 +115,13 @@ function homePage() {
       </section>
 
       <section class="intro-slice" id="work">
-        <p class="eyebrow">Selezione lavori / Progetti reali</p>
-        <h2>Dal problema al prodotto.<br>Con responsabilità chiare.</h2>
+        <p class="eyebrow">01 / Core product & design engineering</p>
+        <h2>Dal problema al prodotto.<br>Dal sistema al browser.</h2>
         <a class="project-glimpse" href="lavori/leone.html">
           <div class="glimpse-copy">
             <span>01 / Digital ecosystem</span>
             <h3>Leone<br>S.p.A</h3>
-            <p>Product Design · UX/UI · Front-end</p>
+          <p>Product Design · Information Architecture · Front-end</p>
           </div>
           <div class="interface-card">
             <div class="interface-top"><span>LEONE</span><span>DIGITAL ECOSYSTEM / 2026</span></div>
@@ -140,6 +142,7 @@ function homePage() {
             </div>
             <b>Apri il case ↗</b>
           </a>
+          <p class="project-supporting-label">Selected additional work / campagne, landing e produzione digitale</p>
           <a class="project-row" href="lavori/the-life-button.html" data-reveal>
             <span class="project-index">03</span>
             <div>
@@ -200,7 +203,7 @@ function homePage() {
           </article>
           <article data-reveal>
             <span>03</span><h3>Design to Front-end</h3>
-            <p>Conosco il codice abbastanza da progettare meglio, verificare la fattibilità e ridurre la distanza tra mockup e prodotto finale.</p>
+            <p>Uso HTML, CSS e JavaScript per prototipare, validare la fattibilità e trasformare decisioni di design in interfacce funzionanti.</p>
             <ul>
               <li>HTML, CSS & JavaScript</li><li>Prototipi funzionanti</li>
               <li>Collaborazione con backend</li><li>Handoff tecnico</li>
@@ -215,39 +218,49 @@ function homePage() {
         </div>
         <div class="process-content">
           <p class="eyebrow">Un processo semplice, non semplicistico</p>
-          <h2 data-reveal>Capisco.<br>Organizzo.<br>Progetto.<br>Porto a terra.</h2>
+          <h2 data-reveal>Capisco.<br>Strutturo.<br>Progetto.<br>Spedisco.</h2>
           <div class="process-steps">
             <div data-reveal><span>01</span><h3>Capisco</h3><p>Raccolgo obiettivi, contenuti, vincoli e necessità degli utenti.</p></div>
-            <div data-reveal><span>02</span><h3>Organizzo</h3><p>Trasformo informazioni frammentate in strutture, priorità e percorsi comprensibili.</p></div>
-            <div data-reveal><span>03</span><h3>Progetto</h3><p>Definisco UX, interfaccia, componenti e comportamento responsive.</p></div>
-            <div data-reveal><span>04</span><h3>Porto a terra</h3><p>Collaboro con lo sviluppo o realizzo direttamente il front-end quando serve.</p></div>
+            <div data-reveal><span>02</span><h3>Strutturo</h3><p>Trasformo informazioni frammentate in sistemi, priorità e percorsi comprensibili.</p></div>
+            <div data-reveal><span>03</span><h3>Progetto</h3><p>Definisco UX, interfaccia, componenti, stati e comportamento responsive.</p></div>
+            <div data-reveal><span>04</span><h3>Spedisco</h3><p>Implemento o affianco lo sviluppo, verificando il risultato nel browser e iterando sui dati.</p></div>
           </div>
+        </div>
+      </section>
+
+      <section class="portfolio-note" aria-labelledby="portfolio-note-title">
+        <div class="section-label"><span>03 / Built by me</span><span>Vanilla HTML · CSS · JavaScript</span></div>
+        <div class="portfolio-note-copy">
+          <p class="eyebrow">Questo portfolio è un progetto, non un template</p>
+          <h2 id="portfolio-note-title">Un modello dati comune genera i case study. Componenti e CSS condivisi tengono insieme l’esperienza.</h2>
+          <p>Ho progettato e sviluppato questa piattaforma statica con pagine condivise, renderer per i progetti, progressive reveal, responsive behavior e attenzione a performance e accessibilità.</p>
+          <a class="text-link" href="profilo.html">Vedi come lavoro <span>↗</span></a>
         </div>
       </section>
 
       <section class="about" id="about">
         <div class="about-sidebar">
-          <p class="eyebrow">03 / Chi sono</p>
+          <p class="eyebrow">04 / Chi sono</p>
           <div class="portrait-mark" aria-hidden="true"><span>GC</span><i>Firenze<br>2000</i></div>
         </div>
         <div class="about-copy">
-          <h2 data-reveal>Ho iniziato dal <em>graphic design.</em> Oggi progetto prodotti che devono avere senso anche quando vengono costruiti.</h2>
+          <h2 data-reveal>Ho iniziato dal <em>graphic design.</em> Oggi progetto sistemi e interfacce che devono funzionare anche quando vengono costruiti.</h2>
           <div class="about-columns">
             <p>Definisco architetture, flussi, gerarchie e interazioni, trasformando requisiti spesso frammentati in prodotti coerenti e pronti per essere sviluppati.</p>
-            <p>Quando serve posso portarli nel front-end, mantenendo continuità tra progettazione e risultato finale. Lavoro vicino alla tecnologia, ma parto sempre dal problema, dalle persone e dagli obiettivi del prodotto.</p>
+            <p>Li porto direttamente nel front-end quando serve, mantenendo continuità tra struttura, comportamento e risultato finale. Il codice non è una decorazione tecnica: è parte del modo in cui verifico e costruisco il prodotto.</p>
           </div>
           <a class="text-link" href="profilo.html">Profilo completo <span>↗</span></a>
         </div>
       </section>
 
       <section class="contact" id="contact">
-        <div class="contact-top"><span>04 / Contatti</span><span>Firenze · Disponibile per nuove opportunità</span></div>
+        <div class="contact-top"><span>05 / Contatti</span><span>Firenze · Disponibile per nuove opportunità</span></div>
         <h2>
           <span>PARLIAMONE</span>
           <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer" aria-label="Contatta Gabriele su LinkedIn">↗</a>
         </h2>
         <div class="contact-bottom">
-          <p>Cerchi un designer capace di collegare prodotto, interfaccia e fattibilità? Sono interessato a opportunità come Digital Product Designer, Product Designer e UX/UI Designer.</p>
+          <p>Cerchi un designer capace di collegare prodotto, interfaccia e implementazione? Sono interessato a opportunità come Product Designer, Design Engineer e UX/UI Designer tecnico.</p>
           <div>
             <a href="#top">Torna su ↑</a>
             <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">LinkedIn ↗</a>
@@ -267,36 +280,35 @@ function homePage() {
 
 function profilePage() {
   const skills = [
-    ["Product", "Requisiti, priorità, obiettivi, vincoli e fattibilità"],
-    ["UX", "Architettura informativa, flussi, wireframe e prototipi"],
-    ["UI", "Layout, tipografia, componenti, stati e accessibilità"],
-    ["Front-end", "HTML, CSS, JavaScript e interfacce responsive"],
-    ["Tool", "Figma, Adobe, Git, GitHub, analytics e collaborazione"],
+    ["Product & UX", "Product thinking, information architecture, user flow, wireframe, prototyping e analytics."],
+    ["UI & systems", "Interfacce responsive, componenti, varianti, stati, design tokens, accessibilità e motion."],
+    ["Design engineering", "HTML, CSS, JavaScript, GSAP / ScrollTrigger, Swiper, performance e implementazione nel browser."],
+    ["Data & delivery", "GA4 / GTM, eventi custom, strutture data-driven, Git, collaborazione con backend e iterazione."],
   ];
 
   return `
     <main class="profile-page" id="main-content">
       ${header()}
       <section class="profile-hero">
-        <p>Digital Product Designer — Firenze</p>
+        <p>Product Designer & Design Engineer — Firenze</p>
         <h1>CHIAREZZA.<br>STRUTTURA.<br><em>ESECUZIONE.</em></h1>
         <div>
           <span>Firenze, Italia</span>
-          <p>Sono Gabriele Ciuffi, Digital Product Designer con una formazione visiva e un approccio concreto alla progettazione.</p>
+          <p>Sono Gabriele Ciuffi, Product Designer con una formazione visiva e un approccio tecnico alla progettazione: capisco il prodotto, definisco il sistema e lo porto nel browser.</p>
         </div>
       </section>
 
       <section class="profile-principles">
         <article><span>01 / Percorso</span><h2>Dalla grafica al prodotto digitale.</h2><p>Il percorso tra web design, UX/UI e front-end mi ha portato a progettare sistemi, non soltanto singole schermate.</p></article>
         <article><span>02 / Approccio</span><h2>Persone, business, contenuti e fattibilità.</h2><p>Organizzo questi vincoli in flussi e gerarchie prima di definire la forma dell’interfaccia.</p></article>
-        <article><span>03 / Tecnologia</span><h2>Uno strumento di progettazione.</h2><p>Conosco il front-end per capire i vincoli, prototipare e collaborare concretamente con chi sviluppa.</p></article>
+        <article><span>03 / Tecnologia</span><h2>Parte del lavoro, non un accessorio.</h2><p>Uso il front-end per validare decisioni, prototipare comportamenti e spedire interfacce reali quando il progetto lo richiede.</p></article>
       </section>
 
       <section class="profile-cv">
         <div class="profile-cv-intro">
           <p>CV / Esperienza</p>
-          <h2>Quattro anni tra prodotto, interfaccia e fattibilità.</h2>
-          <p>Lavoro su siti, landing e strumenti digitali partendo da problemi, flussi e decisioni di contenuto. Non progetto partendo dalla tecnologia: la uso per capire vincoli, prototipare rapidamente e far sì che il prodotto abbia senso anche quando viene costruito.</p>
+          <h2>Quattro anni tra prodotto, interfaccia e implementazione.</h2>
+          <p>Lavoro su ecosistemi digitali, landing e strumenti interni partendo da problemi, flussi e decisioni di contenuto. Il mio processo unisce struttura, interazione e front-end: il risultato deve avere senso sia nel sistema progettato sia nell’esperienza costruita.</p>
           <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
         </div>
         <div class="profile-facts">
@@ -366,15 +378,10 @@ function workPreview(project) {
 }
 
 function workPage() {
-  return `
-    <main class="work-index" id="main-content">
-      ${header()}
-      <section class="work-index-hero">
-        <p>Archivio / Selected work</p>
-        <h1>PROBLEMI REALI.<br>RESPONSABILITÀ CHIARE.</h1>
-      </section>
-      <section class="work-index-list">
-        ${PROJECT_ORDER.map(({ slug }) => window.CASE_STUDIES.find((project) => project.slug === slug)).map((project) => `
+  const projects = PROJECT_ORDER
+    .map(({ slug }) => window.CASE_STUDIES.find((project) => project.slug === slug))
+    .filter(Boolean);
+  const projectRows = (items) => items.map((project) => `
           <a href="${PROJECT_FILES[project.slug]}" class="work-row work-row-${project.theme}">
             <span>${project.number}</span>
             <div class="work-row-copy">
@@ -386,7 +393,20 @@ function workPage() {
             <div class="work-row-preview" aria-hidden="true">${workPreview(project)}</div>
             <b>Apri il case study ↗</b>
           </a>
-        `).join("")}
+        `).join("");
+
+  return `
+    <main class="work-index" id="main-content">
+      ${header()}
+      <section class="work-index-hero">
+        <p>Archivio / Selected work</p>
+        <h1>PROBLEMI REALI.<br>RESPONSABILITÀ CHIARE.</h1>
+      </section>
+      <section class="work-index-list">
+        <div class="work-group-label">Core product / design engineering</div>
+        ${projectRows(projects.filter((project) => CORE_PROJECTS.includes(project.slug)))}
+        <div class="work-group-label">Selected additional work / campagne, landing e produzione digitale</div>
+        ${projectRows(projects.filter((project) => !CORE_PROJECTS.includes(project.slug)))}
       </section>
       ${footer()}
     </main>
@@ -565,6 +585,18 @@ function casePage(slug) {
         <div><span>Team</span><p>${project.team}</p></div>
         <div><span>Collaborazioni</span><p>${project.collaborations}</p></div>
       </section>
+
+      ${project.proof ? `
+        <section class="case-proof" aria-labelledby="case-proof-title">
+          <div class="case-proof-intro">
+            <span>Design engineering / Evidence</span>
+            <h2 id="case-proof-title">Le decisioni non finiscono nello schermo.</h2>
+          </div>
+          <div class="case-proof-grid">
+            ${project.proof.map(([label, text]) => `<article><span>${label}</span><p>${text}</p></article>`).join("")}
+          </div>
+        </section>
+      ` : ""}
 
       <div class="case-sections">${caseSections(project)}</div>
 
