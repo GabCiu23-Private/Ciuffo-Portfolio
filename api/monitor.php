@@ -4,10 +4,10 @@ require dirname(__DIR__) . '/server/_bootstrap.php';
 require dirname(__DIR__) . '/server/_metrics.php';
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') { http_response_code(204); exit; }
 try {
-    $key = analyticsSanitizeString($_GET['site_key'] ?? null, 160) ?? 'ciuffo_portfolio';
-    $configured = require dirname(__DIR__) . '/server/config/sites.php'; $siteConfig = $configured[$key] ?? null;
+    $key = analyticsSanitizeString($_GET['site_key'] ?? null, 160) ?? analyticsDefaultSiteKey();
+    $siteConfig = analyticsSiteConfig($key);
     if (!is_array($siteConfig)) analyticsJsonResponse(['ok'=>false,'message'=>'Sito non configurato.'], 404);
-    $db = analyticsDb(); $siteId = analyticsUpsertSite($db, $key, analyticsSanitizeString($siteConfig['name'] ?? null, 255), analyticsSanitizeString($siteConfig['domain'] ?? null, 2048));
+    $db = analyticsDbForSite($key); $siteId = analyticsUpsertSite($db, $key, analyticsSanitizeString($siteConfig['name'] ?? null, 255), analyticsSanitizeString($siteConfig['domain'] ?? null, 2048));
     $insert = $db->prepare('INSERT INTO monitoring_checks (site_id, check_name, check_type, target_url, status, http_status, latency_ms, details, checked_at) VALUES (:site_id,:name,:type,:url,:status,:http,:latency,CAST(:details AS jsonb),NOW())'); $checks=[];
     foreach (($siteConfig['checks'] ?? []) as $check) {
         $url=analyticsSanitizeString($check['url'] ?? null,2048); if($url===null)continue; $started=microtime(true);$statusCode=0;$curlError=null;

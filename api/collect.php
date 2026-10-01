@@ -16,7 +16,7 @@ try {
     if ($siteKey === null) analyticsJsonResponse(['ok'=>false,'message'=>'site_key obbligatorio.'], 422);
     foreach ($events as $event) if (($event['site_key'] ?? null) !== null && $event['site_key'] !== $siteKey) analyticsJsonResponse(['ok'=>false,'message'=>'Tutti gli eventi del batch devono usare lo stesso site_key.'], 422);
 
-    $saved = analyticsDbTransaction(static function(PDO $db) use ($events, $siteKey, $sitePayload): int {
+    $saved = analyticsDbTransactionForSite($siteKey, static function(PDO $db) use ($events, $siteKey, $sitePayload): int {
         $siteId = analyticsUpsertSite($db, $siteKey, analyticsSanitizeString($sitePayload['name'] ?? null, 255), analyticsSanitizeString($sitePayload['domain'] ?? null, 2048));
         $pages = [];
         $insert = $db->prepare(<<<'SQL'

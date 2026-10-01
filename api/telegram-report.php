@@ -13,8 +13,8 @@ if ($secret === null || !hash_equals('Bearer ' . $secret, $authorization)) {
 }
 
 try {
-    $siteKey = analyticsSanitizeString($_GET['site_key'] ?? null, 160) ?? 'ciuffo_portfolio';
-    $db = analyticsDb();
+    $siteKey = analyticsSanitizeString($_GET['site_key'] ?? null, 160) ?? analyticsDefaultSiteKey();
+    $db = analyticsDbForSite($siteKey);
     $report = analyticsBuildReport($db, $siteKey, 7);
     $site = analyticsFindSite($db, $siteKey);
     $monitoring = analyticsMonitoringSummary($db, (int) $site['id']);
