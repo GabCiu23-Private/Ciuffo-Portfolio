@@ -48,7 +48,8 @@ function analyticsDb(): PDO
     parse_str((string) ($parts['query'] ?? ''), $query);
     $dsn = 'pgsql:host=' . $parts['host'] . ';dbname=' . ltrim($parts['path'], '/');
     if (isset($parts['port'])) $dsn .= ';port=' . (int) $parts['port'];
-    if (!empty($query['sslmode'])) $dsn .= ';sslmode=' . preg_replace('/[^a-z_]/i', '', (string) $query['sslmode']);
+    $sslMode = !empty($query['sslmode']) ? (string) $query['sslmode'] : 'require';
+    $dsn .= ';sslmode=' . preg_replace('/[^a-z_]/i', '', $sslMode);
     $dsn .= ';connect_timeout=8';
     $connection = new PDO($dsn, isset($parts['user']) ? urldecode($parts['user']) : null, isset($parts['pass']) ? urldecode($parts['pass']) : null, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
