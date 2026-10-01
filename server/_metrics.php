@@ -177,7 +177,7 @@ function analyticsRunMonitoringChecks(PDO $db, int $siteId, array $siteConfig): 
         if (function_exists('curl_init')) {
             $curl = curl_init($url);
             curl_setopt_array($curl, [CURLOPT_NOBODY => true, CURLOPT_RETURNTRANSFER => true, CURLOPT_FOLLOWLOCATION => true, CURLOPT_TIMEOUT => 8, CURLOPT_USERAGENT => 'Ciuffo-Analytics-monitor/1.0']);
-            curl_exec($curl); $statusCode = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE); $curlError = curl_error($curl) ?: null; curl_close($curl);
+            curl_exec($curl); $statusCode = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE); $curlError = curl_error($curl) ?: null;
         } else {
             $headers = @get_headers($url);
             $statusCode = $headers && isset($headers[0]) && preg_match('/\s(\d{3})\s/', $headers[0], $matches) ? (int) $matches[1] : 0;
