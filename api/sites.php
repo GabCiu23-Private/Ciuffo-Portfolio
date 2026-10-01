@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 require dirname(__DIR__) . '/server/_bootstrap.php';
-require dirname(__DIR__) . '/server/_db.php';
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') { http_response_code(204); exit; }
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
