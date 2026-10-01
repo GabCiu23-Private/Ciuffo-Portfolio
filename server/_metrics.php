@@ -166,6 +166,31 @@ function analyticsMonitoringSummary(PDO $db, int $siteId): array
     return array_map(static fn(array $row): array => ['name'=>$row['check_name'], 'status'=>$row['status'], 'http_status'=>$row['http_status']===null?null:(int)$row['http_status'], 'latency_ms'=>$row['latency_ms']===null?null:(int)$row['latency_ms'], 'detail'=>$row['target_url'] ? $row['target_url'] . ($row['http_status'] ? ' · HTTP ' . $row['http_status'] : '') : null, 'checked_at'=>$row['checked_at'], 'details'=>$row['details'] ? json_decode($row['details'], true) : null], $statement->fetchAll());
 }
 
+function analyticsRunMonitoringChecks(PDO $db, int $siteId, array $siteConfig): array
+{
+    $insert = $db->prepare('INSERT INTO monitoring_checks (site_id, check_name, check_type, target_url, status, http_status, latency_ms, details, checked_at) VALUES (:site_id,:name,:type,:url,:status,:http,:latency,CAST(:details AS jsonb),NOW())');
+    $checks = [];
+    foreach (($siteConfig['checks'] ?? []) as $check) {
+        $url = analyticsSanitizeString($check['url'] ?? null, 2048);
+        if ($url === null) continue;
+        $started = microtime(true); $statusCode = 0; $curlError = null;
+        if (function_exists('curl_init')) {
+            $curl = curl_init($url);
+            curl_setopt_array($curl, [CURLOPT_NOBODY => true, CURLOPT_RETURNTRANSFER => true, CURLOPT_FOLLOWLOCATION => true, CURLOPT_TIMEOUT => 8, CURLOPT_USERAGENT => 'Ciuffo-Analytics-monitor/1.0']);
+            curl_exec($curl); $statusCode = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE); $curlError = curl_error($curl) ?: null; curl_close($curl);
+        } else {
+            $headers = @get_headers($url);
+            $statusCode = $headers && isset($headers[0]) && preg_match('/\s(\d{3})\s/', $headers[0], $matches) ? (int) $matches[1] : 0;
+        }
+        $latency = (int) round((microtime(true) - $started) * 1000); $status = $statusCode >= 200 && $statusCode < 400 ? 'online' : 'offline'; $details = ['url' => $url];
+        if ($curlError) $details['error'] = $curlError;
+        $name = analyticsSanitizeString($check['name'] ?? null, 255) ?? $url;
+        $insert->execute([':site_id'=>$siteId, ':name'=>$name, ':type'=>'http', ':url'=>$url, ':status'=>$status, ':http'=>$statusCode ?: null, ':latency'=>$latency, ':details'=>json_encode($details, JSON_UNESCAPED_SLASHES)]);
+        $checks[] = ['name'=>$name, 'detail'=>$url . ($statusCode ? ' · HTTP ' . $statusCode : ' · Nessuna risposta dal check HTTP.'), 'status'=>$status, 'http_status'=>$statusCode ?: null, 'latency_ms'=>$latency, 'checked_at'=>gmdate('c')];
+    }
+    return $checks;
+}
+
 function analyticsBuildReport(PDO $db, string $siteKey, int $days = 7, ?string $sinceRaw = null, ?string $untilRaw = null): array
 {
     $site = analyticsFindSite($db, $siteKey);
