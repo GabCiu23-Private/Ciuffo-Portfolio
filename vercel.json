@@ -5,5 +5,11 @@
       "runtime": "vercel-php@0.9.0",
       "maxDuration": 10
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/telegram-report.php",
+      "schedule": "30 6 * * 1"
+    }
+  ]
 }
