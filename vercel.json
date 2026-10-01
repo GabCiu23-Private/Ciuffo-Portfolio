@@ -4,7 +4,7 @@
     "api/*.php": {
       "runtime": "vercel-php@0.5.2",
       "maxDuration": 10,
-      "includeFiles": ["server/**", "config/**"]
+      "includeFiles": "server/**"
     }
   }
 }
