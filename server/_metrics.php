@@ -39,14 +39,22 @@ function analyticsUpsertSite(PDO $db, string $siteKey, ?string $name = null, ?st
 
 function analyticsUpsertPage(PDO $db, int $siteId, array $event): ?int
 {
-    $key = analyticsSanitizeString($event['page_id'] ?? null, 255) ?? analyticsSanitizeString($event['page_path'] ?? null, 1024);
+    $pagePath = analyticsSanitizeString($event['page_path'] ?? null, 1024);
+    $key = analyticsSanitizeString($event['page_id'] ?? null, 255) ?? $pagePath;
     if ($key === null) return null;
-    $statement = $db->prepare(
-        'INSERT INTO pages (site_id, page_key, page_path, page_name) VALUES (:site_id, :page_key, :page_path, :page_name)
-         ON CONFLICT (site_id, page_key) DO UPDATE SET page_path = COALESCE(EXCLUDED.page_path, pages.page_path),
-           page_name = COALESCE(EXCLUDED.page_name, pages.page_name), updated_at = NOW() RETURNING id'
+
+    // Production keeps page paths unique per site. Use that identity whenever
+    // the tracker provides one; page_key remains the fallback for API clients
+    // that only send a logical page id.
+    $statement = $db->prepare($pagePath !== null
+        ? 'INSERT INTO pages (site_id, page_key, page_path, page_name) VALUES (:site_id, :page_key, :page_path, :page_name)
+           ON CONFLICT (site_id, page_path) DO UPDATE SET page_key = EXCLUDED.page_key,
+             page_name = COALESCE(EXCLUDED.page_name, pages.page_name), updated_at = NOW() RETURNING id'
+        : 'INSERT INTO pages (site_id, page_key, page_path, page_name) VALUES (:site_id, :page_key, :page_path, :page_name)
+           ON CONFLICT (site_id, page_key) DO UPDATE SET page_path = COALESCE(EXCLUDED.page_path, pages.page_path),
+             page_name = COALESCE(EXCLUDED.page_name, pages.page_name), updated_at = NOW() RETURNING id'
     );
-    $statement->execute([':site_id' => $siteId, ':page_key' => $key, ':page_path' => $event['page_path'] ?? null, ':page_name' => $event['page_name'] ?? $key]);
+    $statement->execute([':site_id' => $siteId, ':page_key' => $key, ':page_path' => $pagePath, ':page_name' => $event['page_name'] ?? $key]);
     return (int) $statement->fetchColumn();
 }
 
