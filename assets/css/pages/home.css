@@ -1,6 +1,8 @@
 .hero {
-  min-height: 100svh;
-  padding-top: 86px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - var(--site-header-height));
+  padding-top: 0;
   overflow: hidden;
 }
 
@@ -32,9 +34,13 @@
 }
 
 .hero-title {
-  margin: 0;
-  padding: clamp(40px, 6vh, 78px) 2vw clamp(30px, 5vh, 60px);
-  font-size: clamp(64px, 11.2vw, 180px);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto 0 0;
+  padding: 32px 2.2vw 28px;
+  font-size: var(--hero-display-size);
   font-weight: 790;
   letter-spacing: -.075em;
   line-height: .78;
@@ -81,7 +87,7 @@
   color: var(--blue);
   font-size: .42em;
   letter-spacing: 0;
-  animation: rotate 12s linear infinite;
+  animation: rotate 20s linear infinite;
 }
 
 .round-link {
@@ -116,19 +122,21 @@
 }
 
 .hero-bottom {
+  margin-bottom: auto;
+  flex-shrink: 0;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 3vw;
   padding: 0 2.2vw 28px;
 }
 
 .hero-intro {
-  max-width: 470px;
+  max-width: 620px;
 }
 
 .hero-intro > p {
-  max-width: 420px;
+  max-width: 600px;
   margin: 0;
   font-size: clamp(15px, 1.35vw, 22px);
   line-height: 1.35;
@@ -156,6 +164,7 @@
 }
 
 .services-ticker {
+  padding: 0 2.2vw 24px;
   display: flex;
   justify-content: flex-end;
   gap: 2.2vw;
@@ -176,6 +185,7 @@
 }
 
 .marquee {
+  flex-shrink: 0;
   overflow: hidden;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -192,7 +202,7 @@
   font-size: 12px;
   font-weight: 650;
   letter-spacing: .06em;
-  animation: marquee 18s linear infinite;
+  animation: marquee 28s linear infinite;
 }
 
 .marquee i {
@@ -222,7 +232,8 @@
 }
 
 .project-glimpse {
-  min-height: 650px;
+  min-height: 0;
+  align-items: center;
   display: grid;
   grid-template-columns: .85fr 1.5fr;
   gap: 3vw;
@@ -240,6 +251,8 @@
 }
 
 .glimpse-copy {
+  align-self: stretch;
+  gap: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -407,22 +420,82 @@
   transform: translateY(0);
 }
 
+.interface-card-screen {
+  padding: 0;
+  overflow: hidden;
+}
+
+.interface-card-screen img,
+.project-art-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.project-art-screen {
+  padding: 0;
+  background: white;
+}
+
+.interface-card.interface-card-screen {
+  min-height: 0;
+  margin: 0;
+  height: clamp(240px, 24vw, 360px);
+  aspect-ratio: auto;
+}
+
+.interface-card.interface-card-screen > img {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: top center;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
+.project-row .project-art-screen {
+  height: 180px;
+  aspect-ratio: auto;
+}
+
+.project-row .project-art-screen img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+@media (max-width: 760px) {
+  .project-row .project-art-screen {
+    height: 145px;
+  }
+}
+
+.project-row:hover .project-art-screen {
+  border-radius: 0;
+  transform: none;
+}
+
 .project-row::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--acid);
+  background: var(--project-hover, var(--ink));
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform .55s var(--ease);
 }
 
-.project-row:hover {
+.project-row:hover,
+.project-row:focus-visible {
   padding: 0 22px;
+  color: white;
 }
 
-.project-row:hover::before {
+.project-row:hover::before,
+.project-row:focus-visible::before {
   transform: scaleY(1);
 }
 
@@ -466,7 +539,7 @@
 }
 
 .project-row:hover .project-art {
-  border-radius: 70px;
+  border-radius: 6px;
   transform: scale(.94);
 }
 
@@ -717,7 +790,7 @@
   color: var(--acid);
   font-family: var(--font-geist-mono), monospace;
   font-size: 9px;
-  animation: rotate 24s linear infinite;
+  animation: rotate 36s linear infinite;
 }
 
 .process-content {
@@ -1009,3 +1082,8 @@ footer {
 
 footer span:nth-child(2) { text-align: center; }
 footer span:nth-child(3) { text-align: right; }
+
+.home-title-word { display: inline-flex; align-items: center; gap: .15em; }
+.home-title-word .asterisk { margin: 0; }
+.hero-bottom .round-link { justify-self: end; margin: 0; }
+.title-row-two { word-spacing: .12em; }

@@ -21,6 +21,7 @@
 }
 
 @media (max-width: 900px) {
+  :root { --site-header-height: 70px; --hero-display-size: clamp(48px, 15.2vw, 100px); }
   .cursor { display: none; }
 
   .site-header {
@@ -49,17 +50,17 @@
   .nav.open { transform: translateY(0); }
   .nav a { width: 100%; padding: 17px 0; border-bottom: 1px solid rgba(51,51,51,.2); font-size: 16px; }
 
-  .hero { padding-top: 70px; }
+  .hero { padding-top: 0; }
   .hero-kicker { padding: 18px; }
   .availability { display: none; }
 
   .hero-title {
-    min-height: 50svh;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 44px 16px;
-    font-size: clamp(48px, 15.2vw, 100px);
+    padding: 32px 18px 24px;
+    font-size: var(--hero-display-size);
     line-height: .82;
   }
 
@@ -82,12 +83,14 @@
   .intro-slice > h2 { margin-bottom: 58px; }
 
   .project-glimpse {
-    min-height: 700px;
+    min-height: 0;
     grid-template-columns: 1fr;
     padding: 24px;
   }
 
-  .glimpse-copy { min-height: 260px; }
+  .glimpse-copy { min-height: 0; }
+  .glimpse-copy h3 { margin: 0; }
+  .interface-card.interface-card-screen { height: auto; aspect-ratio: 16 / 10; }
   .interface-card { min-height: 340px; margin: 0; }
 
   .project-list { margin-top: 60px; }
@@ -561,12 +564,13 @@
   }
 
   .work-index-hero {
-    min-height: 65svh;
-    padding: 28px 18px 45px;
+    min-height: calc(100svh - 70px);
+    gap: 0;
+    padding: 36px 18px 44px;
   }
 
   .work-index-hero h1 {
-    font-size: clamp(55px, 16vw, 95px);
+    font-size: var(--hero-display-size);
   }
 
   .work-index-list a {
@@ -599,12 +603,12 @@
   }
 
   .profile-hero {
-    min-height: calc(100svh - 68px);
+    min-height: calc(100svh - 70px);
     padding: 24px 18px 30px;
   }
 
   .profile-hero h1 {
-    font-size: clamp(55px, 15.5vw, 95px);
+    font-size: var(--hero-display-size);
   }
 
   .profile-hero > div {
@@ -632,10 +636,11 @@
   }
 
   .profile-cv-intro h2 {
+    font-size: clamp(34px, 11vw, 55px);
     margin-top: 50px;
   }
 
-  .profile-cv-intro > p:last-child {
+  .profile-cv-summary {
     grid-column: 1;
   }
 
@@ -676,12 +681,12 @@
   }
 
   .profile-contact {
-    min-height: 700px;
+    min-height: 560px;
     padding: 28px 18px;
   }
 
   .profile-contact h2 {
-    font-size: clamp(55px, 15vw, 90px);
+    font-size: clamp(36px, 10vw, 64px);
   }
 
   .profile-contact a {
@@ -690,12 +695,13 @@
 }
 
 @media (max-width: 520px) {
+  :root { --hero-display-size: clamp(43px, 14.3vw, 76px); }
   .brand { font-size: 19px; }
   .hero-kicker { font-size: 9px; }
-  .hero-title { font-size: clamp(43px, 14.3vw, 76px); }
+  .hero-title { font-size: var(--hero-display-size); }
   .round-link { width: 56px; height: 56px; }
-  .project-glimpse { min-height: 610px; padding: 18px; }
-  .glimpse-copy { min-height: 220px; }
+  .project-glimpse { min-height: 0; padding: 18px; }
+  .glimpse-copy { min-height: 0; gap: 20px; }
   .interface-card { min-height: 300px; }
   .numbers { grid-template-columns: 1fr; }
   .numbers > div { min-height: 170px; border-right: 0; }

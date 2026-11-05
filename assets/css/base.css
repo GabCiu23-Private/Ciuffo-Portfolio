@@ -15,6 +15,8 @@
 }
 
 :root {
+  --site-header-height: 86px;
+  --hero-display-size: clamp(64px, 11.2vw, 130px);
   --font-geist-sans: "Geist";
   --font-geist-mono: "Geist Mono";
   --ink: #333;
@@ -31,6 +33,7 @@
 }
 
 html {
+  scroll-padding-top: calc(var(--site-header-height) + 16px);
   scroll-behavior: smooth;
   background: var(--paper);
 }
@@ -40,7 +43,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-geist-sans), Arial, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
 }
@@ -101,12 +104,13 @@ button {
 }
 
 .site-header {
-  position: absolute;
-  z-index: 20;
+  position: sticky;
+  z-index: 70;
+  background: var(--paper);
   top: 0;
   left: 0;
   width: 100%;
-  height: 86px;
+  height: var(--site-header-height);
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   align-items: center;
@@ -119,7 +123,6 @@ button {
 }
 
 .site-header-inner {
-  position: relative;
   background: var(--paper);
 }
 

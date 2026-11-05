@@ -1,0 +1,84 @@
+/* Shared graphic grammar derived from the homepage's process and portrait. */
+:root {
+  --brand-graphic-line: rgba(51, 51, 51, .18);
+  --brand-graphic-line-dark: rgba(240, 238, 231, .18);
+}
+.brand-scene { position: relative; isolation: isolate; overflow: clip; }
+.brand-scene::before,
+.brand-scene::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border: 1px solid var(--scene-line, var(--brand-graphic-line));
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* The large edge-cropped circle mirrors the homepage process section. */
+.brand-scene--hero::before { width: clamp(420px, 58vw, 900px); aspect-ratio: 1; left: -28vw; top: -32vw; }
+.brand-scene--hero::after { width: clamp(300px, 38vw, 580px); aspect-ratio: 1; right: -18vw; bottom: -25vw; }
+.brand-scene--band::before { width: 45vw; aspect-ratio: 1; left: -24vw; top: -30vw; }
+.brand-scene--band::after { width: 34vw; aspect-ratio: 1; right: -22vw; bottom: -20vw; }
+.brand-scene--dark { --scene-line: var(--brand-graphic-line-dark); }
+.brand-scene--dark::before { width: clamp(300px, 48vw, 760px); aspect-ratio: 1; top: -30vw; left: -24vw; }
+.brand-scene--dark::after { width: clamp(240px, 32vw, 520px); aspect-ratio: 1; right: -15vw; bottom: -20vw; }
+.brand-scene--contact::before { width: 68vw; aspect-ratio: 1; right: -27vw; top: -35vw; }
+.brand-scene--contact::after { width: 35vw; aspect-ratio: 1; left: -22vw; bottom: -19vw; }
+/* Case studies retain the approved editorial gallery and unobstructed media. */
+.brand-scene--editorial::before { width: 300px; aspect-ratio: 1; top: -210px; right: -120px; }
+.brand-scene--editorial::after { display: none; }
+.project-story .case-section-label { align-items: center; gap: 12px; }
+.project-story .case-section-label > span { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--ink); border-radius: 50%; flex-shrink: 0; color: var(--ink); }
+.project-story .case-section-label::after { content: ''; height: 1px; flex: 1; background: var(--line); }
+.project-introduction .case-eyebrow { padding-left: 18px; border-left: 3px solid var(--orange); }
+.project-related.brand-scene--dark { padding: 32px; background: var(--ink); color: var(--paper); border: 0; }
+.project-related a:hover, .project-related a:focus-visible { color: var(--acid); }
+.project-related a:focus-visible { outline-color: var(--paper); }
+.case-next > div { position: relative; }
+.case-next > div > span { display: flex; align-items: center; gap: 12px; width: 100%; }
+.case-next > div > span::after { content: ''; flex: 1; height: 1px; background: var(--brand-graphic-line-dark); }
+.case-next > div:last-child > span { flex-direction: row-reverse; }
+/* The career timeline and skills carry the same thin rules as home services. */
+.experience-list > article > span { display: flex; align-items: flex-start; gap: 12px; }
+.experience-list > article > span::before { content: ''; margin-top: 2px; width: 10px; height: 10px; border: 1px solid var(--ink); border-radius: 50%; flex-shrink: 0; }
+.profile-skills-heading { padding-bottom: 32px; border-bottom: 1px solid rgba(240,238,231,.28); }
+.profile-skills-section .profile-skills { border-top: 0; margin-top: 0; }
+@media (max-width: 900px) {
+  .brand-scene--hero::before { width: 100vw; left: -60vw; top: -65vw; }
+  .brand-scene--hero::after { width: 80vw; right: -55vw; bottom: -50vw; }
+  .brand-scene--band::before { width: 100vw; left: -70vw; top: -55vw; }
+  .brand-scene--band::after { width: 80vw; right: -60vw; bottom: -40vw; }
+  .brand-scene--dark::before { width: 100vw; left: -70vw; top: -65vw; }
+  .brand-scene--dark::after { width: 80vw; right: -60vw; bottom: -45vw; }
+  .brand-scene--contact::before { width: 120vw; right: -80vw; top: -70vw; }
+  .brand-scene--contact::after { width: 100vw; left: -80vw; bottom: -60vw; }
+  .project-related.brand-scene--dark { padding: 24px 18px; }
+  .project-story .case-section-label > span { width: 30px; height: 30px; }
+}
+
+/* Serif emphasis follows the homepage's selective editorial italics. */
+.brand-emphasis {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.04em;
+  text-transform: none;
+  color: inherit;
+}
+
+/* Keep acid as a small graphic accent, rather than repeated highlighting. */
+.hero-motion-mark::after {
+  content: '';
+  position: absolute;
+  top: -.2em;
+  right: .1em;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--acid);
+  pointer-events: none;
+}
+.work-hero-scroll { background: var(--acid); color: var(--ink); }
+.work-hero-scroll:hover { background: var(--ink); color: var(--paper); }
+.work-index-hero h1 .brand-emphasis,
+.profile-hero h1 .brand-emphasis { color: #e04828; }

@@ -1,20 +1,40 @@
 const PROJECT_FILES = {
   leone: "lavori/leone.html",
-  "leone-event": "lavori/evento-leone.html",
+  essenza: "lavori/essenza.html",
+  poggio: "lavori/poggio-alla-pieve.html",
   analytics: "lavori/analytics.html",
-  lilly: "lavori/lilly.html",
-  "life-button": "lavori/the-life-button.html",
+  symposium: "lavori/symposium.html",
 };
 
 const PROJECT_ORDER = [
-  { slug: "leone", title: "Leone S.p.A" },
-  { slug: "analytics", title: "Local Analytics" },
-  { slug: "life-button", title: "The Life Button" },
-  { slug: "leone-event", title: "Evento clinico" },
-  { slug: "lilly", title: "Eli Lilly — NDA" },
+  {
+    "slug": "leone",
+    "title": "Leone — Ecosistema digitale"
+  },
+  {
+    "slug": "essenza",
+    "title": "Essenza / 3Design"
+  },
+  {
+    "slug": "poggio",
+    "title": "Poggio alla Pieve"
+  },
+  {
+    "slug": "analytics",
+    "title": "Ciuffo Analytics"
+  },
+  {
+    "slug": "symposium",
+    "title": "Leone International Symposium"
+  }
 ];
 
-const CORE_PROJECTS = ["leone", "analytics"];
+const RELATED_PROJECTS = {
+  leone: { slug: "essenza", label: "Esplora l’area riservata Essenza / 3Design", text: "Dalla consultazione del sito pubblico alla gestione dei casi e della documentazione." },
+  essenza: { slug: "leone", label: "Esplora il sito corporate Leone", text: "Il contesto pubblico di prodotti, formazione e servizi a cui si collega l’area riservata." },
+};
+
+const CORE_PROJECTS = ["leone", "essenza", "poggio", "analytics"];
 
 const LIFE_BUTTON_SCREENSHOT =
   "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fweb.mc.lilly.com%2FThe_Life_Button.html?w=2000";
@@ -27,7 +47,7 @@ function header(home = false) {
   const isProfile = currentPage === "profile";
 
   return `
-    <a class="skip-link" href="#main-content">Vai al contenuto</a>
+    <a class="skip-link" href="${document.body.dataset.page === "case" ? PROJECT_FILES[document.body.dataset.case] : ""}#main-content">Vai al contenuto</a>
     <header class="${home ? "site-header" : "site-header site-header-inner"}">
       <a class="brand" href="${home ? "#top" : "index.html"}" aria-label="${home ? "Torna all'inizio" : "Torna alla home"}">
         GC<span>®</span>
@@ -68,41 +88,20 @@ function homePage() {
       ${header(true)}
 
       <section class="hero" id="top">
-        <div class="hero-kicker reveal-line">
-          <span>Product Designer — Systems, Interface & Front-end — Firenze</span>
-          <span class="availability"><i></i>Disponibile per progetti selezionati</span>
-        </div>
-
-        <h1 class="hero-title" aria-label="Progetto sistemi digitali e li porto nel browser">
-          <span class="title-row title-row-one">
-            <span>PROGETTO</span>
-            <span class="title-note">UX, UI, business<br>e fattibilità.</span>
-          </span>
-          <span class="title-row title-row-two">
-            <span class="asterisk" aria-hidden="true">✳</span>
-            <span>SISTEMI</span>
-          </span>
-          <span class="title-row title-row-three">
-            <span>DIGITALI</span>
-            <a class="round-link magnetic" href="lavori.html" aria-label="Apri tutti i progetti">
-              <span>Lavori</span><b>↗</b>
-            </a>
-          </span>
+        <h1 class="hero-title" aria-label="Progetto esperienze digitali">
+          <span class="title-row title-row-one"><span class="home-title-word">PROGETTO<span class="asterisk" aria-hidden="true">✳</span></span><span class="title-note">UX, UI, business<br>e fattibilità.</span></span>
+          <span class="title-row title-row-two"><span>ESPERIENZE</span></span>
+          <span class="title-row title-row-three"><span>DIGITALI</span></span>
         </h1>
-
         <div class="hero-bottom">
           <div class="hero-intro">
-            <p>Progetto prodotti e interfacce, poi li porto nel browser. Lavoro tra UX, UI, sistemi e front-end per trasformare problemi reali in esperienze digitali che possono essere usate, mantenute e misurate.</p>
-            <small>Designer-first, tecnicamente forte: dalla struttura al comportamento dell’interfaccia, fino all’implementazione.</small>
-            <a href="profilo.html">Scopri il mio profilo ↗</a>
-            <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
+            <p>Sono Gabriele Ciuffi, Product Designer. Organizzo contenuti e percorsi, progetto interfacce e uso il front-end per trasformarle in esperienze funzionanti.</p>
+            <a class="action-button action-button--secondary" href="profilo.html">Scopri il mio profilo ↗</a>
+            <a class="action-button action-button--secondary" href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
           </div>
-          <div class="services-ticker" aria-label="Servizi principali">
-            <span>Product & UX<b>↗</b></span>
-            <span>UI & Design system<b>↗</b></span>
-            <span>Design to front-end</span>
-          </div>
+          <a class="round-link magnetic" href="lavori.html" aria-label="Apri tutti i progetti"><span>Lavori</span><b>↗</b></a>
         </div>
+        <div class="services-ticker" aria-label="Servizi principali"><span>Product & UX</span><span>UI & Design system</span><span>Prototipi & Front-end</span></div>
 
         <div class="marquee" aria-hidden="true">
           <div>
@@ -115,56 +114,31 @@ function homePage() {
       </section>
 
       <section class="intro-slice" id="work">
-        <p class="eyebrow">01 / Core product & design engineering</p>
-        <h2>Dal problema al prodotto.<br>Dal sistema al browser.</h2>
+        <p class="eyebrow">01 / Progetti selezionati</p>
+        <h2>Problemi complessi.<br>Percorsi chiari.</h2>
         <a class="project-glimpse" href="lavori/leone.html">
           <div class="glimpse-copy">
-            <span>01 / Digital ecosystem</span>
+            <span>01 / Sito corporate · Online</span>
             <h3>Leone<br>S.p.A</h3>
-          <p>Product Design · Information Architecture · Front-end</p>
+          <p>Prodotti, formazione e servizi in un’unica architettura.</p>
           </div>
-          <div class="interface-card">
-            <div class="interface-top"><span>LEONE</span><span>DIGITAL ECOSYSTEM / 2026</span></div>
-            <div class="interface-word">LEONE<br>DIGITAL</div>
-            <div class="interface-pill">APRI IL CASE STUDY ↗</div>
+          <div class="interface-card interface-card-screen">
+            <img src="assets/images/leone/homepage-full-wide.jpg" width="1920" height="4389" alt="Home dell’ecosistema digitale Leone" loading="lazy">
           </div>
         </a>
 
         <div class="project-list">
-          <a class="project-row" href="lavori/analytics.html" data-reveal>
-            <span class="project-index">02</span>
-            <div>
-              <h3>Local Analytics</h3>
-              <p>Product Design · Dashboard · Front-end</p>
-            </div>
-            <div class="project-art art-community" aria-hidden="true">
-              <span>DATA</span><span>↗</span>
-            </div>
-            <b>Apri il case ↗</b>
-          </a>
-          <p class="project-supporting-label">Selected additional work / campagne, landing e produzione digitale</p>
-          <a class="project-row" href="lavori/the-life-button.html" data-reveal>
-            <span class="project-index">03</span>
-            <div>
-              <h3>The Life Button</h3>
-              <p>Campaign website · Front-end · Pharma</p>
-            </div>
-            <div class="project-art art-nda"><i>ELI LILLY ITALIA / AWARENESS</i></div>
-            <b>Apri il case ↗</b>
-          </a>
-          <a class="project-row" href="lavori/evento-leone.html" data-reveal>
-            <span class="project-index">04</span>
-            <div>
-              <h3>Evento clinico</h3>
-              <p>Landing page · Product Design · Conversion</p>
-            </div>
-            <div class="project-art art-congress">
-              <img src="assets/images/leone/event-landing.webp" width="730" height="2048" alt="Anteprima della landing per l’evento Lo stile italiano in implantologia">
-            </div>
-            <b>Apri il case ↗</b>
-          </a>
+          ${PROJECT_ORDER.slice(1).map(({ slug }) => {
+            const project = window.CASE_STUDIES.find((item) => item.slug === slug);
+            return `<a class="project-row" href="${PROJECT_FILES[slug]}" style="--project-hover:${project.hoverColor}" data-reveal>
+              <span class="project-index">${project.number}</span>
+              <div><h3>${project.title}</h3><p>${project.status} · ${project.summary}</p></div>
+              <div class="project-art project-art-screen" aria-hidden="true"><img src="${project.screenshot}" alt="" loading="lazy" width="1400" height="950"></div>
+              <b>Apri il progetto ↗</b>
+            </a>`;
+          }).join("")}
         </div>
-        <a class="all-work-link" href="lavori.html">Vedi l’archivio completo <span>↗</span></a>
+        <a class="all-work-link action-button action-button--primary" href="lavori.html">Esplora i cinque progetti <span>↗</span></a>
       </section>
 
       <section class="numbers" aria-label="Esperienza in numeri">
@@ -176,18 +150,18 @@ function homePage() {
 
       <section class="services" id="services">
         <div class="section-label">
-          <span>02 / Cosa faccio</span>
-          <span>Da sinistra a destra — e ritorno</span>
+          <span>02 / Approccio</span>
+          <span>Dai requisiti all’interfaccia</span>
         </div>
         <div class="services-heading" data-reveal>
-          <p>Non mi occupo soltanto dell’aspetto visivo.</p>
-          <h2>Trasformo requisiti frammentati in prodotti coerenti e pronti per essere sviluppati.</h2>
+          <p>Persone, obiettivi e vincoli prima delle schermate.</p>
+          <h2>Metto a fuoco il problema, organizzo i percorsi e progetto come funzionano.</h2>
         </div>
 
         <div class="service-list">
           <article data-reveal>
-            <span>01</span><h3>Product & UX/UI</h3>
-            <p>Definisco architetture, priorità, percorsi e interazioni a partire da persone, contenuti e obiettivi del prodotto.</p>
+            <span>01</span><h3>Architettura & UX</h3>
+            <p>Chiarisco chi userà il prodotto, quali compiti deve svolgere e quali informazioni servono. Da qui definisco priorità, struttura e percorsi.</p>
             <ul>
               <li>Analisi dei requisiti</li><li>Information architecture</li>
               <li>User flow & wireframe</li><li>Prototyping</li>
@@ -195,15 +169,15 @@ function homePage() {
           </article>
           <article data-reveal>
             <span>02</span><h3>UI & Visual Design</h3>
-            <p>Costruisco interfacce leggibili e sistemi coerenti, curando gerarchia, componenti, accessibilità e comportamento responsive.</p>
+            <p>Traduco i percorsi in schermate leggibili. Definisco gerarchie, componenti e stati, considerando accessibilità e comportamento sui diversi schermi.</p>
             <ul>
               <li>Interfacce & design system</li><li>Componenti & stati</li>
               <li>Tipografia & accessibilità</li><li>Microinterazioni</li>
             </ul>
           </article>
           <article data-reveal>
-            <span>03</span><h3>Design to Front-end</h3>
-            <p>Uso HTML, CSS e JavaScript per prototipare, validare la fattibilità e trasformare decisioni di design in interfacce funzionanti.</p>
+            <span>03</span><h3>Prototipi & Front-end</h3>
+            <p>Porto le interfacce nel browser per provare le interazioni e valutarne la fattibilità. Implemento il front-end o collaboro con chi segue lo sviluppo.</p>
             <ul>
               <li>HTML, CSS & JavaScript</li><li>Prototipi funzionanti</li>
               <li>Implementazione frontend</li><li>Responsive & performance</li>
@@ -212,29 +186,29 @@ function homePage() {
         </div>
       </section>
 
-      <section class="process">
+      <section class="process" id="processo" aria-labelledby="process-title">
         <div class="process-orbit" aria-hidden="true">
           <span>BRIEF</span><i>→</i><span>DESIGN</span><i>→</i><span>BUILD</span><i>→</i>
         </div>
         <div class="process-content">
-          <p class="eyebrow">Un processo semplice, non semplicistico</p>
-          <h2 data-reveal>Capisco.<br>Strutturo.<br>Progetto.<br>Spedisco.</h2>
+          <p class="eyebrow">Come affronto un progetto</p>
+          <h2 id="process-title" data-reveal>Capisco.<br>Strutturo.<br>Progetto.<br>Realizzo.</h2>
           <div class="process-steps">
-            <div data-reveal><span>01</span><h3>Capisco</h3><p>Raccolgo obiettivi, contenuti, vincoli e necessità degli utenti.</p></div>
-            <div data-reveal><span>02</span><h3>Strutturo</h3><p>Trasformo informazioni frammentate in sistemi, priorità e percorsi comprensibili.</p></div>
-            <div data-reveal><span>03</span><h3>Progetto</h3><p>Definisco UX, interfaccia, componenti, stati e comportamento responsive.</p></div>
-            <div data-reveal><span>04</span><h3>Spedisco</h3><p>Implemento o affianco lo sviluppo, verificando il risultato nel browser e iterando sui dati.</p></div>
+            <div data-reveal><span>01</span><h3>Capisco</h3><p>Raccolgo obiettivi, contenuti disponibili e vincoli. Distinguo ciò che sappiamo dalle domande ancora da approfondire.</p></div>
+            <div data-reveal><span>02</span><h3>Strutturo</h3><p>Organizzo le informazioni e i passaggi necessari per svolgere il compito. Definisco struttura, priorità e flussi.</p></div>
+            <div data-reveal><span>03</span><h3>Progetto</h3><p>Disegno schermate, componenti e stati. Uso i prototipi per verificare la sequenza delle interazioni.</p></div>
+            <div data-reveal><span>04</span><h3>Realizzo</h3><p>Implemento o affianco lo sviluppo. Verifico il comportamento nel browser e uso feedback e dati disponibili per le revisioni.</p></div>
           </div>
         </div>
       </section>
 
       <section class="portfolio-note" aria-labelledby="portfolio-note-title">
-        <div class="section-label"><span>03 / Built by me</span><span>Vanilla HTML · CSS · JavaScript</span></div>
+        <div class="section-label"><span>03 / Il metodo in pratica</span><span>Leone · Sito corporate</span></div>
         <div class="portfolio-note-copy">
-          <p class="eyebrow">Questo portfolio è un progetto, non un template</p>
-          <h2 id="portfolio-note-title">Un modello dati comune genera i case study. Componenti e CSS condivisi tengono insieme l’esperienza.</h2>
-          <p>Ho progettato e sviluppato questa piattaforma statica con pagine condivise, renderer per i progetti, progressive reveal, responsive behavior e attenzione a performance e accessibilità.</p>
-          <a class="text-link" href="profilo.html">Vedi come lavoro <span>↗</span></a>
+          <p class="eyebrow">Dai compiti delle persone alle scelte d’interfaccia</p>
+          <h2 id="portfolio-note-title">Cercare un prodotto e scegliere un corso richiedono percorsi diversi.</h2>
+          <p>Nel sito Leone ho distinto prodotti, formazione e servizi, mantenendo navigazione e componenti condivisi. Il progetto racconta come queste scelte hanno preso forma nell’architettura e nelle pagine.</p>
+          <a class="text-link action-button action-button--primary" href="lavori/leone.html#project-section-2">Leggi le scelte di progetto per Leone <span>↗</span></a>
         </div>
       </section>
 
@@ -244,12 +218,12 @@ function homePage() {
           <div class="portrait-mark" aria-hidden="true"><span>GC</span><i>Firenze<br>2000</i></div>
         </div>
         <div class="about-copy">
-          <h2 data-reveal>Ho iniziato dal <em>graphic design.</em> Oggi progetto sistemi e interfacce che devono funzionare anche quando vengono costruiti.</h2>
+          <h2 data-reveal>Dal <em>graphic design</em> alla progettazione di prodotti digitali.</h2>
           <div class="about-columns">
-            <p>Definisco architetture, flussi, gerarchie e interazioni, trasformando requisiti spesso frammentati in prodotti coerenti e pronti per essere sviluppati.</p>
-            <p>Li porto direttamente nel front-end quando serve, mantenendo continuità tra struttura, comportamento e risultato finale. Il codice non è una decorazione tecnica: è parte del modo in cui verifico e costruisco il prodotto.</p>
+            <p>Il mio percorso unisce formazione visiva, web design e progettazione UX/UI. Oggi lavoro su siti, servizi e strumenti digitali, dalla struttura dei contenuti alle interfacce.</p>
+            <p>Nel profilo trovi le esperienze in azienda, le collaborazioni e le competenze che porto nei progetti.</p>
           </div>
-          <a class="text-link" href="profilo.html">Profilo completo <span>↗</span></a>
+          <a class="text-link action-button action-button--secondary" href="profilo.html">Percorso e competenze <span>↗</span></a>
         </div>
       </section>
 
@@ -257,20 +231,20 @@ function homePage() {
         <div class="contact-top"><span>05 / Contatti</span><span>Firenze · Disponibile per nuove opportunità</span></div>
         <h2>
           <span>PARLIAMONE</span>
-          <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer" aria-label="Contatta Gabriele su LinkedIn">↗</a>
+          <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer" aria-label="Apri il profilo LinkedIn di Gabriele Ciuffi">↗</a>
         </h2>
         <div class="contact-bottom">
-          <p>Cerchi un Product Designer capace di collegare prodotto, interfaccia e implementazione? Sono interessato a opportunità tra product design, systems e front-end.</p>
+          <p>Cerchi un Product Designer con competenze UX/UI e una solida capacità front-end? Sono interessato a opportunità in cui progettare percorsi e interfacce utili, lavorando a stretto contatto con prodotto e sviluppo.</p>
           <div>
             <a href="#top">Torna su ↑</a>
-            <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">Scrivimi su LinkedIn ↗</a>
             <a href="cv/Gabriele_Ciuffi.svg" download>CV ↓</a>
             <!-- TODO: aggiungere l’email quando sarà disponibile. -->
           </div>
         </div>
         <footer>
           <span>© ${year} Gabriele Ciuffi</span>
-          <span>Product × UX/UI × Front-end</span>
+          <span>Product Designer</span>
           <span>Firenze, Italia</span>
         </footer>
       </section>
@@ -280,44 +254,37 @@ function homePage() {
 
 function profilePage() {
   const skills = [
-    ["Product & UX", "Product thinking, information architecture, user flow, wireframe, prototyping e analytics."],
-    ["UI & systems", "Interfacce responsive, componenti, varianti, stati, design tokens, accessibilità e motion."],
-    ["Frontend & systems", "HTML, CSS, JavaScript, GSAP / ScrollTrigger, Swiper, performance e implementazione nel browser."],
-    ["Data & delivery", "GA4 / GTM, eventi custom, strutture data-driven, Git, collaborazione con backend e iterazione."],
+    ["Architettura & UX", "Analisi dei requisiti, architettura informativa, flussi, wireframe e prototipi."],
+    ["Interfacce & sistemi", "Gerarchie visive, componenti, varianti, stati, accessibilità e interfacce responsive."],
+    ["Prototipi & front-end", "HTML, CSS, JavaScript, GSAP / ScrollTrigger, Swiper, performance e implementazione nel browser."],
+    ["Dati & collaborazione", "GA4 / GTM, eventi personalizzati, Git e collaborazione con backend e referenti dei contenuti."],
   ];
 
   return `
     <main class="profile-page" id="main-content">
       ${header()}
-      <section class="profile-hero">
-        <p>Product Designer — Systems, Interface & Front-end — Firenze</p>
-        <h1>CHIAREZZA.<br>STRUTTURA.<br><em>ESECUZIONE.</em></h1>
-        <div>
-          <span>Firenze, Italia</span>
-          <p>Sono Gabriele Ciuffi, Product Designer con una formazione visiva e un approccio tecnico alla progettazione: capisco il prodotto, definisco il sistema e lo porto nel browser.</p>
-        </div>
+      <section class="profile-hero brand-scene brand-scene--hero" data-hero-motion>
+        <div class="profile-hero-title-row"><h1>Gabriele Ciuffi.<br><span>Product <em class="brand-emphasis">Designer.</em></span></h1><button class="profile-hero-mark hero-motion-mark" type="button" data-motion-toggle aria-label="Metti in pausa l’animazione" aria-pressed="false" title="Metti in pausa l’animazione"><span class="hero-motion-asterisk" aria-hidden="true">✳</span></button></div>
+        <div class="profile-hero-bottom"><p>Dalla formazione in graphic design al lavoro su siti, servizi e strumenti digitali. Unisco progettazione UX/UI e front-end per seguire le interfacce dalla struttura alla realizzazione.</p><a class="action-button action-button--secondary" href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a></div>
       </section>
 
-      <section class="profile-principles">
+      <section class="profile-principles brand-scene brand-scene--band">
         <article><span>01 / Percorso</span><h2>Dalla grafica al prodotto digitale.</h2><p>Il percorso tra web design, UX/UI e front-end mi ha portato a progettare sistemi, non soltanto singole schermate.</p></article>
-        <article><span>02 / Approccio</span><h2>Persone, business, contenuti e fattibilità.</h2><p>Organizzo questi vincoli in flussi e gerarchie prima di definire la forma dell’interfaccia.</p></article>
-        <article><span>03 / Tecnologia</span><h2>Parte del lavoro, non un accessorio.</h2><p>Uso il front-end per validare decisioni, prototipare comportamenti e spedire interfacce reali quando il progetto lo richiede.</p></article>
+        <article><span>02 / Ambiti</span><h2>Siti, servizi e strumenti di lavoro.</h2><p>Ho lavorato su ecosistemi aziendali B2B, aree riservate, dashboard e pagine di campagna, con compiti e contenuti differenti.</p></article>
+        <article><span>03 / Collaborazione</span><h2>Un collegamento tra design e sviluppo.</h2><p>La competenza front-end mi permette di costruire prototipi, valutare la fattibilità e confrontarmi con chi segue backend e integrazioni.</p></article>
       </section>
 
-      <section class="profile-cv">
+      <section class="profile-cv" aria-labelledby="profile-experience-title">
         <div class="profile-cv-intro">
           <p>CV / Esperienza</p>
-          <h2>Quattro anni tra prodotto, interfaccia e implementazione.</h2>
-          <p>Lavoro su ecosistemi digitali, landing e strumenti interni partendo da problemi, flussi e decisioni di contenuto. Il mio processo unisce struttura, interazione e front-end: il risultato deve avere senso sia nel sistema progettato sia nell’esperienza costruita.</p>
-          <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
+          <h2 id="profile-experience-title">Quattro anni tra <em class="brand-emphasis">design</em> e sviluppo.</h2>
+          <p class="profile-cv-summary">In Leone mi occupo dell’ecosistema digitale aziendale. In precedenza ho collaborato con Noé Multimedia su progetti per Eli Lilly e seguito siti e identità visive per aziende e professionisti.</p>
+          <a class="action-button action-button--secondary" href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
         </div>
         <div class="profile-facts">
           <span>04 anni di esperienza</span>
           <span>Product, UX, UI e design system</span>
-          <span>Design to front-end e collaborazione tecnica</span>
-        </div>
-        <div class="profile-skills">
-          ${skills.map(([title, text]) => `<div><h3>${title}</h3><p>${text}</p></div>`).join("")}
+          <span>Prototipazione front-end e collaborazione con lo sviluppo</span>
         </div>
         <div class="experience-list">
           <article>
@@ -325,7 +292,7 @@ function profilePage() {
             <div>
               <h3>Leone S.p.A — Digital Product Designer</h3>
               <p>Architettura informativa, UX, UI, design system, responsive e front-end per l’ecosistema aziendale, in collaborazione con marketing, contenuti, proprietà e backend.</p>
-              <a href="lavori/leone.html">Apri il case study ↗</a>
+              <a class="action-button action-button--secondary" href="lavori/leone.html">Esplora il progetto ↗</a>
             </div>
           </article>
           <article>
@@ -333,7 +300,6 @@ function profilePage() {
             <div>
               <h3>Noé Multimedia — Digital Designer</h3>
               <p>Collaborazione di quattro mesi su progetti digitali per Eli Lilly: landing, companion app e contenuti in un contesto strutturato, regolato e coperto da riservatezza.</p>
-              <a href="lavori/lilly.html">Leggi l’esperienza ↗</a>
             </div>
           </article>
           <article>
@@ -346,11 +312,16 @@ function profilePage() {
         </div>
       </section>
 
-      <section class="profile-contact">
-        <p>Product Design · Systems · Front-end</p>
-        <h2>PARLIAMO DEL<br>PROSSIMO PRODOTTO.</h2>
-        <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">Parliamone su LinkedIn ↗</a>
-        <a href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
+      <section class="profile-skills-section brand-scene brand-scene--dark" aria-labelledby="profile-skills-title">
+        <div class="profile-skills-heading"><p>Competenze / Strumenti</p><h2 id="profile-skills-title">Dalla struttura<br>all’<em class="brand-emphasis">interfaccia.</em></h2><span aria-hidden="true">✳</span></div>
+        <div class="profile-skills">${skills.map(([title, text]) => `<div><h3>${title}</h3><p>${text}</p></div>`).join("")}</div>
+      </section>
+
+      <section class="profile-contact brand-scene brand-scene--contact">
+        <p>Product Designer — UX/UI & Front-end</p>
+        <h2>PARLIAMO DEL<br>PROSSIMO <em class="brand-emphasis">prodotto.</em></h2>
+        <a class="action-button action-button--primary" href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer">Parliamone su LinkedIn ↗</a>
+        <a class="action-button action-button--secondary" href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
         <!-- TODO: aggiungere l’email quando sarà disponibile. -->
       </section>
       ${footer()}
@@ -359,22 +330,7 @@ function profilePage() {
 }
 
 function workPreview(project) {
-  if (project.theme === "leone") {
-    return `<span>LEONE<br>DIGITAL</span>`;
-  }
-  if (project.theme === "event") {
-    return `<img src="assets/images/leone/event-landing.webp" width="730" height="2048" alt="">`;
-  }
-  if (project.theme === "analytics") {
-    return `<span>DATA<br>TO DECISIONS</span>`;
-  }
-  if (project.theme === "nda") {
-    return `<span>PRIVATE<br>BY DESIGN</span>`;
-  }
-  return `
-    <span>THE LIFE<br>BUTTON</span>
-    <img src="${LIFE_BUTTON_SCREENSHOT}" alt="" data-life-image>
-  `;
+  return `<img src="${project.screenshot}" alt="" loading="lazy" width="1400" height="950">`;
 }
 
 function workPage() {
@@ -382,30 +338,30 @@ function workPage() {
     .map(({ slug }) => window.CASE_STUDIES.find((project) => project.slug === slug))
     .filter(Boolean);
   const projectRows = (items) => items.map((project) => `
-          <a href="${PROJECT_FILES[project.slug]}" class="work-row work-row-${project.theme}">
+          <a href="${PROJECT_FILES[project.slug]}" class="work-row work-row-${project.theme}" style="--project-hover:${project.hoverColor}">
             <span>${project.number}</span>
             <div class="work-row-copy">
               <h2>${project.title}</h2>
               <p>${project.year ? `${project.year} · ` : ""}${project.sector} · ${project.role}</p>
               <p class="work-row-summary">${project.summary}</p>
+              <p class="work-project-status">${project.status}</p>
               <ul aria-label="Competenze del progetto">${project.tags.map((tag) => `<li>${tag}</li>`).join("")}</ul>
             </div>
             <div class="work-row-preview" aria-hidden="true">${workPreview(project)}</div>
-            <b>Apri il case study ↗</b>
+            <b>Esplora il progetto ↗</b>
           </a>
         `).join("");
 
   return `
     <main class="work-index" id="main-content">
       ${header()}
-      <section class="work-index-hero">
-        <p>Archivio / Selected work</p>
-        <h1>PROBLEMI REALI.<br>RESPONSABILITÀ CHIARE.</h1>
+      <section class="work-index-hero brand-scene brand-scene--hero" data-hero-motion>
+        <div class="work-hero-title-row"><h1>Siti, servizi e<br>strumenti <span><em class="brand-emphasis">digitali.</em></span></h1><button class="work-hero-mark hero-motion-mark" type="button" data-motion-toggle aria-label="Metti in pausa l’animazione" aria-pressed="false" title="Metti in pausa l’animazione"><span class="hero-motion-asterisk" aria-hidden="true">✳</span></button></div>
+        <div class="work-hero-bottom"><p class="work-index-description">Cinque progetti tra siti corporate, aree riservate, dashboard e campagne. Per ciascuno, il problema di partenza, le scelte progettuali e il mio contributo.</p><a class="work-hero-scroll" href="#progetti" aria-label="Esplora i progetti selezionati"><span>Esplora <br>i lavori</span><b aria-hidden="true">↓</b></a></div>
       </section>
-      <section class="work-index-list">
-        <div class="work-group-label">Core product / design engineering</div>
+      <section class="work-index-list" id="progetti">
+        <div class="work-group-label">Product Design / UX/UI</div>
         ${projectRows(projects.filter((project) => CORE_PROJECTS.includes(project.slug)))}
-        <div class="work-group-label">Selected additional work / campagne, landing e produzione digitale</div>
         ${projectRows(projects.filter((project) => !CORE_PROJECTS.includes(project.slug)))}
       </section>
       ${footer()}
@@ -430,7 +386,17 @@ function analyticsVisual() {
 }
 
 function projectVisual(project) {
-  if (project.theme === "analytics") return analyticsVisual();
+  if (project.slug === "leone") {
+    return `<figure class="project-screenshot project-homepage"><div class="project-homepage-scroll" role="region" tabindex="0" aria-label="Home page completa di Leone, scorri per esplorarla" aria-describedby="leone-preview-caption"><img src="assets/images/leone/homepage-full-wide.jpg" alt="Home page completa di Leone con Leaf Expander nella hero, soluzioni cliniche, azienda, ricerca, novità e footer" width="1920" height="4389"></div><figcaption id="leone-preview-caption">Leone.it · Home page completa <span>Scorri nell’anteprima ↓</span></figcaption></figure>`;
+  }
+  if (project.screenshot) {
+    return `<figure class="project-screenshot"><button class="showcase-preview project-screenshot-button" type="button" data-modal-src="${project.screenshot}" data-modal-alt="${project.screenshotAlt}" aria-label="Ingrandisci la schermata di ${project.title}"><img src="${project.screenshot}" alt="${project.screenshotAlt}" width="1400" height="950"><span aria-hidden="true">Ingrandisci schermata ↗</span></button><figcaption>${project.screenshotCaption}</figcaption></figure>`;
+  }
+  if (project.theme === "analytics") return `<div><p>Visualizzazione illustrativa · Dati dimostrativi</p>${analyticsVisual()}</div>`;
+
+  if (["essenza", "poggio", "symposium"].includes(project.theme)) {
+    return `<div class="leone-browser"><div class="browser-bar"><b>${project.title}</b><span>SCHEMA DEL PERCORSO · NON SCREENSHOT</span></div><div class="browser-copy"><small>${project.sector}</small><strong>${project.previewLabel}</strong><p>${project.journey}</p></div></div>`;
+  }
 
   if (project.theme === "nda") {
     return `
@@ -481,11 +447,14 @@ function projectVisual(project) {
   `;
 }
 
-function caseMedia(project, sectionIndex) {
-  if (project.theme === "leone" && sectionIndex === 2) {
+function caseMedia(project, sectionIndex, section) {
+  if (section.media === "3design-public") {
+    return `<figure class="case-media" data-case-reveal><figcaption><span>3DESIGN / PAGINA PUBBLICA</span><p>Il sito pubblico 3Design: l’intervento collegato al lavoro sull’area privata descritto sopra.</p></figcaption><button class="showcase-preview project-screenshot-button" type="button" data-modal-src="assets/images/projects/3design.jpg" data-modal-alt="Pagina pubblica del software 3Design" aria-label="Ingrandisci la pagina 3Design"><img src="assets/images/projects/3design.jpg" width="1265" height="720" alt="Pagina pubblica del software 3Design"><span aria-hidden="true">Ingrandisci schermata ↗</span></button></figure>`;
+  }
+  if (section.media === "leone-navigation") {
     return `
       <figure class="case-media case-media-map" data-case-reveal>
-        <figcaption><span>ARCHITETTURA INFORMATIVA / FLOW MAP</span><p>La struttura prima dell’interfaccia.</p></figcaption>
+        <figcaption><span>ARCHITETTURA INFORMATIVA / FLOW MAP</span><p>Dalla home alle aree di prodotto, ai contenuti di supporto e al contatto con il referente.</p></figcaption>
         <button class="showcase-preview case-media-preview" type="button" data-modal-src="assets/images/leone/flow-map.webp" data-modal-alt="Mappa completa dei flussi di navigazione e dell’architettura informativa del sito Leone" aria-label="Apri la flow map nella modale">
           <img src="assets/images/leone/flow-map.webp" width="10703" height="4500" alt="Mappa completa dei flussi di navigazione e dell’architettura informativa del sito Leone">
           <span aria-hidden="true">Apri schermata completa ↗</span>
@@ -526,13 +495,13 @@ function caseMedia(project, sectionIndex) {
 
 function caseSections(project) {
   return project.sections.map((section, index) => `
-    <div class="case-section-block">
+    <div class="case-section-block" id="project-section-${index + 1}">
       <section class="case-section" data-case-reveal>
         <div class="case-section-label">
           <span>${String(index + 1).padStart(2, "0")}</span><p>${section.label}</p>
         </div>
         <div class="case-section-content">
-          <h2>${section.title}</h2>
+          <h2>${section.emphasis ? section.title.replace(section.emphasis, `<em class="brand-emphasis">${section.emphasis}</em>`) : section.title}</h2>
           <div class="case-body">${section.body.map((paragraph) => `<p>${paragraph}</p>`).join("")}</div>
           ${section.points ? `
             <div class="case-points">
@@ -543,14 +512,14 @@ function caseSections(project) {
           ` : ""}
         </div>
       </section>
-      ${caseMedia(project, index)}
+      ${caseMedia(project, index, section)}
     </div>
   `).join("");
 }
 
 function casePage(slug) {
   const project = window.CASE_STUDIES.find((item) => item.slug === slug);
-  if (!project) return `<main><p>Progetto non trovato.</p></main>`;
+  if (!project) return `<main id="main-content"><h1>Progetto non disponibile</h1><p>La selezione dei lavori è stata aggiornata.</p><a href="lavori.html">Esplora i progetti selezionati</a></main>`;
 
   const projectIndex = PROJECT_ORDER.findIndex((item) => item.slug === project.slug);
   const previous = PROJECT_ORDER[(projectIndex - 1 + PROJECT_ORDER.length) % PROJECT_ORDER.length];
@@ -562,45 +531,31 @@ function casePage(slug) {
       <div class="case-progress"></div>
       ${header()}
 
-      <section class="case-hero">
-        <p class="case-eyebrow">${project.eyebrow}</p>
-        <h1>${project.title}</h1>
-        <div class="case-hero-bottom">
-          <p class="case-category">${project.category}</p>
-          <p class="case-summary">${project.summary}</p>
-          ${project.externalUrl ? `<a class="case-live-link" href="${project.externalUrl}" target="_blank" rel="noreferrer">Visita il sito ↗</a>` : ""}
-          <span class="case-scroll">Scroll ↓</span>
+      <div class="project-editorial">
+        <aside class="project-facts" aria-label="Informazioni sul progetto">
+          <div><span class="project-label">${project.client === "Progetto personale" ? "Contesto" : "Cliente"}</span><p>${project.client}</p></div>
+          <div><span class="project-label">Stato</span><p>${project.status}</p></div>
+          <div><span class="project-label">Ambiti di lavoro</span><p>${project.category}</p><ul class="project-tags">${project.tags.map(tag => `<li>${tag}</li>`).join("")}</ul></div>
+          <div><span class="project-label">Obiettivo</span><p>${project.summary}</p></div>
+          <div class="project-role"><span class="project-label">Il mio ruolo</span><p>${project.responsibilities}</p></div>
+          <div><span class="project-label">Team</span><p>${project.team}</p></div>
+          ${project.year ? `<div><span class="project-label">Anno</span><p>${project.year}</p></div>` : ""}
+          ${project.externalUrl ? `<a class="case-live-link action-button action-button--secondary" href="${project.externalUrl}" target="_blank" rel="noreferrer">Visita il sito online ↗</a>` : ""}
+          <a class="project-back action-button action-button--primary" href="lavori.html">← Tutti i progetti</a>
+        </aside>
+        <div class="project-story">
+          <section class="case-visual visual-${project.theme}" aria-label="Visuale di progetto per ${project.title}">${projectVisual(project)}</section>
+          <header class="project-introduction brand-scene brand-scene--editorial" id="project-introduction"><p class="case-eyebrow">${project.eyebrow}</p><h1>${project.title}</h1><p>${project.summary}</p></header>
+          <div class="case-sections">${caseSections(project)}</div>
+          ${RELATED_PROJECTS[project.slug] ? `<section class="project-related brand-scene brand-scene--dark"><p class="project-label">Progetto collegato</p><h2><a href="${PROJECT_FILES[RELATED_PROJECTS[project.slug].slug]}">${RELATED_PROJECTS[project.slug].label} ↗</a></h2><p>${RELATED_PROJECTS[project.slug].text}</p></section>` : ""}
         </div>
-      </section>
+        <nav class="project-index-nav" aria-label="Indice del progetto">
+          <a href="${PROJECT_FILES[project.slug]}#project-introduction" aria-label="Vai all’introduzione">${project.screenshot ? `<img src="${project.screenshot}" alt="">` : ""}<span>Panoramica</span></a>
+          ${project.sections.map((section, index) => `<a href="${PROJECT_FILES[project.slug]}#project-section-${index + 1}"><span class="project-index-number">${String(index + 1).padStart(2, "0")}</span><span>${section.label}</span></a>`).join("")}
+        </nav>
+      </div>
 
-      <section class="case-visual visual-${project.theme}" aria-label="Visuale di progetto per ${project.title}">
-        ${projectVisual(project)}
-      </section>
-
-      <section class="case-meta">
-        <div><span>Cliente</span><p>${project.client}</p></div>
-        <div><span>Settore / Anno</span><p>${project.sector}${project.year ? `<br>${project.year}` : "<!-- TODO: contenuto da completare — anno del progetto. -->"}</p></div>
-        <div><span>Ruolo</span><p>${project.role}</p></div>
-        <div><span>Responsabilità dirette</span><p>${project.responsibilities}</p></div>
-        <div><span>Team</span><p>${project.team}</p></div>
-        <div><span>Collaborazioni</span><p>${project.collaborations}</p></div>
-      </section>
-
-      ${project.proof ? `
-        <section class="case-proof" aria-labelledby="case-proof-title">
-          <div class="case-proof-intro">
-            <span>Design engineering / Evidence</span>
-            <h2 id="case-proof-title">Le decisioni non finiscono nello schermo.</h2>
-          </div>
-          <div class="case-proof-grid">
-            ${project.proof.map(([label, text]) => `<article><span>${label}</span><p>${text}</p></article>`).join("")}
-          </div>
-        </section>
-      ` : ""}
-
-      <div class="case-sections">${caseSections(project)}</div>
-
-      <section class="case-next">
+      <section class="case-next brand-scene brand-scene--dark">
         <div><span>Progetto precedente</span><a href="${PROJECT_FILES[previous.slug]}">← ${previous.title}</a></div>
         <div><span>Progetto successivo</span><a href="${PROJECT_FILES[next.slug]}">${next.title} →</a></div>
       </section>
@@ -670,6 +625,33 @@ function initHeader() {
   });
 }
 
+function initHeroMotion() {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!reduced.matches) {
+    document.querySelectorAll(".work-hero-title-row h1, .profile-hero-title-row h1, .work-hero-bottom, .profile-hero-bottom").forEach((element, index) => {
+      element.classList.add("hero-enter");
+      element.style.setProperty("--hero-enter-delay", `${index * 220}ms`);
+      element.addEventListener("animationend", () => element.classList.remove("hero-enter"), { once: true });
+    });
+    reduced.addEventListener("change", (event) => {
+      if (event.matches) document.querySelectorAll(".hero-enter").forEach((element) => element.classList.remove("hero-enter"));
+    });
+  }
+  document.querySelectorAll("[data-hero-motion]").forEach((hero) => {
+    const toggle = hero.querySelector("[data-motion-toggle]");
+    if (!toggle) return;
+    const syncPreference = () => { toggle.disabled = reduced.matches; };
+    syncPreference();
+    reduced.addEventListener("change", syncPreference);
+    toggle.addEventListener("click", () => {
+      const paused = hero.classList.toggle("is-motion-paused");
+      toggle.setAttribute("aria-pressed", String(paused));
+      toggle.setAttribute("aria-label", paused ? "Riprendi l’animazione" : "Metti in pausa l’animazione");
+      toggle.title = paused ? "Riprendi l’animazione" : "Metti in pausa l’animazione";
+    });
+  });
+}
+
 function initCursor() {
   const cursor = document.querySelector(".cursor");
   if (!cursor || !window.matchMedia("(pointer: fine)").matches) return;
@@ -679,26 +661,61 @@ function initCursor() {
 }
 
 function initReveals() {
-  const reveals = document.querySelectorAll("[data-reveal], [data-case-reveal]");
-  if (!reveals.length) return;
-  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    reveals.forEach((element) => element.classList.add("is-visible"));
+  const legacy = [...document.querySelectorAll("[data-reveal], [data-case-reveal]")];
+  const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const reveal = (element, immediate = false) => {
+    if (immediate) element.classList.add("is-scroll-instant");
+    element.classList.remove("is-scroll-pending");
+    element.classList.add("is-visible");
+  };
+  if (!("IntersectionObserver" in window) || preference.matches) {
+    legacy.forEach((element) => reveal(element));
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 },
-  );
+  const targets = new Set(legacy);
+  const register = (selector, effect) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      if (element.hasAttribute("data-reveal")) return;
+      element.dataset.scrollReveal = effect;
+      if (element.getBoundingClientRect().top >= window.innerHeight * .92) {
+        element.classList.add("is-scroll-pending");
+      }
+      targets.add(element);
+    });
+  };
+  register(".intro-slice > h2, .portfolio-note-copy > h2, .work-row-copy, .profile-principles article, .profile-cv-intro h2, .profile-skills-heading h2, .profile-skills > div, .experience-list article > div, .project-introduction h1, .case-section-content h2, .project-related", "rise");
+  register(".project-glimpse, .work-row-preview, .profile-cv-summary, .profile-facts, .profile-contact h2, .case-body, .case-media, .case-next > div", "fade");
+  register(".case-section-label", "line");
+  document.querySelectorAll(".profile-principles, .profile-skills").forEach((group) => {
+    [...group.children].forEach((element, index) => {
+      element.style.setProperty("--scroll-delay", `${Math.min(index * 100, 300)}ms`);
+    });
+  });
 
-  reveals.forEach((element) => observer.observe(element));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      reveal(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
+  targets.forEach((element) => observer.observe(element));
+
+  // Keyboard navigation never lands on an invisible action or preview.
+  document.addEventListener("focusin", (event) => {
+    const parent = event.target.closest("[data-scroll-reveal]");
+    if (parent) { reveal(parent, true); observer.unobserve(parent); }
+    event.target.querySelectorAll("[data-scroll-reveal]").forEach((element) => {
+      reveal(element, true);
+      observer.unobserve(element);
+    });
+  });
+  preference.addEventListener("change", (event) => {
+    if (!event.matches) return;
+    targets.forEach((element) => reveal(element));
+    observer.disconnect();
+  });
 }
 
 function initCaseProgress() {
@@ -808,6 +825,7 @@ function render() {
   });
 
   initHeader();
+  initHeroMotion();
   initCursor();
   initReveals();
   initCaseProgress();

@@ -1,0 +1,113 @@
+/* Shared action styling. Keep navigation and project cards distinct from CTAs. */
+:root {
+  --button-ink: #171717;
+  --button-duration: 180ms;
+}
+a.action-button,
+:is(.hero-intro, .project-facts, .profile-cv-intro, .experience-list, .profile-contact, .portfolio-note-copy, .about-copy, .intro-slice) a.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 46px;
+  margin: 12px 0 0;
+  padding: 14px 20px;
+  border: 1px solid var(--button-border, var(--ink));
+  border-radius: 4px;
+  background: var(--button-bg, var(--paper));
+  color: var(--button-color, var(--ink));
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: .015em;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--button-duration) var(--ease), color var(--button-duration) var(--ease), border-color var(--button-duration) var(--ease);
+}
+a.action-button--primary {
+  --button-bg: var(--orange);
+  --button-color: var(--button-ink);
+  --button-border: var(--orange);
+}
+a.action-button--secondary {
+  --button-bg: var(--paper);
+  --button-color: var(--ink);
+  --button-border: var(--ink);
+}
+a.action-button::after { display: none; }
+a.action-button > span { transition: transform var(--button-duration) var(--ease); }
+@media (hover: hover) {
+  a.action-button--primary:hover {
+    --button-bg: var(--ink);
+    --button-border: var(--ink);
+    --button-color: var(--paper);
+  }
+  a.action-button--secondary:hover {
+    --button-bg: var(--ink);
+    --button-border: var(--ink);
+    --button-color: var(--paper);
+  }
+  a.action-button:hover > span { transform: translateX(2px); }
+}
+a.action-button:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px var(--paper);
+}
+a.action-button:active {
+  --button-bg: var(--button-ink);
+  --button-border: var(--button-ink);
+  --button-color: var(--paper);
+}
+.project-facts .project-back.action-button { justify-self: start; }
+.project-facts .case-live-link.action-button { margin-top: 0; }
+.profile-contact a.action-button { margin-top: 16px; }
+/* The image remains the viewer trigger; its visible label gets the same feedback. */
+.showcase-preview > span {
+  background: var(--orange);
+  color: var(--button-ink);
+  border: 1px solid var(--orange);
+  border-radius: 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  line-height: 1.4;
+  transition: background-color var(--button-duration) var(--ease), border-color var(--button-duration) var(--ease);
+}
+.showcase-preview:hover > span,
+.showcase-preview:focus-visible > span { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.case-media-map .case-media-preview > span { display: flex; width: fit-content; }
+.image-modal-toolbar button { min-height: 44px; transition: background-color var(--button-duration) var(--ease), color var(--button-duration) var(--ease); }
+.image-modal-toolbar button:hover,
+.image-modal-toolbar button:focus-visible { background: var(--acid); border-color: var(--acid); color: var(--button-ink); }
+.image-modal-toolbar button:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
+.project-related a { text-decoration-color: var(--orange); text-decoration-thickness: 2px; transition: color var(--button-duration) var(--ease); }
+.project-related a:hover { color: var(--button-ink); text-decoration-color: var(--ink); }
+.nav a:focus-visible,
+.case-footer a:focus-visible,
+.contact-bottom a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.case-footer a:hover,
+.contact-bottom a:hover { color: var(--acid); }
+@media (prefers-reduced-motion: reduce) {
+  a.action-button,
+  a.action-button > span,
+  .showcase-preview > span,
+  .image-modal-toolbar button,
+  .project-related a { transition: none !important; }
+  a.action-button:hover > span { transform: none; }
+}
+
+/* Project entry points use the portfolio palette as well. */
+.project-row::before { background: var(--project-hover, var(--ink)); }
+.project-row:hover, .project-row:focus-visible { color: #fff; }
+
+.project-index-nav a:hover, .project-index-nav a:focus-visible { background: var(--acid); color: var(--ink); }
+.case-next a:hover, .case-next a:focus-visible { color: var(--acid); }
+
+.portfolio-note-copy a.action-button--primary:hover { background: var(--ink); border-color: var(--paper); color: var(--paper); }
