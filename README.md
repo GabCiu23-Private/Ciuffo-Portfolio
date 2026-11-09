@@ -48,3 +48,7 @@ Poi aprire `http://localhost:8000`.
 ## Pubblicazione su GitHub Pages
 
 Caricare tutti i file nella root del repository e attivare GitHub Pages dalla branch principale.
+
+## Ripristino analytics — novembre 2026
+
+Il tracker `assets/js/analytics.js` invia eventi al collector centrale soltanto dopo “Accetta statistiche”. “Rifiuta” e “Preferenze statistiche” permettono di negare o ritirare il consenso. DNT e Global Privacy Control impediscono l’avvio. Gli identificatori sono casuali e non derivano dal dispositivo. Il vecchio tracker non viene riattivato.
