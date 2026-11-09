@@ -43,7 +43,7 @@
     document.body.appendChild(panel);
   }
   window.CiuffoAnalytics={preferences:show,track:track};
-  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var href=a.getAttribute('href');if(/^(mailto:|tel:)/.test(href))track('contact_click');else if(a.matches('.action-button,.button,.btn,[data-analytics-cta]'))track('cta_click');});
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var href=a.getAttribute('href');var contact=/^(mailto:|tel:|https:\/\/(?:www\.)?linkedin\.com\/in\/)/.test(href);if(contact)track('contact_click');if(contact||a.matches('.action-button,.button,.btn,[data-analytics-cta]'))track('cta_click');});
   window.addEventListener('scroll',function(){if(!enabled)return;var h=document.documentElement.scrollHeight-innerHeight;var depth=h>0?100*scrollY/h:100;[25,50,75,100].forEach(function(n){if(depth>=n&&!scrolls[n]){scrolls[n]=true;track('scroll_'+n);}});},{passive:true});
   function time(){if(enabled){track('page_time',Math.min(86400000,Date.now()-started));started=Date.now();}}
   document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')time();});

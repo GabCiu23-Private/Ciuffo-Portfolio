@@ -5,15 +5,15 @@ import fs from 'node:fs';
 import {randomUUID} from 'node:crypto';
 const source=fs.readFileSync(new URL('../assets/js/analytics.js',import.meta.url),'utf8');
 function setup(preference){
- const requests=[],nodes=new Map();
+ const requests=[],nodes=new Map(),events={};
  function element(){return {children:[],style:{},setAttribute(){},appendChild(x){this.children.push(x);if(x.id)nodes.set(x.id,x);},remove(){nodes.delete(this.id);}};}
  const body=element(),footer=element();
  function storage(initial={}){const data=new Map(Object.entries(initial));return {getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k)};}
- const document={body,readyState:'complete',visibilityState:'visible',referrer:'https://search.example/path?email=secret@example.com',getElementById:id=>nodes.get(id),querySelector:()=>footer,createElement:element,addEventListener(){}};
+ const document={body,readyState:'complete',visibilityState:'visible',referrer:'https://search.example/path?email=secret@example.com',getElementById:id=>nodes.get(id),querySelector:()=>footer,createElement:element,addEventListener:(name,fn)=>events[name]=fn};
  const window={addEventListener(){}};
  const localStorage=storage(preference?{'ciuffo-analytics-consent-v1':preference}:{});
  vm.runInNewContext(source,{window,document,navigator:{},localStorage,sessionStorage:storage(),crypto:{randomUUID},location:{pathname:'/'},innerWidth:1200,Date,URL,fetch:(url,options)=>{requests.push(JSON.parse(options.body));return Promise.resolve({status:200});}});
- return {requests,nodes,window,localStorage};
+ return {requests,nodes,window,localStorage,events};
 }
 test('sends nothing before consent and stops on withdrawal',()=>{
  const s=setup();assert.equal(s.requests.length,0);
@@ -25,3 +25,5 @@ test('sends nothing before consent and stops on withdrawal',()=>{
  assert.equal(s.localStorage.getItem('ciuffo-analytics-visitor-v1'),null);
 });
 test('remembered refusal never starts collection',()=>{const s=setup('rejected');assert.equal(s.requests.length,0);assert.equal(s.nodes.size,0);});
+
+test('counts contact CTA without transmitting the destination or its contents',()=>{const s=setup('accepted');s.events.click({target:{closest:()=>({getAttribute:()=> 'mailto:private@example.com?body=secret',matches:()=>false})}});assert.equal(s.requests.length,3);assert.equal(s.requests[1].events[0].name,'contact_click');assert.equal(s.requests[2].events[0].name,'cta_click');assert.equal(JSON.stringify(s.requests).includes('private@example.com'),false);});
