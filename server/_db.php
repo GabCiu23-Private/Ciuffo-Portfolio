@@ -14,6 +14,7 @@ function analyticsEnv(string $key, ?string $fallback = null): ?string
 
 function analyticsLoadDotEnv(): void
 {
+    if(getenv('ANALYTICS_TEST_MODE')==='true'){if(!in_array(parse_url(getenv('DATABASE_URL')?:'',PHP_URL_HOST),['localhost','127.0.0.1'],true))throw new RuntimeException('Test database must be localhost');return;}
     $files = [
         dirname(__DIR__, 2) . '/.env',
         dirname(__DIR__) . '/.env',

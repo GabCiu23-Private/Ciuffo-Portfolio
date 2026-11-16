@@ -58,6 +58,14 @@ function analyticsUpsertPage(PDO $db, int $siteId, array $event): ?int
     return (int) $statement->fetchColumn();
 }
 
+function analyticsConversionPredicate(): string {
+    return "CASE WHEN site_id IN (SELECT id FROM sites WHERE site_key='poggio_alla_pieve') THEN LOWER(event_name)='conversion' AND metadata->>'receipt_verified'='true' ELSE LOWER(event_name) IN ('form_submit','form_submitted','conversion','thank_you_view') END";
+}
+function analyticsFormBreakdown(PDO $db,int $siteId,DateTimeImmutable $since,DateTimeImmutable $until): array {
+    $stmt=$db->prepare("SELECT metadata->>'form_context' form_context,metadata->>'page_language' page_language,COUNT(*) FILTER(WHERE event_name='form_start')::int starts,COUNT(*) FILTER(WHERE event_name='form_error')::int errors,COUNT(DISTINCT metadata->>'request_id') FILTER(WHERE event_name='conversion' AND metadata->>'receipt_verified'='true')::int conversions,COUNT(DISTINCT session_id) FILTER(WHERE NULLIF(session_id,'') IS NOT NULL AND event_name IN ('scroll_50','scroll_75','scroll_100','cta_click','form_start','conversion'))::int engaged_sessions FROM analytics_events WHERE site_id=:site_id AND occurred_at>=:since AND occurred_at<:until AND metadata->>'form_context' IN ('home','contatti','eventi','matrimoni','soggiorna') GROUP BY 1,2 ORDER BY 1,2");
+    $stmt->execute([':site_id'=>$siteId,':since'=>$since->format(DateTimeInterface::ATOM),':until'=>$until->format(DateTimeInterface::ATOM)]);return $stmt->fetchAll();
+}
+
 function analyticsMetricSet(PDO $db, int $siteId, DateTimeImmutable $since, DateTimeImmutable $until): array
 {
     $sql = <<<'SQL'
@@ -72,6 +80,7 @@ SELECT
 FROM analytics_events
 WHERE site_id = :site_id AND occurred_at >= :since AND occurred_at < :until
 SQL;
+    $sql=str_replace("LOWER(event_name) IN ('form_submit', 'form_submitted', 'conversion', 'thank_you_view')",analyticsConversionPredicate(),$sql);
     $statement = $db->prepare($sql);
     $statement->execute([':site_id' => $siteId, ':since' => $since->format(DateTimeInterface::ATOM), ':until' => $until->format(DateTimeInterface::ATOM)]);
     $metric = $statement->fetch() ?: [];
@@ -119,7 +128,7 @@ function analyticsPages(PDO $db, int $siteId, DateTimeImmutable $since, DateTime
           COUNT(DISTINCT visitor_id) FILTER (WHERE NULLIF(visitor_id,'') IS NOT NULL) visitors,
           COUNT(DISTINCT session_id) FILTER (WHERE NULLIF(session_id,'') IS NOT NULL) sessions,
           COUNT(*) FILTER (WHERE LOWER(event_name) IN ('cta_click','cta_clicked')) cta_clicks,
-          COUNT(*) FILTER (WHERE LOWER(event_name) IN ('form_submit','form_submitted','conversion','thank_you_view')) conversions,
+          COUNT(*) FILTER (WHERE ".analyticsConversionPredicate().") conversions,
           COUNT(DISTINCT session_id) FILTER (WHERE NULLIF(session_id,'') IS NOT NULL AND LOWER(event_name) IN ('scroll_50','scroll_75','scroll_100','cta_click','cta_clicked','form_start','conversion','form_submit','form_submitted')) engaged_sessions,
           AVG(CASE WHEN LOWER(event_name)='page_time' AND event_value ~ '^[0-9]+(\\.[0-9]+)?$' THEN event_value::numeric / 1000 END) avg_time
           FROM analytics_events WHERE site_id=:site_id AND occurred_at >= :since AND occurred_at < :until GROUP BY 1 ORDER BY pageviews DESC");
@@ -144,6 +153,13 @@ function analyticsSources(PDO $db, int $siteId, DateTimeImmutable $since, DateTi
 
 function analyticsDevices(PDO $db, int $siteId, DateTimeImmutable $since, DateTimeImmutable $until): array
 {
+    $lookup=$db->prepare('SELECT site_key FROM sites WHERE id=?');$lookup->execute([$siteId]);
+    if($lookup->fetchColumn()==='poggio_alla_pieve'){
+        $stmt=$db->prepare("SELECT COALESCE(device_type,'other') label,COUNT(DISTINCT visitor_id) FILTER(WHERE NULLIF(visitor_id,'') IS NOT NULL)::int visitors,COUNT(DISTINCT session_id) FILTER(WHERE NULLIF(session_id,'') IS NOT NULL)::int sessions,COUNT(DISTINCT metadata->>'request_id') FILTER(WHERE event_name='conversion' AND metadata->>'receipt_verified'='true')::int conversions,COUNT(DISTINCT session_id) FILTER(WHERE NULLIF(session_id,'') IS NOT NULL AND event_name IN ('scroll_50','scroll_75','scroll_100','cta_click','form_start','conversion'))::int engaged_sessions FROM analytics_events WHERE site_id=:site_id AND occurred_at>=:since AND occurred_at<:until GROUP BY 1");
+        $stmt->execute([':site_id'=>$siteId,':since'=>$since->format(DateTimeInterface::ATOM),':until'=>$until->format(DateTimeInterface::ATOM)]);
+        return array_map(static fn(array $r):array=>[...$r,'label'=>ucfirst($r['label']),'engagement'=>$r['sessions']?round($r['engaged_sessions']*100/$r['sessions'],1):0],$stmt->fetchAll());
+    }
+
     $statement = $db->prepare("WITH sessions AS (SELECT session_id, MAX(NULLIF(visitor_id,'')) visitor_id, MAX(NULLIF(device_type,'')) device_type,
       BOOL_OR(LOWER(event_name) IN ('scroll_50','scroll_75','scroll_100','cta_click','cta_clicked','form_start','conversion','form_submit','form_submitted')) engaged,
       BOOL_OR(LOWER(event_name) IN ('form_submit','form_submitted','conversion','thank_you_view')) converted FROM analytics_events WHERE site_id=:site_id AND occurred_at>=:since AND occurred_at<:until AND NULLIF(session_id,'') IS NOT NULL GROUP BY session_id)
@@ -208,5 +224,5 @@ function analyticsBuildReport(PDO $db, string $siteKey, int $days = 7, ?string $
     $previous = analyticsMetricSet($db, (int)$site['id'], $period['previous_since'], $period['previous_until']);
     $pages = analyticsPages($db, (int)$site['id'], $period['since'], $period['until'], $period['previous_since'], $period['previous_until']);
     $devices = analyticsDevices($db, (int)$site['id'], $period['since'], $period['until']);
-    return ['ok'=>true, 'source'=>'postgresql', 'site'=>['site_key'=>$site['site_key'],'name'=>$site['name'],'domain'=>$site['domain']], 'period'=>['since'=>$period['since']->format(DateTimeInterface::ATOM),'until'=>$period['until']->format(DateTimeInterface::ATOM),'previous_since'=>$period['previous_since']->format(DateTimeInterface::ATOM),'previous_until'=>$period['previous_until']->format(DateTimeInterface::ATOM),'timezone'=>$period['timezone']->getName()], 'metrics'=>['visitors'=>analyticsMetric('visitors',$current,$previous),'sessions'=>analyticsMetric('sessions',$current,$previous),'pageviews'=>analyticsMetric('pageviews',$current,$previous),'avg_time'=>analyticsMetric('avg_time',$current,$previous),'engagement'=>analyticsMetric('engagement',$current,$previous),'cta_clicks'=>analyticsMetric('cta_clicks',$current,$previous),'conversions'=>analyticsMetric('conversions',$current,$previous),'returning_visitors'=>analyticsMetric('returning_visitors',$current,$previous)], 'trend'=>analyticsTrend($db,(int)$site['id'],$period['since'],$period['until']), 'pages'=>$pages, 'sources'=>analyticsSources($db,(int)$site['id'],$period['since'],$period['until']), 'devices'=>$devices, 'attention'=>analyticsAttention($current,$previous,$pages,$devices), 'definitions'=>['returning_visitors'=>'visitatori con almeno un evento precedente all’inizio del periodo','engagement'=>'sessioni con almeno uno tra scroll_50, scroll_75, scroll_100, cta_click, form_start o conversion','sources'=>'attribuzione a livello sessione; UTM, poi referrer, poi direct','devices'=>'aggregati a livello sessione'], 'generated_at'=>gmdate('c')];
+    return ['ok'=>true, 'source'=>'postgresql', 'site'=>['site_key'=>$site['site_key'],'name'=>$site['name'],'domain'=>$site['domain']], 'period'=>['since'=>$period['since']->format(DateTimeInterface::ATOM),'until'=>$period['until']->format(DateTimeInterface::ATOM),'previous_since'=>$period['previous_since']->format(DateTimeInterface::ATOM),'previous_until'=>$period['previous_until']->format(DateTimeInterface::ATOM),'timezone'=>$period['timezone']->getName()], 'metrics'=>['visitors'=>analyticsMetric('visitors',$current,$previous),'sessions'=>analyticsMetric('sessions',$current,$previous),'pageviews'=>analyticsMetric('pageviews',$current,$previous),'avg_time'=>analyticsMetric('avg_time',$current,$previous),'engagement'=>analyticsMetric('engagement',$current,$previous),'cta_clicks'=>analyticsMetric('cta_clicks',$current,$previous),'conversions'=>analyticsMetric('conversions',$current,$previous),'returning_visitors'=>analyticsMetric('returning_visitors',$current,$previous)], 'trend'=>analyticsTrend($db,(int)$site['id'],$period['since'],$period['until']), 'pages'=>$pages, 'sources'=>analyticsSources($db,(int)$site['id'],$period['since'],$period['until']), 'devices'=>$devices, 'attention'=>analyticsAttention($current,$previous,$pages,$devices), 'forms'=>$siteKey==='poggio_alla_pieve'?analyticsFormBreakdown($db,(int)$site['id'],$period['since'],$period['until']):[], 'definitions'=>['returning_visitors'=>'visitatori con almeno un evento precedente all’inizio del periodo','engagement'=>'sessioni con almeno uno tra scroll_50, scroll_75, scroll_100, cta_click, form_start o conversion','sources'=>'attribuzione a livello sessione; UTM, poi referrer, poi direct','devices'=>'aggregati a livello sessione'], 'generated_at'=>gmdate('c')];
 }

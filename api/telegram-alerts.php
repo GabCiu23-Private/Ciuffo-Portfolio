@@ -1,5 +1,12 @@
 <?php
 declare(strict_types=1);
+// Retired endpoint: reporting and server jobs moved to the unified dashboard.
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+http_response_code(410);
+echo json_encode(['ok' => false, 'message' => 'Endpoint ritirato.']);
+exit;
+
 
 require dirname(__DIR__) . '/server/_bootstrap.php';
 require dirname(__DIR__) . '/server/_metrics.php';

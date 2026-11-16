@@ -26,8 +26,13 @@ function analyticsJsonResponse(array $payload, int $statusCode = 200): never
 
 function analyticsReadJsonInput(): array
 {
-    $decoded = json_decode((string) file_get_contents('php://input'), true);
-    return is_array($decoded) ? $decoded : [];
+    if((int)($_SERVER['CONTENT_LENGTH']??0)>65536)analyticsJsonResponse(['ok'=>false,'message'=>'Payload too large.'],413);
+    $raw=file_get_contents('php://input',false,null,0,65537);
+    if($raw===false||strlen($raw)>65536)analyticsJsonResponse(['ok'=>false,'message'=>'Payload too large.'],413);
+    if(!preg_match('~^application/json(?:\s*;|$)~i',$_SERVER['CONTENT_TYPE']??''))analyticsJsonResponse(['ok'=>false,'message'=>'JSON required.'],415);
+    try{$decoded=json_decode($raw,true,16,JSON_THROW_ON_ERROR);}catch(Throwable){analyticsJsonResponse(['ok'=>false,'message'=>'Malformed JSON.'],400);}
+    if(!is_array($decoded)||array_is_list($decoded))analyticsJsonResponse(['ok'=>false,'message'=>'Object required.'],422);
+    return $decoded;
 }
 
 function analyticsSanitizeString(mixed $value, int $maxLength = 255): ?string
@@ -42,12 +47,12 @@ function analyticsSanitizeValue(mixed $value, int $depth = 0): mixed
 {
     if ($depth > 3) return null;
     if ($value === null || is_bool($value) || is_int($value) || is_float($value)) return $value;
-    if (is_string($value)) return analyticsSanitizeString($value, 500);
+    if (is_string($value)) return preg_replace(['/([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/i','/\+?\d[\d ()-]{7,}\d/'],'[redacted]',analyticsSanitizeString($value,500)??'');
     if (!is_array($value)) return null;
     $result = [];
     foreach ($value as $key => $item) {
         $key = analyticsSanitizeString((string) $key, 80);
-        if ($key !== null) $result[$key] = analyticsSanitizeValue($item, $depth + 1);
+        if ($key !== null && !preg_match('/^(email|phone|telephone|name|first_name|last_name|message|password|token|value|field_value)$/i',$key)) $result[$key] = analyticsSanitizeValue($item, $depth + 1);
     }
     return $result;
 }
@@ -107,7 +112,7 @@ function analyticsSanitizeEvents(mixed $events): array
 
 function analyticsErrorResponse(Throwable $exception, string $message): never
 {
-    error_log('[Ciuffo Analytics] ' . $exception->getMessage());
+    error_log('[Ciuffo Analytics] request failed');
     $payload = ['ok' => false, 'message' => $message];
     if (analyticsEnv('APP_ENV', 'production') === 'development') $payload['detail'] = $exception->getMessage();
     analyticsJsonResponse($payload, 500);

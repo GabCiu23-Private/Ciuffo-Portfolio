@@ -1,10 +1,19 @@
 <?php
 declare(strict_types=1);
+// Retired endpoint: reporting and server jobs moved to the unified dashboard.
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+http_response_code(410);
+echo json_encode(['ok' => false, 'message' => 'Endpoint ritirato.']);
+exit;
+
 require dirname(__DIR__) . '/server/_bootstrap.php';
+require dirname(__DIR__) . '/server/_ingest.php';
 require dirname(__DIR__) . '/server/_metrics.php';
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') { http_response_code(204); exit; }
 try {
     $key = analyticsSanitizeString($_GET['site_key'] ?? null, 160) ?? analyticsDefaultSiteKey();
+    analyticsRequireReportAccess($key);
     $siteConfig = analyticsSiteConfig($key);
     if (!is_array($siteConfig)) analyticsJsonResponse(['ok'=>false,'message'=>'Sito non configurato.'], 404);
     $db = analyticsDbForSite($key); $siteId = analyticsUpsertSite($db, $key, analyticsSanitizeString($siteConfig['name'] ?? null, 255), analyticsSanitizeString($siteConfig['domain'] ?? null, 2048));

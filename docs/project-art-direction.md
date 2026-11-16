@@ -1,5 +1,9 @@
 # Project presentation
 
+## Dark background refinement — 2026-11-16
+
+User clarified that the supplied reference concerns the overall site background, not the project grid. Supersedes the home-only anthracite proposal: use a near-black #101010 canvas across home, work, profile and case studies, with paper text. Preserve project media, colored chapters and existing layout. Implemented in shared site-theme.css; exact reference color is a visual approximation. Browser verification remains pending because the browser access host is unavailable.
+
 Source: https://backdoor-studio.com/progetti/galab
 
 Selected by the user on 2026-11-05. Approved implementation (classification C): an editorial project gallery, persistent client/services/description column, central media and narrative, and a compact section index on desktop. Mobile has project information followed by the gallery in reading order. Preserve the portfolio’s Geist typography, paper/ink palette, shared navigation and existing image viewer. No copied third-party identity, branding or assets.
@@ -71,3 +75,76 @@ User found the previous hero reduction insufficiently visible. Make a clearer fu
 Home hero composition refinement: headline is exactly two text rows, “PROGETTO” and “SISTEMI DIGITALI”. Keep the animated asterisk with the first row, move the work CTA outside the heading, and group the paragraph/profile/CV actions directly below the title with a 24–28px inset. Center this title-and-introduction cluster within the available hero height; the services ticker and marquee remain at the bottom. Preserve the reduced shared headline size. Verified two rows and no horizontal overflow at 1920/1440/390/320 and inspected desktop/mobile screenshots.
 
 Work/profile hero spacing correction: treat headline and supporting paragraph/actions as one vertically centered cluster, like home. Title row no longer expands to push the paragraph to the bottom. Use a 28px content gap, automatic outside margins to preserve full-screen hero height, and top-aligned actions. Move the small mobile orbital mark above the title cluster so it does not overlap the text. Verified a 28px paragraph gap and no horizontal overflow at 1440, 390 and 320px on both pages. Preserve the user's current headline-size token.
+
+## Image-led project grid — 2026-11-16
+
+User requested restructuring the work layout after supplying a gallery reference. Home selected work and work index share five image-led links: Leone spans two rows beside four smaller cards on desktop, two columns at intermediate widths and one column on mobile. Persistent titles, categories and explicit project actions sit on dark gradients; whole cards are links with visible keyboard focus. Existing project screenshots and case-study destinations are retained. Reduced motion removes image hover scaling. Verified JS syntax, five rendered cards and local image/link existence; visual desktop/mobile and interaction verification remain pending due to unavailable browser access.
+
+User requested removing the service-title strip immediately after the home hero. Removed both the service ticker and scrolling slogan marquee from the hero markup; the project section follows directly.
+
+Home hero refinement: user requested removing its CTAs and placing the title at the lower left. Removed profile/CV and circular work links. Kept introductory copy above the title; title uses automatic top space and bottom inset within the viewport-height hero. Source checked; browser verification pending.
+
+## Motion refinement — 2026-11-16
+
+Inspected existing CSS keyframes, hero controls, IntersectionObserver reveals, gallery hover and case progress code before editing. Reused native CSS/observer implementation with no dependencies. Hero entrances now take 850ms with 100ms stagger (previously 1800ms/220ms); scroll entrances use opacity/translate over 650ms desktop, 500ms mobile with 18/12px travel. Legacy reveal nodes join the same observer and are visible before initialization; only offscreen targets are gated. Gallery cards receive a one-shot fade on entering the viewport, while image hover retains its 1.025 scale with a 450ms easing and a small 180ms arrow response. Reduced motion shows static content, immediately reveals pending nodes and disconnects the observer when enabled during a session. Keyboard focus immediately reveals a card. Existing decorative rotations are retained. Case progress updates are coalesced to one animation frame and also respond to resize.
+
+Verified JavaScript syntax and mocked observer scenarios: legacy/gallery targets, viewport entry, keyboard focus, reduced motion at load/runtime and missing IntersectionObserver. Browser connector remains unavailable; native browser inspection could not reliably reach the local site because the active browser changed during the attempt. Rendered timing, desktop/mobile visual checks and performance measurements remain unverified.
+
+## Complete motion replacement — 2026-11-16
+
+Explicit user correction supersedes the earlier refinement: remove existing animation and rebuild using gc-web-motion. Removed prior CSS keyframes/transitions, old reveal initialization, continuous rotating ornaments, custom pointer tracking and hero pause buttons. Retained static ornament shapes and functional menu transforms. New assets/js/motion.js owns native Web Animations sequences and IntersectionObserver triggers, without external dependencies.
+
+| Sequence | Trigger and interval | Properties and purpose | Mobile / static fallback |
+| --- | --- | --- | --- |
+| Hero titles | Page load, 1050ms, 110ms between rows | Opacity .35→1 and translate 38px→0; finite editorial arrival | 650ms, 18px; reduced motion stays static |
+| Supporting copy | Page load, 180ms delay / 700ms | Opacity .45→1 | Same; static under reduced motion |
+| Hero ornament | Page load, 1200ms once | Rotate −70deg→0, scale .8→1; settles permanently | Static under reduced motion |
+| Reading / gallery | First viewport entry, 720/900ms | Translate 24/34px→0 and opacity .5/.7→1 | 520ms, 14px; no hidden pending state |
+| Project hover | Fine-pointer enter/leave, 650/380ms; arrow 220ms | Image scale 1→1.035 and arrow translate 3/−3px; interruptible | No touch hover; reduced motion cancels retained endpoints |
+| Menu / controls | Interaction, 220/160ms | Menu transform, button color; no padding tween | Instant under reduced motion |
+
+Focus cancels the containing entrance immediately. Preference changes cancel active animations and retained hover endpoints. Pagehide aborts listeners/disconnects observers/cancels scheduled progress; BFCache restores initialize cleanly. Native scrolling is instant; reading progress remains functional with one scheduled frame. Content is statically visible before motion initialization; the existing site's JS-rendered content architecture is unchanged.
+
+Verification: syntax, CSS brace balance, script ordering and mocked motion execution passed (hero/scroll, reduced motion initial/runtime, disposal). Native Firefox rendered the home/contact after reload, but active user browser changes prevented reliable full motion inspection. Desktop/mobile timing, keyboard interaction, reduced-motion browser emulation and performance profiling remain unverified. No deployment.
+
+Latest motion instruction: backgrounds remain stationary while text moves. Removed container/card/image/ornament animation. Entrances now target headings, paragraphs, numeric text and gallery captions only; hero words are separate from the static asterisk. Existing layout and native document scroll remain. Source syntax checked; visual verification pending.
+
+User clarified motion must follow scrolling, not play on entry. Replaced finite entrances with paused native text timelines whose currentTime is derived from stationary section geometry on each scroll frame. Bidirectional linear text displacement: desktop hero 0→−110px, other text +64→−64px; mobile ±24px. No animated backgrounds/media. Reduced motion cancels timelines; keyboard focus stops a containing text timeline. Syntax checked; browser verification pending.
+
+## Hero background video — 2026-11-16
+
+Integrated Robert Grant's Abstract Black Liquid Motion Background, Pexels ID 29848606: https://www.pexels.com/video/abstract-black-liquid-motion-background-29848606/ . License checked at https://www.pexels.com/license/ (free use on websites; modification permitted). Source download: https://videos.pexels.com/video-files/29848606/12817774_3840_2160_30fps.mp4 . Local H.264 derivative: 1280px wide, 24fps, 60 seconds, no audio, faststart, 8.7MB; JPEG poster extracted locally. Hero video layer has a dark overlay and independent text scroll motion. Only assigns source when visible, motion is permitted and document visible. Pause/resume control, rejected play fallback, error poster and lifecycle cleanup included. Metadata and JS syntax checked; visual playback/mobile checks pending.
+
+Native Firefox verification: hero video visible behind title/intro and control displays “Pausa video”, confirming playback started. Mobile, manual pause and reduced-motion browser checks remain pending.
+
+Latest clarification: video is a fixed viewport backdrop for the entire homepage, not an hero-only layer. Moved backdrop/control outside main, made all direct home sections transparent and retained independent project imagery. Playback continues while scrolling home and pauses on document hide/reduced motion/user control. Verified in native Firefox: scrolling from hero into the project section keeps the video filling the viewport behind the heading and gallery. Mobile and pause/reduced-motion interaction remain unverified.
+
+User explicitly requested removal of all visible video controls. Removed pause/resume markup, styling and listeners. Background playback keeps automatic reduced-motion, document visibility and error/poster handling.
+
+User requested animations on both text and objects again. Extended scroll-driven native timelines to gallery cards, experience figures, service/process cards, portrait/asterisk ornaments and representative profile/case media. Objects translate ±32px and scale .98→1 (±12px mobile); ornaments rotate −20→70 degrees across their stationary section. Text keeps its scroll-linked movement; nested text timelines are excluded inside animated objects. Gallery image hover scales to 1.035 over 500ms with reduced-motion fallback. Video stays fixed; contact stays #333. Source syntax/whitespace checked; rendered verification pending.
+
+Text motion correction after user found it absent: transformable inline-block hero words; separate heading/paragraph targets instead of large section-copy groups. Individual non-hero text now rises 64px (28px mobile), opacity .2→1, as its untransformed top moves from 90% to 35% viewport height, reversible with scroll. Measurements rebuild after fonts/load/resize. Object timelines remain independent. Syntax and scroll mapping verified; browser verification remains pending.
+
+Object motion made explicit after the same user feedback: added process orbit, step/service numbers, contact arrow, work scroll action and section markers. Transformable inline-block decorative spans. Objects rise 52px/22px mobile, scale .94→1 and opacity .4→1 over viewport arrival (90%→35%), reversible. Ornaments rotate across section scroll. No video/control changes. Syntax checked; visual verification pending.
+
+User explicitly restored infinite asterisk rotation. Asterisks are excluded from scroll timelines and rotate 360 degrees every 20 seconds continuously using CSS; reduced-motion disables rotation. Other object/text scroll behavior is unchanged.
+
+## Home work section exploration — 2026-11-16
+
+User reopened the home work layout. Prepared a separate three-direction interactive review at docs/work-exploration/index.html; current home is unchanged. Directions: index with selectable preview (scannability/compactness), sequential project chapters (context and image scale), alternating editorial composition (visual rhythm/featured opening). Same five real projects, screenshots and destinations. GC contribution: Geist hierarchy, thin rules, strong image/text proportions and restrained orange actions on the approved dark foundation. Review uses the video poster as a labelled design approximation, not another video instance. Palette stays fixed to the approved identity; heading font and spacing options are adjustable. Desktop/mobile mode, hover toggle, confirmation JSON and export are provided. Selection remains pending. Native Firefox opened the review and showed the editorial direction with real project text/links; exhaustive mobile/control testing remains pending.
+
+Research: opened Hoverstates as discovery and original pages tiger.exposed (ordered project taxonomy observed in accessible page content), erinfeeproductions.com (only Info/Projects exposed), oliverdupuy.com (Overview/List exposed). These informed possible navigation alternatives only; live visual/mobile interactions of the references were not verified and no motion claims are inferred. URLs: https://www.hoverstat.es/ , https://tiger.exposed/ , https://www.erinfeeproductions.com/ , https://www.oliverdupuy.com/ . Date 2026-11-16. Existing user gallery reference and local design record remain the main identity anchors.
+
+User selected direction 02 (sequential projects) for the homepage. Implemented five project chapters with text/contribution beside large images and a single whole-chapter link; work index preserved. Mobile stacks text then image. User immediately requested shorter photos: desktop height now clamp(220px,24vw,360px); mobile 16:9. Retained fixed full-page video and gray contact. JS syntax and diff checks passed; browser verification attempt timed out.
+
+User requested narrower project previews to show complete page heroes. Home chapters now use equal columns, previews capped at 600px and 16:9; regular captures use contain to avoid cropping, Leone full-page capture is width-scaled with the first desktop viewport visible. Removed preview hover zoom to keep edges visible. Source checked; visual verification pending.
+
+User refinement of direction 02: alternate desktop/tablet project rows (odd text/image, even image/text), preserving image widths and exterior alignment. Mobile retains text then image. CSS diff checked.
+
+User reverted the alternating-row refinement. Restored all homepage project rows to text left / image right; other sizing and spacing retained.
+
+Method text readability correction from user screenshot: full paper-color paragraphs, 16px/1.6, local .88 dark backing behind the steps, and removed opacity fading from text/object scroll timelines so motion does not reduce reading contrast. Source checked; visual verification pending.
+
+User requested shared project-width alignment for the following sections too. Method, Leone note, about and contact now use the 1600px home container; retained full-bleed backgrounds and mobile gutters. Removed the Leone note’s 25% left indentation. Source checked; rendered verification pending.
+
+User requested homepage grid alignment on other pages. Introduced shared --site-content-width:1600px and applied matching desktop gutters to work hero/list, profile sections, editorial case-study grid, previous/next and inner-page headers/footers; full-width backgrounds and page structures remain. Case-study mobile gutters now 18px. Fixed site-theme asset paths in case pages that already declare base href ../ so shared styling resolves correctly. Static checks passed; browser visual verification pending.

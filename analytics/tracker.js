@@ -1,6 +1,9 @@
 (function () {
   'use strict';
 
+  // Retired fingerprinting tracker. Integrate the central consent-based tracker instead.
+  return;
+
   var loader = document.currentScript;
   var stateKey = '__LandingAnalyticsTrackerLoader';
   var state = window[stateKey];

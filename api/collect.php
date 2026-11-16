@@ -1,20 +1,24 @@
 <?php
 declare(strict_types=1);
+// Legacy collector retired: use the central collector with explicit consent.
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+http_response_code(410);
+echo json_encode(['ok' => false, 'message' => 'Endpoint ritirato.']);
+exit;
+
 require dirname(__DIR__) . '/server/_bootstrap.php';
 require dirname(__DIR__) . '/server/_metrics.php';
+require dirname(__DIR__) . '/server/_ingest.php';
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') { http_response_code(204); exit; }
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') analyticsJsonResponse(['ok'=>false,'message'=>'Metodo non consentito.'], 405);
 
 try {
     $payload = analyticsReadJsonInput();
-    $events = analyticsSanitizeEvents($payload['events'] ?? null);
-    if ($events === []) analyticsJsonResponse(['ok'=>false,'message'=>'Nessun evento valido ricevuto.'], 422);
-    $sitePayload = is_array($payload['site'] ?? null) ? $payload['site'] : [];
-    $siteKey = analyticsSanitizeString($sitePayload['site_key'] ?? null, 160);
-    foreach ($events as $event) $siteKey = $siteKey ?: analyticsSanitizeString($event['site_key'] ?? null, 160);
-    if ($siteKey === null) analyticsJsonResponse(['ok'=>false,'message'=>'site_key obbligatorio.'], 422);
-    foreach ($events as $event) if (($event['site_key'] ?? null) !== null && $event['site_key'] !== $siteKey) analyticsJsonResponse(['ok'=>false,'message'=>'Tutti gli eventi del batch devono usare lo stesso site_key.'], 422);
+    [$siteKey,$siteConfig,$events]=analyticsPrepareIngest($payload,$_SERVER['HTTP_ORIGIN']??'');
+    analyticsConsumeRate(analyticsDbForSite($siteKey),$siteKey,$_SERVER['REMOTE_ADDR']??'unknown',count($events));
+    $sitePayload=['name'=>$siteConfig['name'],'domain'=>$siteConfig['domain']];
 
     $saved = analyticsDbTransactionForSite($siteKey, static function(PDO $db) use ($events, $siteKey, $sitePayload): int {
         $siteId = analyticsUpsertSite($db, $siteKey, analyticsSanitizeString($sitePayload['name'] ?? null, 255), analyticsSanitizeString($sitePayload['domain'] ?? null, 2048));

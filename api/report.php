@@ -1,11 +1,21 @@
 <?php
 declare(strict_types=1);
+// Retired endpoint: reporting and server jobs moved to the unified dashboard.
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+http_response_code(410);
+echo json_encode(['ok' => false, 'message' => 'Endpoint ritirato.']);
+exit;
+
 require dirname(__DIR__) . '/server/_bootstrap.php';
+require dirname(__DIR__) . '/server/_ingest.php';
 require dirname(__DIR__) . '/server/_metrics.php';
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') { http_response_code(204); exit; }
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') analyticsJsonResponse(['ok'=>false,'message'=>'Metodo non consentito.'], 405);
 try {
     $siteKey = analyticsSanitizeString($_GET['site_key'] ?? null, 160) ?? analyticsDefaultSiteKey();
+    analyticsRequireReportAccess($siteKey);
+    if(!analyticsSiteConfig($siteKey))analyticsIngestFailure(404,'Unknown site.');
     $days = max(1, min((int)($_GET['days'] ?? 7), 366));
     analyticsJsonResponse(analyticsBuildReport(analyticsDbForSite($siteKey), $siteKey, $days, analyticsSanitizeString($_GET['since'] ?? null, 32), analyticsSanitizeString($_GET['until'] ?? null, 32)));
 } catch (Throwable $exception) { analyticsErrorResponse($exception, 'Errore nel caricamento del report analytics.'); }
