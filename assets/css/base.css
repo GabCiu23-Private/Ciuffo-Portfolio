@@ -34,7 +34,7 @@
 
 html {
   scroll-padding-top: calc(var(--site-header-height) + 16px);
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background: var(--paper);
 }
 
@@ -68,7 +68,7 @@ a {
   font-size: 13px;
   font-weight: 700;
   transform: translateY(-180%);
-  transition: transform .2s ease;
+
 }
 
 .skip-link:focus {
@@ -100,7 +100,7 @@ button {
   border-radius: 50%;
   background: var(--acid);
   mix-blend-mode: difference;
-  transition: width .25s var(--ease), height .25s var(--ease);
+
 }
 
 .site-header {
@@ -166,11 +166,11 @@ button {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform .4s var(--ease);
+
 }
 
 .nav a:hover::after {
-  transform: scaleX(1);
+
   transform-origin: left;
 }
 
@@ -208,11 +208,11 @@ button {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform .35s var(--ease);
+
 }
 
 .case-footer a:hover::after {
-  transform: scaleX(1);
+
   transform-origin: left;
 }
 

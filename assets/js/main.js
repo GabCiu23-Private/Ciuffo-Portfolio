@@ -83,61 +83,29 @@ function footer() {
 
 function homePage() {
   return `
+        <div class="hero-video-backdrop" aria-hidden="true">
+          <video class="hero-video" muted playsinline loop disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" preload="none" poster="assets/video/hero-black-liquid.jpg" data-src="assets/video/hero-black-liquid.mp4"></video>
+        </div>
     <main id="main-content">
-      <div class="cursor" aria-hidden="true"></div>
       ${header(true)}
 
       <section class="hero" id="top">
         <h1 class="hero-title" aria-label="Progetto esperienze digitali">
-          <span class="title-row title-row-one"><span class="home-title-word">PROGETTO<span class="asterisk" aria-hidden="true">✳</span></span><span class="title-note">UX, UI, business<br>e fattibilità.</span></span>
+          <span class="title-row title-row-one"><span class="home-title-word"><span class="hero-word-text">PROGETTO</span><span class="asterisk" aria-hidden="true">✳</span></span></span>
           <span class="title-row title-row-two"><span>ESPERIENZE</span></span>
           <span class="title-row title-row-three"><span>DIGITALI</span></span>
         </h1>
+        <p class="title-note">UX, UI, business<br>e fattibilità.</p>
         <div class="hero-bottom">
           <div class="hero-intro">
             <p>Sono Gabriele Ciuffi, Product Designer. Organizzo contenuti e percorsi, progetto interfacce e uso il front-end per trasformarle in esperienze funzionanti.</p>
-            <a class="action-button action-button--secondary" href="profilo.html">Scopri il mio profilo ↗</a>
-            <a class="action-button action-button--secondary" href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a>
-          </div>
-          <a class="round-link magnetic" href="lavori.html" aria-label="Apri tutti i progetti"><span>Lavori</span><b>↗</b></a>
-        </div>
-        <div class="services-ticker" aria-label="Servizi principali"><span>Product & UX</span><span>UI & Design system</span><span>Prototipi & Front-end</span></div>
-
-        <div class="marquee" aria-hidden="true">
-          <div>
-            <span>DESIGN CHE RISOLVE</span><i>✳</i>
-            <span>PRODOTTI REALIZZABILI</span><i>✳</i>
-            <span>DESIGN CHE RISOLVE</span><i>✳</i>
-            <span>PRODOTTI REALIZZABILI</span><i>✳</i>
           </div>
         </div>
       </section>
 
       <section class="intro-slice" id="work">
-        <p class="eyebrow">01 / Progetti selezionati</p>
         <h2>Problemi complessi.<br>Percorsi chiari.</h2>
-        <a class="project-glimpse" href="lavori/leone.html">
-          <div class="glimpse-copy">
-            <span>01 / Sito corporate · Online</span>
-            <h3>Leone<br>S.p.A</h3>
-          <p>Prodotti, formazione e servizi in un’unica architettura.</p>
-          </div>
-          <div class="interface-card interface-card-screen">
-            <img src="assets/images/leone/homepage-full-wide.jpg" width="1920" height="4389" alt="Home dell’ecosistema digitale Leone" loading="lazy">
-          </div>
-        </a>
-
-        <div class="project-list">
-          ${PROJECT_ORDER.slice(1).map(({ slug }) => {
-            const project = window.CASE_STUDIES.find((item) => item.slug === slug);
-            return `<a class="project-row" href="${PROJECT_FILES[slug]}" style="--project-hover:${project.hoverColor}" data-reveal>
-              <span class="project-index">${project.number}</span>
-              <div><h3>${project.title}</h3><p>${project.status} · ${project.summary}</p></div>
-              <div class="project-art project-art-screen" aria-hidden="true"><img src="${project.screenshot}" alt="" loading="lazy" width="1400" height="950"></div>
-              <b>Apri il progetto ↗</b>
-            </a>`;
-          }).join("")}
-        </div>
+        ${homeProjectChapters()}
         <a class="all-work-link action-button action-button--primary" href="lavori.html">Esplora i cinque progetti <span>↗</span></a>
       </section>
 
@@ -150,7 +118,7 @@ function homePage() {
 
       <section class="services" id="services">
         <div class="section-label">
-          <span>02 / Approccio</span>
+
           <span>Dai requisiti all’interfaccia</span>
         </div>
         <div class="services-heading" data-reveal>
@@ -203,7 +171,7 @@ function homePage() {
       </section>
 
       <section class="portfolio-note" aria-labelledby="portfolio-note-title">
-        <div class="section-label"><span>03 / Il metodo in pratica</span><span>Leone · Sito corporate</span></div>
+        <div class="section-label"><span>Leone · Sito corporate</span></div>
         <div class="portfolio-note-copy">
           <p class="eyebrow">Dai compiti delle persone alle scelte d’interfaccia</p>
           <h2 id="portfolio-note-title">Cercare un prodotto e scegliere un corso richiedono percorsi diversi.</h2>
@@ -214,8 +182,7 @@ function homePage() {
 
       <section class="about" id="about">
         <div class="about-sidebar">
-          <p class="eyebrow">04 / Chi sono</p>
-          <div class="portrait-mark" aria-hidden="true"><span>GC</span><i>Firenze<br>2000</i></div>
+            <div class="portrait-mark" aria-hidden="true"><span>GC</span><i>Firenze<br>2000</i></div>
         </div>
         <div class="about-copy">
           <h2 data-reveal>Dal <em>graphic design</em> alla progettazione di prodotti digitali.</h2>
@@ -228,7 +195,7 @@ function homePage() {
       </section>
 
       <section class="contact" id="contact">
-        <div class="contact-top"><span>05 / Contatti</span><span>Firenze · Disponibile per nuove opportunità</span></div>
+        <div class="contact-top"><span>Firenze · Disponibile per nuove opportunità</span></div>
         <h2>
           <span>PARLIAMONE</span>
           <a href="https://www.linkedin.com/in/gabriele-ciuffi-9ba1b7250" target="_blank" rel="noreferrer" aria-label="Apri il profilo LinkedIn di Gabriele Ciuffi">↗</a>
@@ -264,7 +231,7 @@ function profilePage() {
     <main class="profile-page" id="main-content">
       ${header()}
       <section class="profile-hero brand-scene brand-scene--hero" data-hero-motion>
-        <div class="profile-hero-title-row"><h1>Gabriele Ciuffi.<br><span>Product <em class="brand-emphasis">Designer.</em></span></h1><button class="profile-hero-mark hero-motion-mark" type="button" data-motion-toggle aria-label="Metti in pausa l’animazione" aria-pressed="false" title="Metti in pausa l’animazione"><span class="hero-motion-asterisk" aria-hidden="true">✳</span></button></div>
+        <div class="profile-hero-title-row"><h1>Gabriele Ciuffi.<br><span>Product <em class="brand-emphasis">Designer.</em></span></h1><span class="profile-hero-mark hero-motion-mark" aria-hidden="true"><span class="hero-motion-asterisk" aria-hidden="true">✳</span></span></div>
         <div class="profile-hero-bottom"><p>Dalla formazione in graphic design al lavoro su siti, servizi e strumenti digitali. Unisco progettazione UX/UI e front-end per seguire le interfacce dalla struttura alla realizzazione.</p><a class="action-button action-button--secondary" href="cv/Gabriele_Ciuffi.svg" download>Scarica il CV ↓</a></div>
       </section>
 
@@ -329,40 +296,52 @@ function profilePage() {
   `;
 }
 
+function homeProjectChapters() {
+  return `<div class="home-work-chapters">${PROJECT_ORDER.map(({ slug }, index) => {
+    const project = window.CASE_STUDIES.find((item) => item.slug === slug);
+    return `<a class="home-work-chapter" data-project="${slug}" href="${PROJECT_FILES[slug]}" aria-labelledby="home-work-${slug}">
+      <div class="home-work-copy">
+        <span class="home-work-meta">0${index + 1} / ${project.sector}</span>
+        <h3 id="home-work-${slug}">${project.title}</h3>
+        <p class="home-work-summary">${project.summary}</p>
+        <p class="home-work-role"><span>Il mio contributo</span>${project.responsibilities || project.role}</p>
+        <span class="home-work-action">Leggi il caso studio <span aria-hidden="true">↗</span></span>
+      </div>
+      <div class="home-work-media" aria-hidden="true"><img src="${project.screenshot}" alt="" loading="lazy" width="1400" height="950"></div>
+    </a>`;
+  }).join("")}</div>`;
+}
+
+function projectGallery() {
+  return `<div class="project-gallery">${PROJECT_ORDER.map(({ slug }, index) => {
+    const project = window.CASE_STUDIES.find((item) => item.slug === slug);
+    return `<a class="project-tile project-tile--${slug}" href="${PROJECT_FILES[slug]}">
+      <div class="project-tile-media" aria-hidden="true"><img src="${project.screenshot}" alt="" loading="lazy" width="1400" height="950"></div>
+      <div class="project-tile-copy">
+        <span class="project-tile-meta">${index === 0 ? "In evidenza · " : ""}${project.sector}</span>
+        <h3>${project.title}</h3>
+        <p>${project.category}</p>
+        <span class="project-tile-action">Esplora il progetto <span aria-hidden="true">↗</span></span>
+      </div>
+    </a>`;
+  }).join("")}</div>`;
+}
+
 function workPreview(project) {
   return `<img src="${project.screenshot}" alt="" loading="lazy" width="1400" height="950">`;
 }
 
 function workPage() {
-  const projects = PROJECT_ORDER
-    .map(({ slug }) => window.CASE_STUDIES.find((project) => project.slug === slug))
-    .filter(Boolean);
-  const projectRows = (items) => items.map((project) => `
-          <a href="${PROJECT_FILES[project.slug]}" class="work-row work-row-${project.theme}" style="--project-hover:${project.hoverColor}">
-            <span>${project.number}</span>
-            <div class="work-row-copy">
-              <h2>${project.title}</h2>
-              <p>${project.year ? `${project.year} · ` : ""}${project.sector} · ${project.role}</p>
-              <p class="work-row-summary">${project.summary}</p>
-              <p class="work-project-status">${project.status}</p>
-              <ul aria-label="Competenze del progetto">${project.tags.map((tag) => `<li>${tag}</li>`).join("")}</ul>
-            </div>
-            <div class="work-row-preview" aria-hidden="true">${workPreview(project)}</div>
-            <b>Esplora il progetto ↗</b>
-          </a>
-        `).join("");
-
   return `
     <main class="work-index" id="main-content">
       ${header()}
       <section class="work-index-hero brand-scene brand-scene--hero" data-hero-motion>
-        <div class="work-hero-title-row"><h1>Siti, servizi e<br>strumenti <span><em class="brand-emphasis">digitali.</em></span></h1><button class="work-hero-mark hero-motion-mark" type="button" data-motion-toggle aria-label="Metti in pausa l’animazione" aria-pressed="false" title="Metti in pausa l’animazione"><span class="hero-motion-asterisk" aria-hidden="true">✳</span></button></div>
         <div class="work-hero-bottom"><p class="work-index-description">Cinque progetti tra siti corporate, aree riservate, dashboard e campagne. Per ciascuno, il problema di partenza, le scelte progettuali e il mio contributo.</p><a class="work-hero-scroll" href="#progetti" aria-label="Esplora i progetti selezionati"><span>Esplora <br>i lavori</span><b aria-hidden="true">↓</b></a></div>
+        <div class="work-hero-title-row"><h1>Siti, servizi e<br>strumenti <span><em class="brand-emphasis">digitali.</em></span></h1><span class="work-hero-mark hero-motion-mark" aria-hidden="true"><span class="hero-motion-asterisk" aria-hidden="true">✳</span></span></div>
       </section>
       <section class="work-index-list" id="progetti">
         <div class="work-group-label">Product Design / UX/UI</div>
-        ${projectRows(projects.filter((project) => CORE_PROJECTS.includes(project.slug)))}
-        ${projectRows(projects.filter((project) => !CORE_PROJECTS.includes(project.slug)))}
+        ${projectGallery()}
       </section>
       ${footer()}
     </main>
@@ -527,7 +506,6 @@ function casePage(slug) {
 
   return `
     <main class="case-page case-${project.theme}" id="main-content" style="--case-accent:${project.accent}">
-      <div class="cursor" aria-hidden="true"></div>
       <div class="case-progress"></div>
       ${header()}
 
@@ -625,112 +603,6 @@ function initHeader() {
   });
 }
 
-function initHeroMotion() {
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (!reduced.matches) {
-    document.querySelectorAll(".work-hero-title-row h1, .profile-hero-title-row h1, .work-hero-bottom, .profile-hero-bottom").forEach((element, index) => {
-      element.classList.add("hero-enter");
-      element.style.setProperty("--hero-enter-delay", `${index * 220}ms`);
-      element.addEventListener("animationend", () => element.classList.remove("hero-enter"), { once: true });
-    });
-    reduced.addEventListener("change", (event) => {
-      if (event.matches) document.querySelectorAll(".hero-enter").forEach((element) => element.classList.remove("hero-enter"));
-    });
-  }
-  document.querySelectorAll("[data-hero-motion]").forEach((hero) => {
-    const toggle = hero.querySelector("[data-motion-toggle]");
-    if (!toggle) return;
-    const syncPreference = () => { toggle.disabled = reduced.matches; };
-    syncPreference();
-    reduced.addEventListener("change", syncPreference);
-    toggle.addEventListener("click", () => {
-      const paused = hero.classList.toggle("is-motion-paused");
-      toggle.setAttribute("aria-pressed", String(paused));
-      toggle.setAttribute("aria-label", paused ? "Riprendi l’animazione" : "Metti in pausa l’animazione");
-      toggle.title = paused ? "Riprendi l’animazione" : "Metti in pausa l’animazione";
-    });
-  });
-}
-
-function initCursor() {
-  const cursor = document.querySelector(".cursor");
-  if (!cursor || !window.matchMedia("(pointer: fine)").matches) return;
-  window.addEventListener("mousemove", (event) => {
-    cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-  });
-}
-
-function initReveals() {
-  const legacy = [...document.querySelectorAll("[data-reveal], [data-case-reveal]")];
-  const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const reveal = (element, immediate = false) => {
-    if (immediate) element.classList.add("is-scroll-instant");
-    element.classList.remove("is-scroll-pending");
-    element.classList.add("is-visible");
-  };
-  if (!("IntersectionObserver" in window) || preference.matches) {
-    legacy.forEach((element) => reveal(element));
-    return;
-  }
-
-  const targets = new Set(legacy);
-  const register = (selector, effect) => {
-    document.querySelectorAll(selector).forEach((element) => {
-      if (element.hasAttribute("data-reveal")) return;
-      element.dataset.scrollReveal = effect;
-      if (element.getBoundingClientRect().top >= window.innerHeight * .92) {
-        element.classList.add("is-scroll-pending");
-      }
-      targets.add(element);
-    });
-  };
-  register(".intro-slice > h2, .portfolio-note-copy > h2, .work-row-copy, .profile-principles article, .profile-cv-intro h2, .profile-skills-heading h2, .profile-skills > div, .experience-list article > div, .project-introduction h1, .case-section-content h2, .project-related", "rise");
-  register(".project-glimpse, .work-row-preview, .profile-cv-summary, .profile-facts, .profile-contact h2, .case-body, .case-media, .case-next > div", "fade");
-  register(".case-section-label", "line");
-  document.querySelectorAll(".profile-principles, .profile-skills").forEach((group) => {
-    [...group.children].forEach((element, index) => {
-      element.style.setProperty("--scroll-delay", `${Math.min(index * 100, 300)}ms`);
-    });
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      reveal(entry.target);
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
-  targets.forEach((element) => observer.observe(element));
-
-  // Keyboard navigation never lands on an invisible action or preview.
-  document.addEventListener("focusin", (event) => {
-    const parent = event.target.closest("[data-scroll-reveal]");
-    if (parent) { reveal(parent, true); observer.unobserve(parent); }
-    event.target.querySelectorAll("[data-scroll-reveal]").forEach((element) => {
-      reveal(element, true);
-      observer.unobserve(element);
-    });
-  });
-  preference.addEventListener("change", (event) => {
-    if (!event.matches) return;
-    targets.forEach((element) => reveal(element));
-    observer.disconnect();
-  });
-}
-
-function initCaseProgress() {
-  const progress = document.querySelector(".case-progress");
-  if (!progress) return;
-
-  const update = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const value = max > 0 ? window.scrollY / max : 0;
-    progress.style.transform = `scaleX(${value})`;
-  };
-  update();
-  window.addEventListener("scroll", update, { passive: true });
-}
-
 function initLifeButtonFallbacks() {
   document.querySelectorAll("[data-life-image]").forEach((image) => {
     image.addEventListener("error", () => {
@@ -825,12 +697,9 @@ function render() {
   });
 
   initHeader();
-  initHeroMotion();
-  initCursor();
-  initReveals();
-  initCaseProgress();
   initLifeButtonFallbacks();
   initImageModal();
+  initSiteMotion();
 }
 
 render();

@@ -15,7 +15,7 @@
   font-size: 10px;
   letter-spacing: .03em;
   text-transform: uppercase;
-  animation: fade-up .8s .1s both var(--ease);
+
 }
 
 .availability {
@@ -30,7 +30,7 @@
   border-radius: 50%;
   background: #2ed14c;
   box-shadow: 0 0 0 4px rgba(46, 209, 76, .13);
-  animation: pulse 2.4s infinite;
+
 }
 
 .hero-title {
@@ -51,23 +51,23 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
-  animation: title-in 1s both var(--ease);
+
   transform-origin: bottom left;
 }
 
 .title-row-one {
   justify-content: space-between;
-  animation-delay: .08s;
+
 }
 
 .title-row-two {
   justify-content: flex-start;
-  animation-delay: .17s;
+
 }
 
 .title-row-three {
   justify-content: space-between;
-  animation-delay: .26s;
+
 }
 
 .title-note {
@@ -87,7 +87,7 @@
   color: var(--blue);
   font-size: .42em;
   letter-spacing: 0;
-  animation: rotate 20s linear infinite;
+
 }
 
 .round-link {
@@ -107,7 +107,7 @@
   line-height: 1;
   text-transform: uppercase;
   transform: rotate(-9deg);
-  transition: transform .55s var(--ease), background-color .3s ease;
+
 }
 
 .round-link b {
@@ -118,7 +118,7 @@
 .round-link:hover {
   background: var(--ink);
   color: var(--paper);
-  transform: rotate(0deg) scale(1.08);
+
 }
 
 .hero-bottom {
@@ -202,7 +202,7 @@
   font-size: 12px;
   font-weight: 650;
   letter-spacing: .06em;
-  animation: marquee 28s linear infinite;
+
 }
 
 .marquee i {
@@ -282,7 +282,7 @@
   color: white;
   box-shadow: 0 35px 80px rgba(51, 51, 51, .25);
   transform: rotate(2.5deg);
-  transition: transform .7s var(--ease);
+
 }
 
 .interface-card > img {
@@ -305,10 +305,6 @@
   inset: 0;
   background: linear-gradient(180deg, rgba(240,238,231,.04), transparent 75%);
   pointer-events: none;
-}
-
-.project-glimpse:hover .interface-card {
-  transform: rotate(0deg) scale(1.015);
 }
 
 .interface-top {
@@ -380,7 +376,7 @@
   font-family: var(--font-geist-mono), monospace;
   font-size: 10px;
   text-transform: uppercase;
-  transition: padding .4s var(--ease), background .4s var(--ease);
+
 }
 
 .all-work-link:hover {
@@ -410,9 +406,7 @@
   gap: 24px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-  opacity: 0;
-  transform: translateY(35px);
-  transition: opacity .8s var(--ease), transform .8s var(--ease), padding .5s var(--ease);
+
 }
 
 .project-row.is-visible {
@@ -474,7 +468,7 @@
 
 .project-row:hover .project-art-screen {
   border-radius: 0;
-  transform: none;
+
 }
 
 .project-row::before {
@@ -485,18 +479,13 @@
   background: var(--project-hover, var(--ink));
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform .55s var(--ease);
+
 }
 
 .project-row:hover,
 .project-row:focus-visible {
   padding: 0 22px;
   color: white;
-}
-
-.project-row:hover::before,
-.project-row:focus-visible::before {
-  transform: scaleY(1);
 }
 
 .project-index {
@@ -535,12 +524,12 @@
   overflow: hidden;
   align-self: center;
   background: #dedbd2;
-  transition: transform .6s var(--ease), border-radius .6s var(--ease);
+
 }
 
 .project-row:hover .project-art {
   border-radius: 6px;
-  transform: scale(.94);
+
 }
 
 .art-community {
@@ -634,16 +623,11 @@
   justify-content: space-between;
   padding: 28px 2.2vw;
   border-right: 1px solid var(--line);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
+
 }
 
 .numbers > div:last-child { border-right: 0; }
 .numbers > div.is-visible { opacity: 1; transform: translateY(0); }
-.numbers > div:nth-child(2) { transition-delay: .08s; }
-.numbers > div:nth-child(3) { transition-delay: .16s; }
-.numbers > div:nth-child(4) { transition-delay: .24s; }
 
 .numbers span {
   font-size: clamp(70px, 9vw, 140px);
@@ -676,9 +660,7 @@
 .services-heading {
   max-width: 1050px;
   margin: 100px 0 110px 25%;
-  opacity: 0;
-  transform: translateY(45px);
-  transition: opacity .9s var(--ease), transform .9s var(--ease);
+
 }
 
 .services-heading.is-visible { opacity: 1; transform: translateY(0); }
@@ -709,16 +691,12 @@
   flex-direction: column;
   padding: 26px 3vw 30px 0;
   border-right: 1px solid var(--line);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
+
 }
 
 .service-list article + article { padding-left: 3vw; }
 .service-list article:last-child { padding-right: 0; border-right: 0; }
 .service-list article.is-visible { opacity: 1; transform: translateY(0); }
-.service-list article:nth-child(2) { transition-delay: .09s; }
-.service-list article:nth-child(3) { transition-delay: .18s; }
 
 .service-list article > span,
 .process-steps span {
@@ -790,7 +768,7 @@
   color: var(--acid);
   font-family: var(--font-geist-mono), monospace;
   font-size: 9px;
-  animation: rotate 36s linear infinite;
+
 }
 
 .process-content {
@@ -804,9 +782,7 @@
   font-weight: 620;
   letter-spacing: -.07em;
   line-height: .78;
-  opacity: 0;
-  transform: translateY(45px);
-  transition: opacity .9s var(--ease), transform .9s var(--ease);
+
 }
 
 .process h2.is-visible { opacity: 1; transform: translateY(0); }
@@ -820,19 +796,13 @@
 
 .process-steps div {
   padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,.28);
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
+
 }
 
 .process-steps div.is-visible { opacity: 1; transform: translateY(0); }
-.process-steps div:nth-child(2) { transition-delay: .09s; }
-.process-steps div:nth-child(3) { transition-delay: .18s; }
-.process-steps div:nth-child(4) { transition-delay: .27s; }
 
 .process-steps h3 {
-  margin: 80px 0 18px;
+  margin: 28px 0 18px;
   font-size: 21px;
   font-weight: 590;
   letter-spacing: -.03em;
@@ -966,9 +936,7 @@
   font-weight: 580;
   letter-spacing: -.06em;
   line-height: .95;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity .9s var(--ease), transform .9s var(--ease);
+
 }
 
 .about-copy h2.is-visible { opacity: 1; transform: translateY(0); }
@@ -1002,7 +970,7 @@
   font-family: var(--font-geist-mono), monospace;
   font-size: 10px;
   text-transform: uppercase;
-  transition: padding .4s var(--ease), background .4s var(--ease);
+
 }
 
 .text-link:hover { padding: 18px; background: var(--acid); }
@@ -1038,12 +1006,12 @@
   color: var(--ink);
   font-size: .45em;
   letter-spacing: 0;
-  transition: transform .55s var(--ease), background .3s ease;
+
 }
 
 .contact h2 a:hover {
   background: white;
-  transform: rotate(45deg) scale(1.06);
+
 }
 
 .contact-bottom {

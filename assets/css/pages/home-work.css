@@ -1,0 +1,62 @@
+/* Approved direction 02: sequential projects, image and context side by side. */
+body[data-page="home"] { --home-content-width: var(--site-content-width, 1600px); }
+.home-work-chapters { display: grid; gap: 0; }
+.home-work-chapter { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 600px); gap: clamp(48px,6vw,112px); max-width: var(--home-content-width); margin-inline: auto; width: 100%; align-items: center; padding: clamp(36px,5vw,80px) 0; border-top: 1px solid var(--line); }
+.home-work-copy { min-width: 0; }
+.home-work-meta { display: block; font: 10px/1.6 var(--font-geist-mono),monospace; color: #c8c5bd; text-transform: uppercase; }
+.home-work-copy h3 { margin: 18px 0 24px; font-size: clamp(32px,3.7vw,62px); line-height: 1.02; letter-spacing: -.055em; font-weight: 600; overflow-wrap: anywhere; }
+.home-work-summary { margin: 0; max-width: 43ch; font-size: clamp(15px,1.15vw,18px); line-height: 1.55; }
+.home-work-role { margin: 24px 0 0; max-width: 46ch; font-size: 12px; line-height: 1.6; color: #cfccc4; }
+.home-work-role > span { display: block; margin-bottom: 6px; font: 9px/1.6 var(--font-geist-mono),monospace; text-transform: uppercase; color: #aaa79f; }
+.home-work-action { display: inline-flex; align-items: center; gap: 24px; margin-top: 28px; padding-bottom: 9px; border-bottom: 1px solid var(--orange); font: 11px/1.5 var(--font-geist-mono),monospace; text-transform: uppercase; }
+.home-work-action > span { color: var(--orange); font-size: 20px; }
+.home-work-media { min-width: 0; width: 100%; max-width: 600px; justify-self: end; height: auto; aspect-ratio: 16/9; overflow: hidden; background: #242424; border: 1px solid rgba(240,238,231,.18); }
+.home-work-media img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: top center; transition: scale 450ms var(--ease); }
+.home-work-chapter:focus-visible { outline: 3px solid var(--acid); outline-offset: 8px; }
+@media (hover:hover) { .home-work-chapter:hover .home-work-action { text-decoration: underline; text-underline-offset: 4px; } }
+@media (max-width: 900px) { .home-work-chapter { grid-template-columns: minmax(0,.8fr) minmax(0,1fr); gap: 28px; } .home-work-copy h3 { font-size: 34px; } }
+@media (max-width: 650px) { .home-work-chapter { grid-template-columns: minmax(0,1fr); gap: 28px; padding: 36px 0; } .home-work-copy h3 { font-size: clamp(30px,8vw,42px); max-width: 18ch; margin: 14px 0 20px; } .home-work-media { height: auto; aspect-ratio: 16/9; } .home-work-action { margin-top: 22px; } }
+@media (prefers-reduced-motion: reduce) { .home-work-media img { transition: none; scale: 1!important; } }
+
+/* Leone is a full-page capture: show the first desktop viewport at its natural ratio. */
+.home-work-chapter[data-project="leone"] .home-work-media img { height: auto; }
+
+/* Approach shares the exact centered content width of the project chapters. */
+body[data-page="home"] .services > .section-label,
+body[data-page="home"] .services > .services-heading,
+body[data-page="home"] .services > .service-list {
+  width: 100%;
+  max-width: var(--home-content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body[data-page="home"] .intro-slice > .all-work-link {
+  margin-left: max(0px, calc((100% - var(--home-content-width)) / 2));
+}
+
+body[data-page="home"] .process-content {
+  width: 100%;
+  max-width: var(--home-content-width);
+  margin-inline: auto;
+}
+body[data-page="home"] .process-steps {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-inline: 0;
+}
+
+/* Remaining home sections share the project container while their backgrounds span the page. */
+@media (min-width: 901px) {
+  body[data-page="home"] :is(.portfolio-note, .about, .contact) {
+    padding-inline: max(2.2vw, calc((100% - var(--home-content-width)) / 2));
+  }
+}
+body[data-page="home"] .portfolio-note-copy {
+  width: 100%;
+  max-width: var(--home-content-width);
+  margin-left: 0;
+  margin-right: 0;
+}
+body[data-page="home"] .portfolio-note > .section-label span:first-child { margin-left: 0; }

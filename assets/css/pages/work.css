@@ -39,7 +39,7 @@
 .work-index-hero h1 > span { background: none; color: inherit; padding: 0; }
 .work-hero-mark { margin-right: .25em; position: relative; isolation: isolate; color: var(--orange); font-size: clamp(100px, 12vw, 172px); line-height: 1; flex-shrink: 0; }
 .work-hero-bottom { margin-bottom: auto; padding-top: 28px; display: flex; justify-content: space-between; align-items: flex-start; gap: 36px; }
-.work-hero-scroll { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 88px; height: 88px; border-radius: 50%; background: var(--orange); color: #171717; font-family: var(--font-geist-mono), monospace; font-size: 10px; line-height: 1.3; font-weight: 600; text-align: center; text-transform: uppercase; transition: background-color 180ms var(--ease), color 180ms var(--ease); }
+.work-hero-scroll { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 88px; height: 88px; border-radius: 50%; background: var(--orange); color: #171717; font-family: var(--font-geist-mono), monospace; font-size: 10px; line-height: 1.3; font-weight: 600; text-align: center; text-transform: uppercase;  }
 .work-hero-scroll b { font-size: 20px; font-weight: 500; }
 .work-hero-scroll:hover { background: var(--ink); color: var(--paper); }
 .work-hero-scroll:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
@@ -59,7 +59,7 @@
   .work-hero-scroll br { display: none; }
   .work-hero-scroll span { display: flex; gap: .35em; }
 }
-@media (prefers-reduced-motion: reduce) { .work-hero-scroll { transition: none; } }
+@media (prefers-reduced-motion: reduce) { }
 
 .work-index-description {
   max-width: 62ch;
@@ -89,7 +89,7 @@
   gap: 25px;
   padding: 24px 2.2vw;
   border-bottom: 1px solid var(--line);
-  transition: padding .5s var(--ease), background .5s var(--ease);
+
 }
 
 .work-row-preview {
@@ -106,11 +106,7 @@
   display: block;
   object-fit: cover;
   object-position: top center;
-  transition: transform .7s var(--ease);
-}
 
-.work-row:hover .work-row-preview img {
-  transform: none;
 }
 
 .work-row-preview span {
@@ -258,7 +254,6 @@
 @media (max-width: 700px) {
   .work-hero-mark { display: block; position: absolute; top: -86px; right: 12px; font-size: 54px; }
 }
-
 
 .work-hero-title-row { position: relative; }
 @media (min-width: 901px) { .work-hero-mark { position: absolute; top: 0; right: 8px; } }

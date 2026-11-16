@@ -216,7 +216,7 @@
   font-family: var(--font-geist-mono), monospace;
   font-size: 9px;
   text-transform: uppercase;
-  transition: background .3s ease, color .3s ease;
+
 }
 
 .profile-contact a:hover {

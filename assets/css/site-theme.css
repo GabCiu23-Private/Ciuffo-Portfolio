@@ -1,0 +1,115 @@
+/* Site canvas: near-black sampled visually from the supplied reference.
+   Keep identity colors and project media independent from the canvas. */
+:root { --site-canvas: #101010; --site-text: #f0eee7; --line: rgba(240,238,231,.22); --brand-graphic-line: rgba(240,238,231,.18); }
+html, body,
+body .site-header,
+body .hero,
+body .contact,
+.work-index,
+.profile-page,
+.case-page {
+  background: var(--site-canvas);
+  color: var(--site-text);
+}
+.project-story .case-section-label > span { color: var(--site-text); border-color: var(--line); }
+.hero .action-button--secondary,
+.about-copy .action-button--secondary,
+.profile-hero .action-button--secondary,
+.profile-cv .action-button--secondary,
+.project-facts .action-button--secondary {
+  --button-bg: transparent;
+  --button-color: var(--site-text);
+  --button-border: rgba(240,238,231,.55);
+}
+@media (hover: hover) {
+  :is(.hero, .about-copy, .profile-hero, .profile-cv, .project-facts) .action-button--secondary:hover {
+    --button-bg: var(--paper); --button-color: var(--ink); --button-border: var(--paper);
+  }
+}
+@media (max-width: 900px) {
+  .site-header .nav { color: var(--ink); }
+}
+
+.project-story .case-media-map { color: var(--site-text); }
+.work-index-list .work-row:focus-visible { outline-color: var(--paper); }
+
+.project-supporting-label { color: rgba(240,238,231,.72); }
+
+/* Home hero: introduction above, headline anchored to the lower left. */
+body[data-page="home"] .hero-title {
+  margin: auto 0 0;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-bottom: clamp(28px, 5vh, 60px);
+}
+body[data-page="home"] .hero-bottom {
+  order: -1;
+  margin: 0;
+  display: block;
+  padding-top: 28px;
+}
+
+/* Keep the supporting note at the opposite edge of the headline. */
+body[data-page="home"] .hero-title { width: 100%; }
+body[data-page="home"] .title-row-one { width: 100%; justify-content: space-between; gap: 24px; }
+body[data-page="home"] .title-note { margin-right: 0; text-align: right; flex-shrink: 0; }
+
+body[data-page="home"] .hero { position: relative; }
+body[data-page="home"] .hero > .title-note {
+  position: absolute;
+  right: 2.2vw;
+  bottom: clamp(28px, 5vh, 60px);
+  margin: 0;
+  text-align: right;
+}
+@media (max-width: 900px) {
+  body[data-page="home"] .hero > .title-note { display: block; right: 18px; width: 130px; font-size: 10px; }
+  body[data-page="home"] .hero-title { padding-bottom: 92px; }
+}
+
+/* Fixed full-page video canvas, independent of the scrolling document. */
+body[data-page="home"] #app { isolation: isolate; }
+body[data-page="home"] #main-content { position: relative; z-index: 1; }
+body[data-page="home"] #main-content > section { background: transparent; }
+.hero-video-backdrop { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: #101010 url('../video/hero-black-liquid.jpg') center / cover no-repeat; }
+.hero-video-backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,.72)); }
+.hero-video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+
+
+
+/* Contact closes the homepage on a solid dark-gray surface. */
+body[data-page="home"] #main-content > .contact { background: #333333; }
+
+/* Work hero: introductory copy at the top, headline at the lower left. */
+body[data-page="work"] .work-hero-bottom { margin: 0; padding-top: 0; }
+body[data-page="work"] .work-hero-title-row { margin-top: auto; padding-top: 110px; }
+body[data-page="work"] .work-index-hero h1 { text-align: left; }
+
+/* Method copy must stay readable over every frame of the background video. */
+body[data-page="home"] .process-steps p {
+  color: var(--paper);
+  font-size: 16px;
+  line-height: 1.6;
+  text-shadow: 0 1px 4px #000;
+}
+body[data-page="home"] .process-steps {
+  background: rgba(16,16,16,.88);
+  padding: 24px;
+}
+
+/* Shared page grid matches the approved 1600px homepage content. */
+:root { --site-content-width: 1600px; }
+@media (min-width: 901px) {
+  body:not([data-page="home"]) :is(.site-header, .work-index-hero, .work-index-list,
+    .profile-hero, .profile-principles, .profile-cv, .profile-skills-section,
+    .profile-contact, .project-editorial, .case-next, .case-footer) {
+    padding-inline: max(2.2vw, calc((100% - var(--site-content-width)) / 2));
+  }
+  .profile-principles > article:first-child { padding-left: 0; }
+  .profile-principles > article:last-child { padding-right: 0; }
+}
+@media (max-width: 680px) {
+  .project-editorial { padding-inline: 18px; }
+}

@@ -1,35 +1,35 @@
-/* One-shot scroll entrances; visibility is only gated after JS initializes. */
-:root { --scroll-duration: 1400ms; --scroll-ease: cubic-bezier(.22, .61, .36, 1); --scroll-distance: 18px; }
-[data-scroll-reveal="rise"],
-[data-scroll-reveal="fade"] {
-  transition: opacity var(--scroll-duration) var(--scroll-ease), translate var(--scroll-duration) var(--scroll-ease);
-  transition-delay: var(--scroll-delay, 0ms);
+/* Motion is owned by assets/js/motion.js. Layout and content are static by default. */
+/* New interaction timings: short responses, no layout animation. */
+.nav a::after, .case-nav a::after { transition: transform 180ms ease-out; }
+.nav a:hover::after, .case-nav a:hover::after { transform: scaleX(1); }
+a.action-button, .showcase-preview > span, .image-modal-toolbar button {
+  transition: background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out;
 }
-[data-scroll-reveal="rise"].is-scroll-pending { opacity: 0; translate: 0 var(--scroll-distance); }
-[data-scroll-reveal="fade"].is-scroll-pending { opacity: 0; }
-[data-scroll-reveal="rise"].is-visible,
-[data-scroll-reveal="fade"].is-visible { opacity: 1; translate: 0 0; }
-[data-scroll-reveal="line"]::after { transform-origin: left; transition: transform 1600ms var(--scroll-ease); }
-[data-scroll-reveal="line"].is-scroll-pending::after { transform: scaleX(0); }
-[data-scroll-reveal="line"].is-visible::after { transform: scaleX(1); }
 @media (max-width: 900px) {
-  :root { --scroll-distance: 12px; }
-  [data-scroll-reveal] { --scroll-delay: 0ms !important; }
+  .site-header .nav { transition: transform 220ms cubic-bezier(.2,.8,.2,1); }
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-scroll-reveal] { opacity: 1 !important; translate: none !important; transition: none !important; }
-  [data-scroll-reveal="line"]::after { transform: none !important; transition: none !important; }
+  .nav a::after, .case-nav a::after, a.action-button, .showcase-preview > span,
+  .image-modal-toolbar button, .site-header .nav { transition: none; }
 }
 
-[data-scroll-reveal].is-scroll-instant { transition: none; }
-
-/* Match the original homepage reveals without slowing interactive hover feedback. */
-[data-reveal]:not(.project-row) { transition-duration: var(--scroll-duration); transition-timing-function: var(--scroll-ease); }
-.project-row { transition: opacity var(--scroll-duration) var(--scroll-ease), transform var(--scroll-duration) var(--scroll-ease), padding .5s var(--ease); }
-.hero-kicker { animation-duration: 1400ms; }
-.title-row { animation-duration: 1800ms; animation-timing-function: var(--scroll-ease); }
-.title-row-two { animation-delay: 220ms; }
-.title-row-three { animation-delay: 440ms; }
+/* Object inspection is separate from the scroll-driven card movement. */
+.project-tile-media img { transition: scale 500ms cubic-bezier(.16,1,.3,1); }
+@media (hover: hover) and (pointer: fine) {
+  .project-tile:hover .project-tile-media img { scale: 1.035; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .title-row, .hero-kicker { animation: none !important; opacity: 1; transform: none; }
+  .project-tile-media img { transition: none; scale: 1; }
+}
+
+/* Inline words need a transformable box for scroll-linked movement. */
+.hero-word-text, .title-row-two > span, .title-row-three > span, .contact > h2 > span { display: inline-block; }
+
+.asterisk, .hero-motion-asterisk, .service-list > article > span, .process-steps > div > span { display: inline-block; }
+
+/* Asterisks rotate continuously, independently of page scrolling. */
+.asterisk, .hero-motion-asterisk { animation: gc-asterisk-spin 20s linear infinite; }
+@keyframes gc-asterisk-spin { from { rotate: 0deg; } to { rotate: 360deg; } }
+@media (prefers-reduced-motion: reduce) {
+  .asterisk, .hero-motion-asterisk { animation: none; }
 }
